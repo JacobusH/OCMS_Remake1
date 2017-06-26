@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'teachers', component: TeachersComponent },
   { path: 'faq', component: FAQComponent },
   { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'announcements', component: AnnouncementsComponent },
   { path: 'resources', component: ResourcesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'administration', component: AdministrationComponent }  
