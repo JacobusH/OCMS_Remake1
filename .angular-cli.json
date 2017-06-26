@@ -22,7 +22,8 @@
         "styles.css",
         "responsive.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/bootstrap-grid/dist/grid.min.css"
+        "../node_modules/bootstrap-grid/dist/grid.min.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

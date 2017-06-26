@@ -1,0 +1,56 @@
+.portfolio-board-column .portfolio-cell, .portfolio_filter_item_board .portfolio-cell {
+    margin-bottom: 0px;
+}
+
+.portfolio-cell {
+    background-color: #3498db;
+    line-height: 0px;
+    margin-bottom: 40px;
+    transition: all 200ms ease-out;
+    -webkit-transition: all 200ms ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-cell-thumb {
+    position: relative;
+    top: 0px;
+    line-height: 0px;
+    font-size: 0px;
+    z-index: 1;
+    transition: all 200ms ease-out;
+    -webkit-transition: all 200ms ease-out;
+}
+
+.portfolio-cell-data {
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-top: 0px;
+    box-shadow: 0px -4px 0px rgba(0,0,0,0.025) inset;
+}
+
+.portfolio-cell-title a {
+    color: #4c4c4c;
+    font-family: 'Lato',Arial !important;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.portfolio-cell-categories {
+    font-family: 'PT Serif',Arial !important;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.portfolio-cell-categories a, .portfolio-cell-categories {
+    font-family: 'PT Serif',Arial !important;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    font-style: italic;
+}
