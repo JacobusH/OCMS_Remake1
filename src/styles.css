@@ -8,6 +8,10 @@
     margin-left: 15px;
 }
 
+*, p {
+	font-size:16px;
+}
+
  html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -3673,4 +3677,41 @@ margin-bottom:20px;
 #page-heading-no-border .wrap {
 	    position: relative;
     padding: 10px 0px 40px 0px;
+}
+
+.panel.panel-default.accordion-panel {
+    margin-bottom: 0px;
+}
+
+ .panel-title {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    margin: 2px 0 0 0;
+    padding: .5em .5em .5em .7em;
+    min-height: 0;
+    font-size: 100%;
+	color: #999999;
+    /*background-color: white;*/
+    /*border: 1px solid rgba(0,0,0,0.15);*/
+    box-shadow: 0px 4px 0px rgba(0,0,0,0.025);
+	line-height: 28px;
+    font-family: 'Lato',Arial !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.panel-title:hover {
+	color: #4c4c4c;
+}
+
+.panel-body {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: 'Open Sans',Arial !important;
+}
+
+.caret {
+	float:right;
 }

@@ -1,3 +1,81 @@
-<p>
-  contact works!
-</p>
+<div id="page-heading">
+  <div class="wrap">
+    <h1 id="page-title">Contact</h1>
+  </div>
+</div>
+
+<div class="container">
+<div class="row">
+  <div class="col-lg-6">
+    <div class="little-title">
+      Our Office
+    </div>
+    <div class="content content-box-content">
+      <p><strong>Our&nbsp;Headquarters:</strong></p>
+      <p>Orange County Music School<br>14482 Silverbrook Drive, Tustin, CA 92780</p>
+      <p><strong>Phone:</strong> (646) 606-2515</p>
+      <p><a href="https://www.google.com/maps/place/14482+Silverbrook+Dr,+Tustin,+CA+92780/@33.729924,-117.815558,14z/data=!4m5!3m4!1s0x80dcdbf0ccea6ac7:0x37a3e676b43074ef!8m2!3d33.726061!4d-117.8174932?hl=en" target="_blank">Google Maps</a></p>
+      <!--<p><strong>Social Network:</strong></p>
+      <a target="_blank" title="facebook" class="social-icon social-facebook" href="https://www.facebook.com/MusicToYourHome"><i class="fa fa-facebook"></i></a>
+      <a target="_blank" title="twitter" class="social-icon social-twitter" href="https://twitter.com/MusicToYourHome"><i class="fa fa-twitter"></i></a>
+      <a target="_blank" title="instagram" class="social-icon social-instagram" href="https://instagram.com/musictoyourhome/"><i class="fa fa-instagram"></i></a>
+      <a target="_blank" title="google-plus" class="social-icon social-google-plus" href="https://plus.google.com/+musictoyourhome"><i class="fa fa-google-plus"></i></a>
+      <p>&nbsp;</p>-->
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="little-title">
+      Send Us Mail
+    </div>
+      <!-- SAVE FORM -->
+      <form (ngSubmit)="saveMailMessage()" #mailForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" required
+            [(ngModel)]="model.name" name="name"
+            #name="ngModel">
+          <div [hidden]="name.valid || name.pristine"
+                class="alert alert-danger">
+            Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email"
+            [(ngModel)]="model.email" name="email"
+            #email="ngModel">
+            <div [hidden]="email.valid || email.pristine"
+                class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control" id="phone"
+            [(ngModel)]="model.phone" name="phone"
+            #phone="ngModel">
+            <div [hidden]="phone.valid || phone.pristine"
+                class="alert alert-danger">
+            Phone is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea rows="3" class="form-control" id="message"
+            [(ngModel)]="model.message" name="message"
+            #message="ngModel">
+          </textarea>
+            <div [hidden]="message.valid || message.pristine"
+                class="alert alert-danger">
+            Message is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!mailForm.form.valid">Send</button>
+      </form>
+</div>
+</div>
+
+
+<div class="map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26545.513411169!2d-117.815558!3d33.729924!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcdbf0ccea6ac7%3A0x37a3e676b43074ef!2s14482+Silverbrook+Dr%2C+Tustin%2C+CA+92780!5e0!3m2!1sen!2sus!4v1499562589102" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Resource } from '../models/resource';
 
 @Component({
   selector: 'app-resources',
@@ -10,6 +11,10 @@ export class ResourcesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  saveResource() {
+    
   }
 
 }

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AF } from '../providers/af';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { MailMessage } from '../models/mailMessage';
 
 @Component({
   selector: 'app-contact',
@@ -6,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  public faqs: FirebaseListObservable<any>;
+  private model = new MailMessage('', '',  '', '');
 
   constructor() { }
 

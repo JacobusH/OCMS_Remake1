@@ -54,3 +54,22 @@
     font-weight: 400;
     font-style: italic;
 }
+
+
+@media only screen and (max-width: 320px) {
+
+   .carousel > li h2 { font-size: 1em !important; }
+
+}
+
+@media only screen and (max-width: 720px) {
+
+   .carousel > li h2 { font-size: 3em !important; }
+
+}
+
+@media only screen and (max-width: 1200px) {
+
+   .carousel > li h2 { font-size: 6em !important; }
+
+}

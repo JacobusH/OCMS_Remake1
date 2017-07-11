@@ -1,0 +1,7 @@
+.panel-group {
+    margin-bottom:0px !important;
+}
+
+.panel.panel-default.accordion-panel {
+    margin-bottom: 0px;
+}
