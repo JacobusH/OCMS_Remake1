@@ -3,10 +3,10 @@ import { Image } from '../../interfaces/image.interface';
 
 //IMAGES array implementing Image interface
 var IMAGES: Image[] = [
-  { "title": "We are covered", "url": "../assets/img/HomeSlider_Piano.jpg" },
-  { "title": "We are covered", "url": "../assets/img/HomeSlider_Guitar.jpg" },
-  { "title": "We are covered", "url": "../assets/img/HomeSlider_Violin.jpg" },
-  { "title": "We are covered", "url": "../assets/img/HomeSlider_Kids.jpg" }
+  { "title": "Private Music Lessons", "url": "../assets/img/HomeSlider_Piano.jpg", "color": "white" },
+  { "title": "Professional and Fun Environment", "url": "../assets/img/HomeSlider_Guitar.jpg", "color": "white" },
+  { "title": "Recitals offered", "url": "../assets/img/HomeSlider_Violin.jpg", "color": "white" },
+  { "title": "Learn any Insturment", "url": "../assets/img/HomeSlider_Kids.jpg", "color": "black" }
 ];
 
 @Component({

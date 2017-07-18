@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { CollapseModule } from 'ngx-bootstrap';
 
 // providers
 import {AF} from './providers/af';
@@ -25,6 +26,14 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { SignupComponent } from './signup/signup.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { HeaderComponent } from './header/header.component';
+import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
+import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -51,6 +60,7 @@ const routes: Routes = [
   { path: 'faq', component: FAQComponent },
   { path: 'testimonials', component: TestimonialsComponent },
   { path: 'announcements', component: AnnouncementsComponent },
+  { path: 'gallery', component: GalleryComponent },
   { path: 'resources', component: ResourcesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'administration', component: AdministrationComponent },
@@ -73,7 +83,15 @@ const routes: Routes = [
     GalleryComponent,
     PageNotFoundComponent,
     TeacherDetailComponent,
-    CarouselComponent
+    CarouselComponent,
+    SignupComponent,
+    RecipesComponent,
+    HeaderComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeItemComponent,
+    ShoppingListComponent,
+    ShoppingEditComponent
   ],
   imports: [
     AccordionModule,
@@ -81,6 +99,7 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserModule,
+    CollapseModule,
     FormsModule,
     RouterModule.forRoot(routes)
   ],

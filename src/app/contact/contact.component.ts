@@ -13,9 +13,13 @@ export class ContactComponent implements OnInit {
   public faqs: FirebaseListObservable<any>;
   private model = new MailMessage('', '',  '', '');
 
-  constructor() { }
+  constructor(private afService: AF) { }
 
   ngOnInit() {
+  }
+
+  saveMailMessage(m: MailMessage) {
+    this.afService.saveMailMessage(this.model);
   }
 
 }

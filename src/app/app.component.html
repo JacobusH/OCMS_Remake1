@@ -3,8 +3,7 @@
   <div class="site-logo">
     <h1>
     <a class="logo-image" routerLink="/home">
-      <img class="logo-normal" alt="Orange County Music School" src="../assets/img/logo.jpg">
-      <img class="logo-retina" alt="Music To Your Home" src="../assets/img/logo.jpg">
+      <!--<img class="logo-normal" alt="Orange County Music School" src="../assets/img/logo.jpg">-->
     </a>
     </h1>
   </div>
@@ -22,57 +21,8 @@
 </div>
 
 <!-- NAV -->
-<div id="header-bar">
-  <div class="wrap">
-    <div id="toggle-menu-button"><i class="fa fa-align-justify"></i></div>
-    <div id="main-menu-toggle" style="display: none;">
-      <div class="wrap">
-          <a routerLink="/home">Home</a>
-          <a routerLink="/about">About</a>
-          <a routerLink="/teachers">Teachers</a>
-          <a routerLink="/testimonials">Testimonials</a>
-          <a routerLink="/announcements">Announcements</a>
-          <a routerLink="/faq">FAQ</a>
-          <a routerLink="/contact">Contact</a>
-          <a routerLink="/resources">Resources</a>
-      </div>
-    </div>
 
-    <script>
-      jQuery(document).ready(function(){
-        jQuery('#toggle-menu-button').click(function(){
-          jQuery("#main-menu-toggle").slideToggle(200);
-        });
-      });
-    </script>
-
-    <div class="main-menu">
-      <div class="menu-main-menu-container">
-        <ul id="menu-main-menu" class="menu">
-          <li><a routerLink="/home">Home</a></li>
-          <li><a routerLink="/about">About</a></li>
-          <li><a routerLink="/teachers">Teachers</a></li>
-          <li><a routerLink="/testimonials">Testimonials</a></li>
-          <li><a routerLink="/announcements">Announcements</a></li>
-          <li><a routerLink="/faq">FAQ</a></li>
-          <li><a routerLink="/contact">Contact</a></li>
-          <li> <a routerLink="/resources">Resources</a></li>
-        </ul>
-      </div>				
-    <div class="cleared"></div>
-    </div>
-    <!-- End Main Menu -->
-    <div class="header-social">
-      <a target="_blank" href=""><i class="fa fa-facebook"></i></a>
-      <a target="_blank" href=""><i class="fa fa-google-plus"></i></a>
-      <a target="_blank" href=""><i class="fa fa-instagram"></i></a>
-      <a target="_blank" href=""><i class="fa fa-twitter"></i></a>
-      <div class="cleared"></div>
-    </div>
-    <div class="cleared"></div>
-    <div class="cleared"></div>
-  </div>
-</div>
+<app-header></app-header>
 
 <div class="app-content">
   <router-outlet></router-outlet>

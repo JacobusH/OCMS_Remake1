@@ -582,7 +582,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .content-section-heading{
-	margin-bottom:60px;
+	margin:40px;
 	text-align:center;
 }
 
@@ -704,6 +704,8 @@ h2.callout-content{
     font-family: 'Lato',Arial !important;
     font-size: 14px;
     line-height: 24px;
+	padding: 7px 30px;
+	border-radius: 5px;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
@@ -714,6 +716,14 @@ h2.callout-content{
     color: white;
     border: 1px solid #3498db;
     box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+}
+
+.icon-box-link a:hover {
+    background-color: #3498db;
+    color: white;
+    border: 1px solid #3498db;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+	text-decoration: none;
 }
 
 /* icon type image */
@@ -2712,13 +2722,26 @@ h3#reply-title{
 	margin-top:50px;
 }
 
-.portfolio-cell{
+.portfolio-cell {
 	line-height:0px;
 	margin-bottom:40px;
 	transition: all 200ms ease-out; /*safari and chrome */
 	-webkit-transition: all 200ms ease-out; /*safari and chrome */
 	position:relative;
 	overflow:hidden;
+	background-color: #3498db;
+	text-align: center;
+}
+
+@media all and (max-width: 1200px) {
+  .portfolio-cell{
+    width:50%;
+	left:26%;
+  }
+}
+
+.portfolio-cell:hover {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 .portfolio-board-column .portfolio-cell,.portfolio_filter_item_board .portfolio-cell{

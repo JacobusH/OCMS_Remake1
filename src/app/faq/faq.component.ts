@@ -26,7 +26,7 @@ export class FAQComponent implements OnInit {
   }
 
   saveFAQ() {
-    console.log('new testimonial: ', this.model);
+    console.log('new faq: ', this.model);
     this.afService.saveFaq(this.model);
   }
 
