@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap';
+import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
+import { LightboxModule } from 'angular2-lightbox';
+// import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
 
 // providers
 import {AF} from './providers/af';
@@ -65,7 +68,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'administration', component: AdministrationComponent },
   { path: '**', component: PageNotFoundComponent }
-  
+
 ];
 
 @NgModule({
@@ -101,6 +104,8 @@ const routes: Routes = [
     BrowserModule,
     CollapseModule,
     FormsModule,
+    LightboxModule,
+    Ng2ImageGalleryModule,
     RouterModule.forRoot(routes)
   ],
   providers: [AF],
