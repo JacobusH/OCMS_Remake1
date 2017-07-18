@@ -1,0 +1,15 @@
+.little-title {
+    margin: 0px;
+    padding: 0px 0px 25px 0px;
+    font-family: 'Lato',Arial !important;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.map {
+    margin-top:30px;
+}

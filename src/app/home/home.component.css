@@ -54,3 +54,9 @@
     font-weight: 400;
     font-style: italic;
 }
+
+.icon-box-link {
+    padding: 7px;   
+    border-radius: 5px;
+}
+

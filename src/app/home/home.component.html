@@ -1,10 +1,23 @@
+<app-carousel></app-carousel>
+
+
 <!-- HOME SLIDER -->
-<ul class="bxslider">
-  <li><img src="../assets/img/HomeSlider_Piano.jpg" title="test"/></li>
-  <li><img src="../assets/img/HomeSlider_Guitar.jpg" title="test"/></li>
-  <li><img src="../assets/img/HomeSlider_Violin.jpg" title="test"/></li>
-  <li><img src="../assets/img/HomeSlider_Kids.jpg" title="test"/></li>
-</ul>
+<!--<div class="carousel">
+  <ul class="slides">
+    <li>
+      <h2></h2>
+      <img src="../assets/img/HomeSlider_Piano.jpg" title="test"/></li>
+    <li>
+      <h2></h2>
+      <img src="../assets/img/HomeSlider_Guitar.jpg" title="test"/></li>
+    <li>
+      <h2></h2>
+      <img src="../assets/img/HomeSlider_Violin.jpg" title="test"/></li>
+    <li>
+      <h2></h2>
+      <img src="../assets/img/HomeSlider_Kids.jpg" title="test"/></li>
+  </ul>
+</div>-->
 
 <!-- WHY US -->
 <div class="content-section-heading">
@@ -380,38 +393,18 @@
 </div>
 
 <div class="row" style="padding: 10px 15px;">
-  <div class="col-lg-6">
-    <div class="testimonials widget-element-bottom">
+  <div class="col-lg-6" *ngFor="let test of testimonials | async">
+    <div class="testimonials">
       <div class="testimonials-content">
         <span class="testimonials-arrow"></span>
-        <p>Our son Colin just performed in his first Music To Your Home recital. I have to say what a great experience for him and all of us. Dan his guitar teacher is so great with him &amp; our whole experience with this fabulous company has been so positive. We look forward to many more years of playing music with them!</p>
-        
+        <p innerHtml="{{test.text}}"></p>
       </div>
       <div class="testimonials-author">
         <div class="testimonials-image">
-                                                <img alt="testimonial author" src="../assets/img/5stars.png"> 
-                                            </div>
-        <div class="testimonials-author-name">Mary D. </div>
-        
-        <div class="testimonials-author-info content"> </div>
-        <div class="cleared"></div>
-      </div>
-    </div>
-  </div>
-    <div class="col-lg-6">
-    <div class="testimonials widget-element-bottom">
-      <div class="testimonials-content">
-        <span class="testimonials-arrow"></span>
-        <p>Our son Colin just performed in his first Music To Your Home recital. I have to say what a great experience for him and all of us. Dan his guitar teacher is so great with him &amp; our whole experience with this fabulous company has been so positive. We look forward to many more years of playing music with them!</p>
-        
-      </div>
-      <div class="testimonials-author">
-        <div class="testimonials-image">
-                                                <img alt="testimonial author" src="../assets/img/5stars.png"> 
-                                            </div>
-        <div class="testimonials-author-name">Mary D. </div>
-        
-        <div class="testimonials-author-info content"> </div>
+            <img alt="testimonial author" src="../assets/img/5stars.png"> 
+        </div>
+        <div class="testimonials-author-name">{{test.author}}</div>
+        <div class="testimonials-author-info content"></div>
         <div class="cleared"></div>
       </div>
     </div>
@@ -435,83 +428,27 @@
 </div>
 <!-- TEACHERS -->
 <div class="row">
-  <div class="col-lg-3">
+  <div class="col-lg-3" *ngFor="let teacher of teachers | async">
     <div class="portfolio-cell ">
       <div class="portfolio-cell-thumb">
         <div class="portfolio-cell-bg"></div>
-        <a class="portfolio-cell-view" routerLink="/teachers/stella">
+        <a class="portfolio-cell-view" routerLink="/teachers/{{teacher.id}}">
           <i class="fa fa-eye"></i>
         </a>
-        <a routerLink="/teachers/stella">
-          <img src="../assets/img/teachers/stella.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
+        <a routerLink="/teachers/1">
+          <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
         </a>
       </div>
       <div class="portfolio-cell-data">
         <div class="portfolio-cell-title">
-          <a routerLink="/teachers/stella">Stella</a>
+          <a routerLink="/teachers/1">{{teacher.name}}</a>
         </div>
-        <div class="portfolio-cell-categories"><a routerLink="/instrument/piano">Piano</a></div>
-      </div>
-    </div>		
-  </div>
-  <div class="col-lg-3">
-    <div class="portfolio-cell ">
-      <div class="portfolio-cell-thumb">
-        <div class="portfolio-cell-bg"></div>
-        <a class="portfolio-cell-view" routerLink="/teachers/stella">
-          <i class="fa fa-eye"></i>
-        </a>
-        <a routerLink="/teachers/stella">
-          <img src="../assets/img/teachers/stella.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
-        </a>
-      </div>
-      <div class="portfolio-cell-data">
-        <div class="portfolio-cell-title">
-          <a routerLink="/teachers/stella">Stella</a>
-        </div>
-        <div class="portfolio-cell-categories"><a >Piano</a></div>
-      </div>
-    </div>		
-  </div>
-  <div class="col-lg-3">
-    <div class="portfolio-cell ">
-      <div class="portfolio-cell-thumb">
-        <div class="portfolio-cell-bg"></div>
-        <a class="portfolio-cell-view" routerLink="/teachers/stella">
-          <i class="fa fa-eye"></i>
-        </a>
-        <a routerLink="/teachers/stella">
-          <img src="../assets/img/teachers/stella.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
-        </a>
-      </div>
-      <div class="portfolio-cell-data">
-        <div class="portfolio-cell-title">
-          <a routerLink="/teachers/stella">Stella</a>
-        </div>
-        <div class="portfolio-cell-categories"><a >Piano</a></div>
-      </div>
-    </div>		
-  </div>
-  <div class="col-lg-3">
-    <div class="portfolio-cell ">
-      <div class="portfolio-cell-thumb">
-        <div class="portfolio-cell-bg"></div>
-        <a class="portfolio-cell-view" routerLink="/teachers/stella">
-          <i class="fa fa-eye"></i>
-        </a>
-        <a routerLink="/teachers/stella">
-          <img src="../assets/img/teachers/stella.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
-        </a>
-      </div>
-      <div class="portfolio-cell-data">
-        <div class="portfolio-cell-title">
-          <a routerLink="/teachers/stella">Stella</a>
-        </div>
-        <div class="portfolio-cell-categories"><a >Piano</a></div>
+        <div class="portfolio-cell-categories"><a routerLink="/instrument/{{teacher.instrument}}">{{teacher.instrument}}</a></div>
       </div>
     </div>		
   </div>
 </div>
+
 <div class="container" style="text-align:center;">
   <a class="button big-button 1bbc9b-button" routerLink="/teachers"><i class="fa fa fa-ok"></i>See More Teachers</a>
 </div>
