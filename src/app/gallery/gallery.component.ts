@@ -19,7 +19,7 @@ export class GalleryComponent implements OnInit {
         const caption = 'test caption';
         const thumb = 'demo/img/image' + i + '-thumb.jpg';
 
-        // this.myImages.push({"thumbnail": '../assets/img/gallery/GalleryPhoto (' + i + ').jpg', "image": '../assets/img/gallery/GalleryPhoto (' + i + ').jpg', "text": ""});
+        this.myImages.push({"thumbnail": '../assets/img/gallery/GalleryPhoto (' + i + ').jpg', "image": '../assets/img/gallery/GalleryPhoto (' + i + ').jpg', "text": ""});
         this._albums.push({"src": src, "caption": 'test', "thumb": src});
     }
 

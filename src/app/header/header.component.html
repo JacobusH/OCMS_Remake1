@@ -1,7 +1,7 @@
 <div id="header-bar">
   <div class="wrap">
-    <div id="toggle-menu-button"><i class="fa fa-align-justify"></i></div>
-     <div class="collapse navbar-collapse"
+    <!-- <i id="toggle-menu-button"><i class="fa fa-align-justify"></i></div> -->
+     <!-- <div class="collapse navbar-collapse"
               [ngClass]="{ 'in': isIn }">
             <ul class="nav navbar-nav">
                  <li><a routerLink="/home">Home</a></li>
@@ -14,7 +14,7 @@
                 <li><a routerLink="/contact">Contact</a></li>
                 <li> <a routerLink="/resources">Resources</a></li>
             </ul>
-        </div>
+        </div> -->
     <div class="main-menu">
       <div class="menu-main-menu-container">
         <ul id="menu-main-menu" class="menu">
@@ -29,14 +29,6 @@
           <li> <a routerLink="/resources">Resources</a></li>
         </ul>
       </div>				
-    <div class="cleared"></div>
-    </div>
-    <!-- End Main Menu -->
-    <div class="header-social">
-      <a target="_blank" href=""><i class="fa fa-facebook"></i></a>
-      <a target="_blank" href=""><i class="fa fa-google-plus"></i></a>
-      <a target="_blank" href=""><i class="fa fa-instagram"></i></a>
-      <a target="_blank" href=""><i class="fa fa-twitter"></i></a>
       <div class="cleared"></div>
     </div>
     <div class="cleared"></div>
@@ -45,8 +37,8 @@
 </div>
 
 <!-- core/navbar.component.html -->
-<nav class="navbar navbar-inverse navbar-fixed-top header-bar">
-    <div class="container-fluid wrap">
+ <nav class="navbar navbar-default navbar-static-top header-bar hidden-md hidden-lg">
+    <div class="">
         <div class="navbar-header">
                 <button type="button" 
                         class="navbar-toggle collapsed"
@@ -72,10 +64,8 @@
                 <li> <a routerLink="/resources">Resources</a></li>
             </ul>
         </div>
-        <!-- End Main Menu -->
- 
   <div class="cleared"></div>
     <div class="cleared"></div>
     </div>
 </nav>
-
+ 

@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
@@ -37,6 +38,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { GalleryCarouselComponent } from './components/gallery-carousel/gallery-carousel.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -94,7 +96,8 @@ const routes: Routes = [
     RecipeDetailComponent,
     RecipeItemComponent,
     ShoppingListComponent,
-    ShoppingEditComponent
+    ShoppingEditComponent,
+    GalleryCarouselComponent
   ],
   imports: [
     AccordionModule,
@@ -102,6 +105,7 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserModule,
+    CarouselModule.forRoot(),
     CollapseModule,
     FormsModule,
     LightboxModule,

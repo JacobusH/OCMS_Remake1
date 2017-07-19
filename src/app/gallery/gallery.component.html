@@ -5,9 +5,10 @@
         <!-- <ng2-image-gallery [images]="myImages" [actionText]="'do something!'" (onAction)="doSomething($event)"></ng2-image-gallery>  -->
         <!-- <ng2-image-gallery [images]="myImages"></ng2-image-gallery>  -->
 
-        <div class="ng2-image-gallery-thumbnail-container" *ngFor="let img of _albums; let i = index">
+        <!-- <div class="ng2-image-gallery-thumbnail-container" *ngFor="let img of _albums; let i = index">
             <img [src]="img.src" (click)="open(i)" alt="" class="ng2-image-gallery-thumbnail">
-        </div>
+        </div> -->
     </div>
 </div>
 
+<app-gallery-carousel [myImages]="myImages"></app-gallery-carousel> 
