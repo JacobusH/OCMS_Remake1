@@ -23,7 +23,9 @@
         "responsive.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "../node_modules/bootstrap-grid/dist/grid.min.css",
-        "../node_modules/font-awesome/css/font-awesome.css"
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/ng2-image-gallery/ng2-image-gallery.css",
+        "../node_modules/angular2-lightbox/lightbox.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

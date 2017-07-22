@@ -4,10 +4,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap';
+import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
+import { LightboxModule } from 'angular2-lightbox';
+// import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
 
 // providers
 import {AF} from './providers/af';
@@ -34,6 +38,7 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { GalleryCarouselComponent } from './components/gallery-carousel/gallery-carousel.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -65,7 +70,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'administration', component: AdministrationComponent },
   { path: '**', component: PageNotFoundComponent }
-  
+
 ];
 
 @NgModule({
@@ -91,7 +96,8 @@ const routes: Routes = [
     RecipeDetailComponent,
     RecipeItemComponent,
     ShoppingListComponent,
-    ShoppingEditComponent
+    ShoppingEditComponent,
+    GalleryCarouselComponent
   ],
   imports: [
     AccordionModule,
@@ -99,8 +105,11 @@ const routes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserModule,
+    CarouselModule.forRoot(),
     CollapseModule,
     FormsModule,
+    LightboxModule,
+    Ng2ImageGalleryModule,
     RouterModule.forRoot(routes)
   ],
   providers: [AF],
