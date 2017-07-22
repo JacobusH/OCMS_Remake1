@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Image } from '../../interfaces/image.interface';
+import { Image } from 'app/interfaces/image.interface';
 
 //IMAGES array implementing Image interface
 var IMAGES: Image[] = [
