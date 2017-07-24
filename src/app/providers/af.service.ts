@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 import { FAQ } from 'app/models/faq.model';
 import { Resource } from 'app/models/resource.model';
 import { MailMessage } from 'app/models/mailMessage.model';
+import { User } from 'app/models/user.model';
 
 
 @Injectable()
@@ -45,13 +46,10 @@ export class AF {
         }});
 
       this.user = this.afAuth.authState;
+      this.users = this.db.list('users');
   }
 
-  getCurrentDate() {
-    const dt = new Date(Date.now());
-    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
-  }
-
+  // LOGIN
   loginWithGoogle() {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
@@ -59,6 +57,31 @@ export class AF {
   logout() {
     return this.afAuth.auth.signOut();
   }
+
+  // USER
+  saveUser(user:User) {
+    this.users.push(user);
+  }
+
+  isUserUnique(user:User): boolean {
+    // TOOD Jacobus: figure out how to check if it actually exists
+    this.users.subscribe(u => {
+      if(u.email == user.email)
+        {
+          console.log("User: " + u.email + " already exists.");
+          return true;
+        }
+    });
+
+    return false;
+  }
+
+  // HELPERS
+  getCurrentDate() {
+    const dt = new Date(Date.now());
+    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
+  }
+
 
   sendMessage(text) {
     const message = {
