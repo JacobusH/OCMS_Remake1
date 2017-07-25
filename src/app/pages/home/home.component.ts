@@ -1,15 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AF } from 'app/providers/af.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { ImageInterface } from 'app/interfaces/galleryImage.interface';
+import { fadeInAnimation } from 'app/animations/fade-in.animation';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
+  @HostBinding('@fadeInAnimation') routeAnimation = true;
   public teachers: FirebaseListObservable<any>;
   public testimonials: FirebaseListObservable<any>;
   myImages: ImageInterface[] = [

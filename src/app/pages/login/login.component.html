@@ -1,27 +1,49 @@
-<h2>Login</h2>
 
+<div id="page-heading">
+  <div class="wrap">
+    <h1 id="page-title">Login</h1>
+  </div>
+</div>
 
-<form (ngSubmit)="login()" #faqForm="ngForm" novalidate>
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" required
-      [(ngModel)]="model.username" name="username"
-      #username="ngModel">
-    <div [hidden]="username.valid || username.pristine"
-          class="alert alert-danger">
-      Username is required
+<div class="oauth-section container">
+  <div class="row">
+    <div class="col-lg-3 col-lg-offset-2">
+      <div id="googleLoginButton" (click)="googleLogin()"></div>
+    </div>
+    <div class="col-lg-3 col-lg-offset-3">
+       <img id="facebookLoginButton" (click)="facebookLogin()" src="assets/img/oauth/fb_button.png" class="img-responsive" width="44" />
     </div>
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="text" class="form-control" id="password"
-      [(ngModel)]="model.password" name="password"
-      #password="ngModel">
-      <div [hidden]="password.valid || password.pristine"
-          class="alert alert-danger">
-      Password is required
+  
+</div>
+
+<div class="container"> 
+  <form (ngSubmit)="login()" #faqForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" required
+        [(ngModel)]="model.username" name="username"
+        #username="ngModel">
+      <div [hidden]="username.valid || username.pristine"
+            class="alert alert-danger">
+        Username is required
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-success" [disabled]="!faqForm.form.valid">Save</button>
-  <a [routerLink]="['/signup']" class="btn btn-link">Register</a>
-</form>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" id="password" required
+        [(ngModel)]="model.password" name="password"
+        #password="ngModel">
+        <div [hidden]="password.valid || password.pristine"
+            class="alert alert-danger">
+        Password is required
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!faqForm.form.valid">Save</button>
+    <a [routerLink]="['/signup']" class="btn btn-link">Register</a>
+  </form>
+</div>
+
+<!-- <div class="container">
+  <button (click)="logout()">Logout</button>
+</div> -->

@@ -54,6 +54,14 @@ export class AF {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  loginWithFacebook() {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  // simpleLogin() {
+  //   this.afAuth.auth.signInWithCredential()
+  // }
+
   logout() {
     return this.afAuth.auth.signOut();
   }

@@ -27,7 +27,7 @@
           <li><a routerLink="/faq">FAQ</a></li>
           <li><a routerLink="/contact">Contact</a></li>
           <li><a routerLink="/resources">Resources</a></li>
-          <li><a routerLink="/login">login</a></li>
+          <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">login</a></li>
         </ul>
       </div>				
       <div class="cleared"></div>
@@ -71,3 +71,8 @@
     </div>
 </nav>
  
+<!-- TEMPLATES -->
+<ng-template #showProfile_content>
+  <li><a routerLink="/profile">Profile</a></li>
+  <!-- <li><a routerLink="/profile">Logout</a></li> -->
+</ng-template>

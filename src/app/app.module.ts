@@ -3,6 +3,7 @@ import { AccordionModule } from 'ngx-accordion';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap';
@@ -62,6 +63,7 @@ import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -128,13 +130,15 @@ const routes: Routes = [
     ImageFilterPipe,
     LoginComponent,
     AlertComponent,
-    ValidateEqualComponent
+    ValidateEqualComponent,
+    ProfileComponent
   ],
   imports: [
     AccordionModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule,
     BrowserModule,
     CarouselModule.forRoot(),
     CollapseModule,
