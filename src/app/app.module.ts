@@ -57,13 +57,13 @@ import { GalleryComponent } from 'app/pages//gallery/gallery.component';
 import { HomeComponent } from 'app/pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from 'app/pages//page-not-found/page-not-found.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ResourcesComponent } from 'app/pages/resources/resources.component';
 import { SignupComponent } from 'app/pages/signup/signup.component';
 import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -85,6 +85,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'resources', component: ResourcesComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'teachers', component: TeachersComponent },
