@@ -23,26 +23,45 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
       // reset login status
-      this.authenticationService.logout();
+      // this.authenticationService.logout();
 
       // get return url from route parameters or default to '/'
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   googleLogin() {
-    this.af.loginWithGoogle().then(authData => {
+    this.af.loginWithGoogle()
+    .then(authData => {
+      console.log("Google auth data");
       console.log(authData);
+      this.router.navigate(['']);
+    })
+    .catch(err => {
+      this.alertService.error(err.message);
     });
   }
 
   facebookLogin() {
     this.af.loginWithFacebook().then(authData => {
+      console.log("Facebook auth data");
       console.log(authData);
+      this.router.navigate(['']);
     })
     .catch(error => {
       console.log(error);
       this.alertService.error(error.message);
-      // this.alertService.warning("If you tried signing in with Facebook, you may have already created an account with Google. Try siging in with Google.");
+    });
+  }
+
+  emailLogin() {
+    this.af.loginWithEmail(this.model.email, this.model.password)
+    .then(authData => {
+      console.log("Email auth data");
+      console.log(authData);
+      this.router.navigate(['']);
+    })
+    .catch(err => {
+      this.alertService.error(err.message);
     });
   }
 

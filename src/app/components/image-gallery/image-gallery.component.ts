@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { GalleryImage } from 'app/models/galleryImage.model';
 import { ImageService } from 'app/providers/image.service';
+import { AF } from 'app/providers/af.service';
 
 @Component({
   selector: 'app-image-gallery',
@@ -10,14 +11,17 @@ import { ImageService } from 'app/providers/image.service';
 export class ImageGalleryComponent implements OnChanges {
   @Input() filterBy?: string = 'all';
   title = "Recent Photos";
-  visibleImages: GalleryImage[] = [];
+  // visibleImages: GalleryImage[] = [];
+  visibleImages;
 
-  constructor(private imageService: ImageService) { 
-    this.visibleImages = this.imageService.getImages();    
+  constructor(private imageService: ImageService, private af: AF) { 
+    // this.visibleImages = this.imageService.getImages();  
+    this.visibleImages = this.af.gallery;  
   }
 
   ngOnChanges() {
-    this.visibleImages = this.imageService.getImages();
+    // this.visibleImages = this.imageService.getImages();
+    this.visibleImages = this.af.gallery;
   }
 
 }

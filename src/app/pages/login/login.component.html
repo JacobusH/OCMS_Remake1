@@ -5,6 +5,10 @@
   </div>
 </div>
 
+<!-- <div>
+  <p>Sign in with one of our providers</p>
+</div> -->
+
 <div class="oauth-section container">
   <div class="row">
     <div class="col-lg-3 col-lg-offset-2">
@@ -18,15 +22,15 @@
 </div>
 
 <div class="container"> 
-  <form (ngSubmit)="login()" #faqForm="ngForm" novalidate>
+  <form (ngSubmit)="emailLogin()" #loginForm="ngForm" novalidate>
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" required
-        [(ngModel)]="model.username" name="username"
-        #username="ngModel">
-      <div [hidden]="username.valid || username.pristine"
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" required
+        [(ngModel)]="model.email" name="email"
+        #email="ngModel">
+      <div [hidden]="email.valid || email.pristine"
             class="alert alert-danger">
-        Username is required
+        Email is required
       </div>
     </div>
     <div class="form-group">
@@ -39,7 +43,7 @@
         Password is required
       </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!faqForm.form.valid">Save</button>
+    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">Save</button>
     <a [routerLink]="['/signup']" class="btn btn-link">Register</a>
   </form>
 </div>

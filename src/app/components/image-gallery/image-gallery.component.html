@@ -1,9 +1,9 @@
 <div class="row">
-  <!-- <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterBy = 'all' ">All</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == boats" (click)="filterBy = 'boats' ">Boats</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == trees" (click)="filterBy = 'trees' ">Trees</button> -->
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterBy = 'all' ">All</button>
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterBy = 'piano' ">Piano</button>
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == flute" (click)="filterBy = 'flute' ">Flute</button> 
   <ul id="thumbnailsList">
-    <li *ngFor="let image of (visibleImages | imageFilter:filterBy)">
+    <li *ngFor="let image of (visibleImages | imageFilter:filterBy) | async">
       <a [routerLink]="['image', image.id]">
         <img src="{{ image.url }}" class="tn" width="200" height="165" />
       </a>

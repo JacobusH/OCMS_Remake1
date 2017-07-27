@@ -73,6 +73,13 @@
  
 <!-- TEMPLATES -->
 <ng-template #showProfile_content>
-  <li><a routerLink="/profile">Profile</a></li>
-  <!-- <li><a routerLink="/profile">Logout</a></li> -->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a routerLink="/profile">View Profile</a></li>
+      <li><a routerLink="/" (click)="logout()">Logout</a></li>
+    </ul>
+  </li>
+  <!-- <li><a routerLink="/profile">Profile</a></li> -->
 </ng-template>

@@ -22,10 +22,10 @@ export class HeaderComponent implements OnInit {
           if(user) {
               this.currentUser = user;
               this.isLoggedIn = true;
-              console.log("Logged in user is: " + user.email);
-              console.log("User photo: " + user.providerData[0].photoURL);
-              console.log("User name: " + user.providerData[0].displayName);
-              console.log(user);
+              // console.log("Logged in user is: " + user.email);
+              // console.log("User photo: " + user.providerData[0].photoURL);
+              // console.log("User name: " + user.providerData[0].displayName);
+              // console.log(user);
           }
           else {
             this.currentUser = {};

@@ -10,9 +10,15 @@ export class ImageFilterPipe implements PipeTransform {
       return items;
     } 
     else {
-      return items.filter(item => {
-        return item.category === criteria;
-      })  
+      
+    return items
+      .map(items => items.filter(x => 
+        x.category === criteria
+      ));
+
+      // return items.filter(item => {
+      //   return item.category === criteria;
+      // });  
     }
   }
 

@@ -9,6 +9,7 @@ import { FAQ } from 'app/models/faq.model';
 import { Resource } from 'app/models/resource.model';
 import { MailMessage } from 'app/models/mailMessage.model';
 import { User } from 'app/models/user.model';
+import { GalleryImage } from 'app/models/galleryImage.model';
 
 
 @Injectable()
@@ -26,12 +27,14 @@ export class AF {
   public user: Observable<firebase.User>;
   public displayName: string;
   public email: string;
+  public gallery: FirebaseListObservable<any>;
 
   private currentDate: string;
 
   constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {
       this.announcements = this.db.list('announcements');
       this.faqs = this.db.list('faqs');
+      this.gallery = this.db.list('gallery');
       this.mailMessages = this.db.list('messages');
       this.resources = this.db.list('resources');
       this.testimonials = this.db.list('testimonials');
@@ -47,6 +50,7 @@ export class AF {
 
       this.user = this.afAuth.authState;
       this.users = this.db.list('users');
+
   }
 
   // LOGIN
@@ -56,6 +60,10 @@ export class AF {
 
   loginWithFacebook() {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  loginWithEmail(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
   // simpleLogin() {
@@ -82,6 +90,32 @@ export class AF {
     });
 
     return false;
+  }
+
+  getUser(email: string) {
+    return this.db.list('users', {
+        query: {
+          orderByChild: 'email',
+          equalTo: email
+        }});
+  }
+
+  // GALLERY
+  saveGalleryItem(item: GalleryImage) {
+    this.gallery.push(item);
+  }
+
+  getGalleryItem(id: number) {
+    return this.db.object('gallery/' + id);
+  }
+
+  getMostRecentGalleryItem() {
+     return this.db.list('gallery', {
+      query: {
+        orderByChild: 'id',
+        limitToLast: 1 // returns one result of list ordered by id with highest id first
+      }
+    });
   }
 
   // HELPERS

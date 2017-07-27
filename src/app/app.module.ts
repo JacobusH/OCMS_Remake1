@@ -64,6 +64,7 @@ import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
+import { MediaManagerComponent } from './components/media-manager/media-manager.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -132,7 +133,8 @@ const routes: Routes = [
     LoginComponent,
     AlertComponent,
     ValidateEqualComponent,
-    ProfileComponent
+    ProfileComponent,
+    MediaManagerComponent
   ],
   imports: [
     AccordionModule,
