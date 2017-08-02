@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Resource } from 'app/models/resource.model';
 import { AF } from 'app/providers/af.service';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
   selector: 'app-resources',
@@ -9,11 +10,12 @@ import { AF } from 'app/providers/af.service';
 })
 export class ResourcesComponent implements OnInit {
   private model = new Resource('', '',  '');
-
+  public resources: FirebaseListObservable<any>;
 
   constructor(private afService: AF) { }
 
   ngOnInit() {
+    this.resources = this.afService.resources;
   }
 
   saveResource() {

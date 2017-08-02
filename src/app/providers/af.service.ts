@@ -10,24 +10,27 @@ import { Resource } from 'app/models/resource.model';
 import { MailMessage } from 'app/models/mailMessage.model';
 import { User } from 'app/models/user.model';
 import { GalleryImage } from 'app/models/galleryImage.model';
+import { LearnToPlay } from 'app/models/learntoplay.model';
 
 
 @Injectable()
 export class AF {
-  public faqs: FirebaseListObservable<any>;
-  public resources: FirebaseListObservable<any>;
-  public messages: FirebaseListObservable<any>;
   public announcements: FirebaseListObservable<any>;
+  public displayName: string;
+  public email: string;
+  public faqs: FirebaseListObservable<any>;
+  public gallery: FirebaseListObservable<any>;
+  public learntoplay: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
+  public messages: FirebaseListObservable<any>;
+  public resources: FirebaseListObservable<any>;
+  public resourceCategories: FirebaseListObservable<any>;
   public testimonials: FirebaseListObservable<any>;
   public testimonialsDesc: FirebaseListObservable<any>;
   public teachers: FirebaseListObservable<any>;
   public teachersDesc: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public user: Observable<firebase.User>;
-  public displayName: string;
-  public email: string;
-  public gallery: FirebaseListObservable<any>;
 
   private currentDate: string;
 
@@ -35,6 +38,7 @@ export class AF {
       this.announcements = this.db.list('announcements');
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
+      this.learntoplay = this.db.list('learntoplay');
       this.mailMessages = this.db.list('messages');
       this.resources = this.db.list('resources');
       this.testimonials = this.db.list('testimonials');
@@ -77,6 +81,11 @@ export class AF {
   // USER
   saveUser(user:User) {
     this.users.push(user);
+  }
+
+  // LEARN TO PLAY
+  saveLTP(ltp: LearnToPlay) {
+    this.learntoplay.push(ltp);
   }
 
   isUserUnique(user:User): boolean {

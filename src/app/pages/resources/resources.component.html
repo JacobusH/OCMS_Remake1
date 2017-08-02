@@ -1,6 +1,104 @@
-<app-recipes></app-recipes>
-<app-shopping-list></app-shopping-list>
-<!--
+<div id="page-heading">
+  <div class="wrap">
+    <h1 id="page-title">Resources</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Music Teacher Associations</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Music Teacher Associations') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+     <div class="res-container">
+      <h3>Music Education Information</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Music Education Information') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Piano Magazines</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Piano Magazines') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-4">
+     <div class="res-container">
+      <h3>Piano Manufacturers</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Piano Manufacturers') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Piano Publishers</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Piano Publishers') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Fun and Games</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Fun and Games') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Sheet Music</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Sheet Music') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Articles</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Articles') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="res-container">
+      <h3>Apps</h3>
+      <div *ngFor="let res of (resources | resourceCategoryFilter:'Apps') | async">
+        <a href="{{res.url}}">{{ res.title }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <app-recipes></app-recipes>
+<app-shopping-list></app-shopping-list> -->
+
+<!-- 
+<div class="container">
 <form  (ngSubmit)="saveResource()" #resourceForm="ngForm">
   <div class="form-group">
     <label for="title">Title</label>
@@ -34,4 +132,6 @@
   </div>
   
   <button type="submit" class="btn btn-success" [disabled]="!resourceForm.form.valid">Save</button>
-</form>-->
+</form>
+
+</div> -->

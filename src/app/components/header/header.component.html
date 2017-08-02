@@ -23,7 +23,7 @@
           <li><a routerLink="/teachers">Teachers</a></li>
           <li><a routerLink="/gallery">Gallery</a></li>
           <li><a routerLink="/testimonials">Testimonials</a></li>
-          <li><a routerLink="/announcements">Announcements</a></li>
+          <!-- <li><a routerLink="/announcements">Announcements</a></li> -->
           <li><a routerLink="/faq">FAQ</a></li>
           <li><a routerLink="/contact">Contact</a></li>
           <li><a routerLink="/resources">Resources</a></li>
@@ -59,11 +59,11 @@
                 <li><a routerLink="/teachers">Teachers</a></li>
                 <li><a routerLink="/gallery">Gallery</a></li>
                 <li><a routerLink="/testimonials">Testimonials</a></li>
-                <li><a routerLink="/announcements">Announcements</a></li>
+                <!-- <li><a routerLink="/announcements">Announcements</a></li> -->
                 <li><a routerLink="/faq">FAQ</a></li>
                 <li><a routerLink="/contact">Contact</a></li>
                 <li> <a routerLink="/resources">Resources</a></li>
-                <li> <a routerLink="/login">Login</a></li>
+                <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">login</a></li>
             </ul>
         </div>
   <div class="cleared"></div>

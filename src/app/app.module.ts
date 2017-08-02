@@ -25,6 +25,7 @@ import { UserService } from 'app/providers/user.service';
 
 // pipes
 import { ImageFilterPipe } from 'app/pipes/filter.pipe';
+import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
 
 // directives
 import { AlertComponent } from './directives/alert/alert.component';
@@ -65,6 +66,8 @@ import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
 import { MediaManagerComponent } from './components/media-manager/media-manager.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LearntoplayComponent } from './pages/learntoplay/learntoplay.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -85,9 +88,12 @@ const routes: Routes = [
   { path: 'gallery/image/:id', component: ImageGalleryDetailComponent },
   { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
+  { path: 'learntoplay', component: LearntoplayComponent },
+  { path: 'learntoplay/:id', component: LearntoplayComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'resources', component: ResourcesComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'teachers/:id', component: TeacherDetailComponent,
@@ -130,11 +136,14 @@ const routes: Routes = [
     ImageGalleryComponent,
     ImageGalleryDetailComponent,
     ImageFilterPipe,
+    ResourceCategoryPipe,
     LoginComponent,
     AlertComponent,
     ValidateEqualComponent,
     ProfileComponent,
-    MediaManagerComponent
+    MediaManagerComponent,
+    RegisterComponent,
+    LearntoplayComponent
   ],
   imports: [
     AccordionModule,
