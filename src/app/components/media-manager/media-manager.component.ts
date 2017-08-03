@@ -38,13 +38,13 @@ export class MediaManagerComponent implements OnInit {
     //   this.af.saveGalleryItem(itemToAdd);
   }
 
-  modifyItem(item: GalleryImage) {
-    var itemToChange = this.af.getGalleryItem(item.id);
-    itemToChange.update(item);
-  }
+  // modifyItem(item: GalleryImage) {
+  //   var itemToChange = this.af.getGalleryItem(item.id);
+  //   itemToChange.update(item);
+  // }
 
-  deleteItem(item: GalleryImage) {
-    this.af.getGalleryItem(item.id).remove();
-  }
+  // deleteItem(item: GalleryImage) {
+  //   this.af.getGalleryItem(item.id).remove();
+  // }
 
 }

@@ -115,7 +115,12 @@ export class AF {
   }
 
   getGalleryItem(id: number) {
-    return this.db.object('gallery/' + id);
+    this.db.list('gallery', {
+      query: {
+          orderBy: 'location',
+          equalTo: 'some place'
+      }
+    })
   }
 
   getMostRecentGalleryItem() {

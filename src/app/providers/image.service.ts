@@ -8,11 +8,11 @@ export class ImageService {
   galleryImages: GalleryImage[] = [];
 
   constructor(private af: AF) {
-    for(var i = 1; i <= 100; i++)
-    {
-      var cat: string = (i % 2 == 0) ? "boats" : "trees";
-      this.galleryImages.push(new GalleryImage(i, cat, cat, "assets/img/gallery/GalleryPhoto (" + i + ").jpg"));
-    }
+    // for(var i = 1; i <= 100; i++)
+    // {
+    //   var cat: string = (i % 2 == 0) ? "boats" : "trees";
+    //   this.galleryImages.push(new GalleryImage(i, cat, cat, "assets/img/gallery/GalleryPhoto (" + i + ").jpg"));
+    // }
 
   }
 

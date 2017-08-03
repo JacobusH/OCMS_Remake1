@@ -1,7 +1,9 @@
 <div class="row">
   <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterBy = 'all' ">All</button>
   <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterBy = 'piano' ">Piano</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == flute" (click)="filterBy = 'flute' ">Flute</button> 
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == violin" (click)="filterBy = 'violin' ">Violin</button> 
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == guitar" (click)="filterBy = 'guitar' ">Guitar</button> 
+  <button class="btn btn-lg btn-info" [class.active]="filterBy == recital" (click)="filterBy = 'recital' ">Recital</button> 
   <ul id="thumbnailsList">
     <li *ngFor="let image of (visibleImages | imageFilter:filterBy) | async">
       <a [routerLink]="['image', image.id]">
