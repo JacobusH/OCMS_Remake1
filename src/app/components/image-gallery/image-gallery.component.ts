@@ -8,25 +8,26 @@ import { AF } from 'app/providers/af.service';
 @Component({
   selector: 'app-image-gallery',
   templateUrl: './image-gallery.component.html',
-  styleUrls: ['./image-gallery.component.css'],
-  animations: [
-    trigger('flyInOut', [
-    state('in', style({transform: 'translateX(0)'})),
-    transition('void => *', [
-      style({transform: 'translateX(-100%)'}),
-      animate(100)
-    ]),
-    transition('* => void', [
-      animate(100, style({transform: 'translateX(100%)'}))
-    ])
-  ])
-]
+  styleUrls: ['./image-gallery.component.css']
+//   animations: [
+//     trigger('flyInOut', [
+//     state('in', style({transform: 'translateX(0)'})),
+//     transition('void => *', [
+//       style({transform: 'translateX(-100%)'}),
+//       animate(100)
+//     ]),
+//     transition('* => void', [
+//       animate(100, style({transform: 'translateX(100%)'}))
+//     ])
+//   ])
+// ]
 })
 export class ImageGalleryComponent implements OnChanges, OnInit {
   @Input() filterBy?: string = 'all';
   title = "Recent Photos";
   // visibleImages: GalleryImage[] = [];
   visibleImages;
+  loadingPercent: number = 0;
 
   public loaded = false;
   public fadeInState = 'in';
@@ -64,8 +65,9 @@ export class ImageGalleryComponent implements OnChanges, OnInit {
     this.fadeInState = 'out';
     this.fadeOutState = 'in';
 
-    console.log("loading img");
-    console.log(event);
+    this.loadingPercent += 1;
+    console.log("loading img" + this.loadingPercent);
+    // console.log(event);
   }
 
 }
