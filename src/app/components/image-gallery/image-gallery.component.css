@@ -11,3 +11,11 @@ li {
   border: 4px solid #eee;
   box-shadow: #555 1px 1px 8px 1px;
 }
+
+img.blur {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+}

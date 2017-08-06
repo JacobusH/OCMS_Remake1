@@ -1,3 +1,8 @@
+<div style="position: relative; left: 0; top: 0; width: 560px; height: 330px;">
+  <img [@fadeInOut]="fadeInState" class="blur" alt="placeholder" [src]="placeholder" style="position: relative; top: 0; left: 0; width: inherit; height: inherit;"/>
+  <img [@fadeInOut]="fadeOutState" alt="image" [src]="image" (load)="isLoaded($event)" style="position: absolute; top: 0px; left: 0px; width: inherit; height: inherit;"/>
+</div>
+
 <div class="row">
   <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterBy = 'all' ">All</button>
   <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterBy = 'piano' ">Piano</button>
@@ -7,7 +12,8 @@
   <ul id="thumbnailsList">
     <li *ngFor="let image of (visibleImages | imageFilter:filterBy) | async">
       <a [routerLink]="['image', image.id]">
-        <img src="{{ image.url }}" class="tn" width="200" height="165" />
+        <!-- <img src="{{ image.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> -->
+        <img [@fadeInOut]="fadeOutState" src="{{ image.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" />
       </a>
     </li>
   </ul>

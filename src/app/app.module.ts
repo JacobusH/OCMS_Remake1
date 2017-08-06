@@ -16,11 +16,12 @@ import { RouterModule, Routes } from '@angular/router';
 // import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
 
 // providers
-import { AF } from 'app/providers/af.service';
-import { ImageService } from 'app/providers/image.service';
-import { fakeBackendProvider } from 'app/helpers/fake-backend/fake-backend.component';
 import { AlertService } from 'app/providers/alert.service';
+import { AF } from 'app/providers/af.service';
+import { AppCustomPreloader } from 'app/helpers/AppCustomPreloader';
 import { AuthenticationService } from 'app/providers/authentication.service';
+import { fakeBackendProvider } from 'app/helpers/fake-backend/fake-backend.component';
+import { ImageService } from 'app/providers/image.service';
 import { UserService } from 'app/providers/user.service';
 
 // pipes
@@ -158,11 +159,12 @@ const routes: Routes = [
     HttpModule,
     // LightboxModule,
     // Ng2ImageGalleryModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {preloadingStrategy: AppCustomPreloader})
   ],
   providers: [
     AF,
     AlertService,
+    AppCustomPreloader,
     AuthGuard,
     AuthenticationService,
     ImageService,
