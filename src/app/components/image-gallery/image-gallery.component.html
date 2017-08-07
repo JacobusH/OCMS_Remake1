@@ -1,14 +1,42 @@
-<!--<div style="position: relative; left: 0; top: 0; width: 560px; height: 330px;">
-  <img [@fadeInOut]="fadeInState" class="blur" alt="placeholder" [src]="placeholder" style="position: relative; top: 0; left: 0; width: inherit; height: inherit;"/>
-  <img [@fadeInOut]="fadeOutState" alt="image" [src]="image" (load)="isLoaded($event)" style="position: absolute; top: 0px; left: 0px; width: inherit; height: inherit;"/>
-</div>-->
-
-<div class="loading-section">
-  <span>{{loadingPercent}}</span>
+ <div class="load-container container AC" *ngIf="doneLoading === false"> 
+<!-- <div class="load-container container AC"> -->
+  <h2>Hold on a Moment</h2>
+  <p>While we load the gallery</p> or just <button class="btn btn-lg btn-info" (click)="doneLoading = true">Show Anyway</button>
+  <p>{{loadingPercent | number : '1.2-2'}}</p>
+  <div style="width: 20%">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ 'width': loadingPercent + '%' }">
+      {{loadingPercent | number : '1.2-2'}}%
+    </div>
+  </div>
 </div>
 
-<app-progress-bar class="progress-striped" [currentValue]="loadingPercent" type="warning" max="200">55%</app-progress-bar>
+<button (click)="isShown = !isShown">Apparate elem</button>
+<p [@apparateAnimation]='isShown'>Apparate me</p>
+  
+<!-- Staic approach, maintains imgs in memory for beter experience -->
+<div class="gallery-container AC" [style.visibility]="(doneLoading == false) ? 'hidden' : 'visible' ">
+  <div class="filter-buttons">
+    <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterClicked('all')">All</button>
+    <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterClicked('piano')">Piano</button>
+    <button class="btn btn-lg btn-info" [class.active]="filterBy == violin" (click)="filterClicked('violin')">Violin</button> 
+    <button class="btn btn-lg btn-info" [class.active]="filterBy == guitar" (click)="filterClicked('guitar')">Guitar</button> 
+    <button class="btn btn-lg btn-info" [class.active]="filterBy == recital" (click)="filterClicked('recital')">Recital</button> 
+  </div>
+  <div *ngFor="let img of loadedImages">
+    <ul id="thumbnailsList">
+      <li *ngFor="let img of loadedImages">
+        <span *ngFor="let innerImg of img | imageFilter:filterBy">
+          <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]">
+            <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
+          </a>
+        </span>
+      </li>
+    </ul>
+  </div>   
+</div>
 
+<!-- Async approach, easy to code but requires reload for every filter applied -->
+<!-- 
 <div class="row">
   <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterBy = 'all' ">All</button>
   <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterBy = 'piano' ">Piano</button>
@@ -18,9 +46,8 @@
   <ul id="thumbnailsList">
     <li *ngFor="let image of (visibleImages | imageFilter:filterBy) | async">
       <a [routerLink]="['image', image.id]">
-        <img src="{{ image.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
-        <!--<img [@fadeInOut]="fadeOutState" src="{{ image.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" />-->
+        <img src="{{ image.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> \
       </a>
     </li>
   </ul>
-</div>
+</div> -->

@@ -30,7 +30,6 @@ import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
 
 // directives
 import { AlertComponent } from './directives/alert/alert.component';
-import { ProgressDirective } from './directives/progress.directive';
 
 // guards
 import { AuthGuard } from 'app/guards/auth/auth.component';
@@ -70,7 +69,6 @@ import { ValidateEqualComponent } from './directives/validate-equal/validate-equ
 import { MediaManagerComponent } from './components/media-manager/media-manager.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LearntoplayComponent } from './pages/learntoplay/learntoplay.component';
-import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -142,14 +140,11 @@ const routes: Routes = [
     ResourceCategoryPipe,
     LoginComponent,
     AlertComponent,
-    ProgressDirective,
     ValidateEqualComponent,
     ProfileComponent,
     MediaManagerComponent,
     RegisterComponent,
     LearntoplayComponent,
-    ProgressBarComponent,
-    ProgressDirective
   ],
   imports: [
     AccordionModule,
@@ -169,7 +164,6 @@ const routes: Routes = [
   providers: [
     AF,
     AlertService,
-    ProgressDirective,
     AppCustomPreloader,
     AuthGuard,
     AuthenticationService,

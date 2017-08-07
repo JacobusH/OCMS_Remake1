@@ -11,14 +11,16 @@ export class ImageFilterPipe implements PipeTransform {
     } 
     else {
       
-    return items
-      .map(items => items.filter(x => 
-        x.category === criteria
-      ));
+    // use this when using filter with async list  
+    // return items
+    //   .map(items => items.filter(x => 
+    //     x.category === criteria
+    //   ));
 
-      // return items.filter(item => {
-      //   return item.category === criteria;
-      // });  
+    // use this for using filter with static lists
+      return items.filter(item => {
+        return item.category === criteria;
+      });  
     }
   }
 
