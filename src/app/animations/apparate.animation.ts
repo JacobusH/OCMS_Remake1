@@ -6,7 +6,7 @@ export const apparateTrigger = trigger('apparateAnimation', [
     style({
       opacity: 0
     }),
-    animate('.8s', style({ opacity: 1}))
+    animate('.3s', style({ opacity: 1}))
   ])
 ])
 
