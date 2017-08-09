@@ -10,9 +10,6 @@
   </div>
 </div>
 
-<button (click)="isShown = !isShown">Apparate elem</button>
-<p [@apparateAnimation]='isShown'>Apparate me</p>
-  
 <!-- Staic approach, maintains imgs in memory for beter experience -->
 <div class="gallery-container AC" [style.visibility]="(doneLoading == false) ? 'hidden' : 'visible' ">
   <div class="filter-buttons">
@@ -23,17 +20,17 @@
     <button class="btn btn-lg btn-info" [class.active]="filterBy == recital" (click)="filterClicked('recital')">Recital</button> 
   </div>
   <div *ngFor="let img of loadedImages">
-    <ul id="thumbnailsList">
-      <li *ngFor="let img of loadedImages">
-        <span *ngFor="let innerImg of img | imageFilter:filterBy">
-          <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]">
-            <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
-          </a>
-        </span>
-      </li>
-    </ul>
+    <div *ngFor="let img of loadedImages">
+      <span *ngFor="let innerImg of img | imageFilter:filterBy">
+        <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]">
+          <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
+        </a>
+      </span>
+    </div>
   </div>   
 </div>
+
+
 
 <!-- Async approach, easy to code but requires reload for every filter applied -->
 <!-- 
@@ -51,3 +48,17 @@
     </li>
   </ul>
 </div> -->
+
+
+<!-- AS A LIST 
+ <div *ngFor="let img of loadedImages">
+    <ul id="thumbnailsList">
+      <li *ngFor="let img of loadedImages">
+        <span *ngFor="let innerImg of img | imageFilter:filterBy">
+          <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]">
+            <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
+          </a>
+        </span>
+      </li>
+    </ul>
+  </div>    -->

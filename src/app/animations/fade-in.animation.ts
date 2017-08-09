@@ -3,7 +3,7 @@ import { trigger, state, animate, transition, style } from '@angular/animations'
 export const fadeInAnimation = 
 trigger('fadeInAnimation', [
     // route 'enter' transition
-    transition(':enter', [
+    transition('void <=> *', [
         // animation at start
         style({opacity: 0}),
         

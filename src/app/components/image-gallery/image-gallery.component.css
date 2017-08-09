@@ -19,3 +19,7 @@ img.blur {
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
 }
+
+.filter-buttons button {
+  margin-bottom:15px;
+}
