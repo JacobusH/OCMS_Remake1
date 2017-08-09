@@ -4,6 +4,30 @@
 		</div>
 	</div>
 
+<div class="portfolio-container AC"> 
+  <div class="IL portfolio" *ngFor="let teacher of teachers | async; let i = index">
+    <div class="portfolio-cell">
+      <div class="portfolio-cell-thumb">
+        <div class="portfolio-cell-bg"></div>
+        <a class="portfolio-cell-view" routerLink="/teachers/{{i + 1}}">
+          <!-- <i class="fa fa-eye"></i> -->
+          &nbsp;
+        </a>
+        <a routerLink="/teachers/{{i + 1}}">
+          <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
+        </a>
+      </div>
+      <div class="portfolio-cell-data">
+        <div class="portfolio-cell-title">
+          <a routerLink="/teachers/{{i + 1}}">{{teacher.name}}</a>
+        </div>
+        <div class="portfolio-cell-categories"><a routerLink="/instrument/{{teacher.instrument}}">{{teacher.instrument}}</a></div>
+      </div>
+    </div>		
+  </div>
+</div>
+
+<!--   
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
@@ -88,7 +112,6 @@
     
   </div>
 
-  <!-- ROW 2 -->
   <div class="row">
     <div class="col-lg-3">
       <div class="portfolio-cell ">
@@ -172,7 +195,6 @@
     
   </div>
 
-  <!-- ROW 3 -->
   <div class="row">
     <div class="col-lg-12">
       <div class="col-lg-3">
@@ -196,4 +218,4 @@
     </div>
     </div>
   </div>
-</div>
+</div> -->

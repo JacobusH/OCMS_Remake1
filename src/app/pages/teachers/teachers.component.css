@@ -1,26 +1,16 @@
-.portfolio-board-column .portfolio-cell, .portfolio_filter_item_board .portfolio-cell {
-    margin-bottom: 0px;
+
+.portfolio {
+  margin: 45px;
 }
 
 .portfolio-cell {
     background-color: #3498db;
-    line-height: 0px;
-    margin-bottom: 40px;
-    transition: all 200ms ease-out;
-    -webkit-transition: all 200ms ease-out;
     position: relative;
     overflow: hidden;
 }
 
 .portfolio-cell-thumb {
-    position: relative;
-    top: 0px;
-    line-height: 0px;
-    font-size: 0px;
-    z-index: 1;
-    transition: all 200ms ease-out;
-    -webkit-transition: all 200ms ease-out;
-    max-height: 200px;
+  
 }
 
 .portfolio-cell-data {
@@ -55,3 +45,9 @@
     font-weight: 400;
     font-style: italic;
 }
+
+.attachment-thumb-cell-small  {
+  height:200px;
+}
+
+
