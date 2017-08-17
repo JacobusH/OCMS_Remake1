@@ -72,4 +72,4 @@ export class RegisterComponent implements OnInit {
     this.af.users.push(u);
   }
 
-}
+} 
