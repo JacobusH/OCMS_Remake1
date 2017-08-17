@@ -12,7 +12,7 @@ import { AF } from 'app/providers/af.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private model = new User( '', '', '', '', '');
+  private model = new User('', '', '', '', '', '');
   private isLoggedIn;
   constructor(
       private router: Router,
@@ -35,11 +35,7 @@ export class RegisterComponent implements OnInit {
   saveUserEmailPassword() {
     this.af.afAuth.auth.createUserWithEmailAndPassword(this.model.email, this.model.password)
     .then((authData) => {
-      console.log("EMail auth data");
-      console.log(authData);
-
-      this.af.users.push(new SimpleUser(authData.uid, 'student'));
-
+      this.saveUser(authData, 'email');
       this.af.loginWithEmail(this.model.email, this.model.password);
       // this.af.users.push(authData);
       this.router.navigate(['/']);
@@ -52,18 +48,28 @@ export class RegisterComponent implements OnInit {
 
   googleLogin() {
     this.af.loginWithGoogle().then(authData => {
+      this.saveUser(authData, 'google');
       this.router.navigate(['']);
     });
   }
 
   facebookLogin() {
     this.af.loginWithFacebook().then(authData => {
+      this.saveUser(authData, 'facebook');
       this.router.navigate(['']);
     })
     .catch(error => {
       console.log(error);
       this.alertService.error(error.message);
     });
+  }
+
+  saveUser(authData: any, provider: string) {
+    // does user already exist?
+    // this.af.checkUserExists(authData.user.uid);
+    
+    let u = new User(authData.user.uid, authData.user.displayName, authData.user.email, '', 'student', provider);
+    this.af.users.push(u);
   }
 
 }

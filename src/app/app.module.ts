@@ -3,6 +3,7 @@ import { AccordionModule } from 'ngx-accordion';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -32,7 +33,8 @@ import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
 import { AlertComponent } from './directives/alert/alert.component';
 
 // guards
-import { AuthGuard } from 'app/guards/auth/auth.component';
+import { AuthService } from 'app/guards/auth.service';
+import { AuthGuard } from 'app/guards/auth-guard.service';
 
 // components
 import { CarouselComponent } from 'app/components/carousel/carousel.component';
@@ -61,7 +63,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from 'app/pages//page-not-found/page-not-found.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ResourcesComponent } from 'app/pages/resources/resources.component';
-import { SignupComponent } from 'app/pages/signup/signup.component';
 import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
@@ -69,6 +70,10 @@ import { ValidateEqualComponent } from './directives/validate-equal/validate-equ
 import { MediaManagerComponent } from './components/media-manager/media-manager.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LearntoplayComponent } from './pages/learntoplay/learntoplay.component';
+import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
+import { UserManagerComponent } from './components/user-manager/user-manager.component';
+import { MessageManagerComponent } from './components/message-manager/message-manager.component';
+import { LivechatManagerComponent } from './components/livechat-manager/livechat-manager.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -77,37 +82,6 @@ export const firebaseConfig = {
   storageBucket: 'ocmusicschool-11817.appspot.com',
   messagingSenderId: '202663817255'
 };
-
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'administration', component: AdministrationComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'announcements', component: AnnouncementsComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'faq', component: FAQComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'gallery/image/:id', component: ImageGalleryDetailComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'home/:id', component: HomeComponent },
-  { path: 'learntoplay', component: LearntoplayComponent },
-  { path: 'learntoplay/:id', component: LearntoplayComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'resources', component: ResourcesComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'teachers', component: TeachersComponent },
-  { path: 'teachers/:id', component: TeacherDetailComponent,
-    // children: [
-    //   { path: '', redirectTo: 'overview', pathMatch: 'full' },
-      // { path: 'overview', component: Overview },
-      // { path: 'specs', component: Specs }
-    // ]
-  },
-  { path: 'testimonials', component: TestimonialsComponent },
-  { path: '**', component: PageNotFoundComponent }
-
-];
 
 @NgModule({
   declarations: [
@@ -125,7 +99,6 @@ const routes: Routes = [
     PageNotFoundComponent,
     TeacherDetailComponent,
     CarouselComponent,
-    SignupComponent,
     RecipesComponent,
     HeaderComponent,
     RecipeListComponent,
@@ -145,12 +118,17 @@ const routes: Routes = [
     MediaManagerComponent,
     RegisterComponent,
     LearntoplayComponent,
+    AdminNavComponent,
+    UserManagerComponent,
+    MessageManagerComponent,
+    LivechatManagerComponent,
   ],
   imports: [
     AccordionModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     CarouselModule.forRoot(),
@@ -159,13 +137,13 @@ const routes: Routes = [
     HttpModule,
     // LightboxModule,
     // Ng2ImageGalleryModule,
-    RouterModule.forRoot(routes, {preloadingStrategy: AppCustomPreloader, enableTracing: true})
   ],
   providers: [
     AF,
     AlertService,
     AppCustomPreloader,
     AuthGuard,
+    AuthService,
     AuthenticationService,
     ImageService,
     ImageFilterPipe,

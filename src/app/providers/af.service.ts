@@ -88,6 +88,21 @@ export class AF {
     this.learntoplay.push(ltp);
   }
 
+  // USER
+  checkUserExists(uid: string) {
+    let item = this.db.object('/users/' + uid, { preserveSnapshot: true });
+    
+    item.subscribe(snapshot => {
+    if(snapshot.exists()) {  
+      //object exists 
+      console.log("EXISTS!!!");
+    } else {
+      //object doesnt exist 
+      console.log("NOT THERE!!!");
+    }
+    });
+  }
+
   isUserUnique(user:User): boolean {
     // TOOD Jacobus: figure out how to check if it actually exists
     this.users.subscribe(u => {

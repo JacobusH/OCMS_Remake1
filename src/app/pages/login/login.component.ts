@@ -3,11 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'app/providers/alert.service'
 import { AuthenticationService } from 'app/providers/authentication.service';
 import  { AF } from 'app/providers/af.service';
+import { User } from 'app/models/user.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AlertService]
 })
 export class LoginComponent implements OnInit {
   model: any = {};
@@ -69,16 +71,4 @@ export class LoginComponent implements OnInit {
     this.af.logout();
   }
 
-  // login() {
-  //   this.loading = true;
-  //   this.authenticationService.login(this.model.username, this.model.password)
-  //     .subscribe(
-  //       data => {
-  //         this.router.navigate([this.returnUrl]);
-  //       },
-  //       error => {
-  //         this.alertService.error(error);
-  //         this.loading = false;
-  //         });
-  // }
 }

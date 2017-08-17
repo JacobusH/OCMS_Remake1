@@ -1,6 +1,16 @@
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-1">
+    <app-admin-nav></app-admin-nav>
+  </div>
+  <div class="col-lg-11">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+<!-- 
+<div class="col-lg-5">
     <h2>Media Manager</h2>
     <app-media-manager></app-media-manager>
   </div>
@@ -9,5 +19,4 @@
     <ul *ngFor="let user of users | async">
       <li>{{ user }}</li>
     </ul>
-  </div>
-</div>
+  </div> -->
