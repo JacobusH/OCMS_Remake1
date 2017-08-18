@@ -24,6 +24,7 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
 import { MessageManagerComponent } from './components/message-manager/message-manager.component';
 import { LivechatManagerComponent } from './components/livechat-manager/livechat-manager.component';
+import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 // components
 import { CarouselComponent } from 'app/components/carousel/carousel.component';
 import { GalleryCarouselComponent } from 'app/components/gallery-carousel/gallery-carousel.component';
@@ -71,6 +72,7 @@ const routes: Routes = [
     // ]
   },
   { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'contact/thanks', component: ThanksComponent },
   { path: '**', component: PageNotFoundComponent }
 
 ];

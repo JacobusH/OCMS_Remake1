@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -74,6 +74,7 @@ import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
 import { UserManagerComponent } from './components/user-manager/user-manager.component';
 import { MessageManagerComponent } from './components/message-manager/message-manager.component';
 import { LivechatManagerComponent } from './components/livechat-manager/livechat-manager.component';
+import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -122,6 +123,7 @@ export const firebaseConfig = {
     UserManagerComponent,
     MessageManagerComponent,
     LivechatManagerComponent,
+    ThanksComponent,
   ],
   imports: [
     AccordionModule,
@@ -134,6 +136,7 @@ export const firebaseConfig = {
     CarouselModule.forRoot(),
     CollapseModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     // LightboxModule,
     // Ng2ImageGalleryModule,

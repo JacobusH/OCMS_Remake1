@@ -182,9 +182,16 @@ export class AF {
       this.resources.push(resource);
   }
 
+  // MAIL
   saveMailMessage(m: MailMessage)
   {
-      this.mailMessages.push(m);
+      let promise = this.mailMessages.push(m);
+      this.db.object("messages/" + promise.key).update({key: promise.key})
+  }
+
+  updateMailMessage(msg: MailMessage)
+  {
+    this.db.object("messages/" + msg.key).update(msg)
   }
 
   // saveTeacher(text) {

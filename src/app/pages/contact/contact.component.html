@@ -28,13 +28,17 @@
       Send Us Mail
     </div>
       <!-- SAVE FORM -->
-      <form (ngSubmit)="saveMailMessage()" #mailForm="ngForm">
+      <form (ngSubmit)="saveMailMessage(f)" #mailForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" required
             [(ngModel)]="model.name" name="name"
-            #name="ngModel">
-          <div [hidden]="name.valid || !name.touched"
+            #name="ngModel"
+            [ngClass]="{
+              'has-success': name.valid,
+              'has-danger': !name.pristine && !name.valid
+            }">
+          <div [hidden]="name.valid || name.pristine"
                 class="alert alert-danger">
             Name is required
           </div>
@@ -43,18 +47,26 @@
           <label for="email">Email</label>
           <input type="text" class="form-control" id="email" required
             [(ngModel)]="model.email" name="email"
-            #email="ngModel">
-            <div [hidden]="email.valid || !email.touched"
+            #email="ngModel"
+            [ngClass]="{
+              'has-success': email.valid,
+              'has-danger': !email.pristine && !email.valid
+            }">
+            <div [hidden]="email.valid || email.pristine"
                 class="alert alert-danger">
             Email is required
           </div>
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="text" class="form-control" id="phone"
+          <input type="text" class="form-control" id="phone" required
             [(ngModel)]="model.phone" name="phone"
-            #phone="ngModel">
-            <div [hidden]="phone.valid || !phone.touched"
+            #phone="ngModel"
+            [ngClass]="{
+              'has-success': phone.valid,
+              'has-danger': !phone.pristine && !phone.valid
+            }">
+            <div [hidden]="phone.valid || phone.pristine"
                 class="alert alert-danger">
             Phone is required
           </div>
@@ -63,15 +75,98 @@
           <label for="message">Message</label>
           <textarea rows="3" class="form-control" id="message" required
             [(ngModel)]="model.message" name="message"
-            #message="ngModel">
+            #message="ngModel"
+            [ngClass]="{
+              'has-success': message.valid,
+              'has-danger': !message.pristine && !message.valid
+            }">
           </textarea>
-            <div [hidden]="message.valid || !message.touched"
+            <div [hidden]="message.valid || message.pristine"
                 class="alert alert-danger">
             Message is required
           </div>
         </div>
         <button type="submit" class="btn btn-success" [disabled]="!mailForm.form.valid">Send</button>
-      </form>
+      </form> 
+     
+      <!-- <form novalidate
+      [formGroup]="myform"
+      (ngSubmit)="onSubmit()">
+
+  <fieldset formGroupName="name">
+    <div class="form-group"
+         [ngClass]="{
+        'has-danger': firstName.invalid && (firstName.dirty || firstName.touched),
+        'has-success': firstName.valid && (firstName.dirty || firstName.touched)
+      }">
+      <label>First Name</label>
+      <input type="text"
+             class="form-control"
+             formControlName="firstName"
+             required>
+      <div class="form-control-feedback"
+           *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+        <p *ngIf="firstName.errors.required">Last Name is required</p>
+      </div>
+
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{
+        'has-danger': lastName.invalid && (lastName.dirty || lastName.touched),
+        'has-success': lastName.valid && (lastName.dirty || lastName.touched)
+      }">
+      <label>Last Name</label>
+      <input type="text"
+             class="form-control"
+             formControlName="lastName"
+             required>
+      <div class="form-control-feedback"
+           *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+        <p *ngIf="lastName.errors.required">Last Name is required</p>
+      </div>
+    </div>
+  </fieldset>
+
+
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': email.invalid && (email.dirty || email.touched),
+        'has-success': email.valid && (email.dirty || email.touched)
+   }">
+    <label>Email</label>
+    <input type="email"
+           class="form-control"
+           formControlName="email"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="email.errors && (email.dirty || email.touched)">
+      <p *ngIf="email.errors.required">Email is required</p>
+      <p *ngIf="password.errors.pattern">The email address must contain at least the @ character</p>
+    </div>
+  </div>
+
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': password.invalid && (password.dirty || password.touched),
+        'has-success': password.valid && (password.dirty || password.touched)
+   }">
+    <label>Password</label>
+    <input type="password"
+           class="form-control"
+           formControlName="password"
+           required>
+    <div class="form-control-feedback"
+         *ngIf="password.errors && (password.dirty || password.touched)">
+      <p *ngIf="password.errors.required">Password is required</p>
+      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+    </div>
+  </div>
+
+  <button type="submit"
+          class="btn btn-primary">Submit
+  </button>
+</form>  -->
 </div>
 </div>
 
