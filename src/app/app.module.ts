@@ -3,7 +3,6 @@ import { AccordionModule } from 'ngx-accordion';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { AppRoutingModule } from 'app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -18,6 +17,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // providers
 import { AlertService } from 'app/providers/alert.service';
+import { AlertMultiService } from 'app/providers/alert-multi.service';
 import { AF } from 'app/providers/af.service';
 import { AppCustomPreloader } from 'app/helpers/AppCustomPreloader';
 import { AuthenticationService } from 'app/providers/authentication.service';
@@ -31,17 +31,18 @@ import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
 
 // directives
 import { AlertComponent } from './directives/alert/alert.component';
+import { AlertMultiComponent } from './directives/alert-multi/alert-multi-component';
 
 // guards
 import { AuthService } from 'app/guards/auth.service';
 import { AuthGuard } from 'app/guards/auth-guard.service';
 
 // components
-import { CarouselComponent } from 'app/components/carousel/carousel.component';
-import { GalleryCarouselComponent } from 'app/components/gallery-carousel/gallery-carousel.component';
-import { HeaderComponent } from 'app/components/header/header.component';
-import { ImageGalleryComponent } from 'app/components/image-gallery/image-gallery.component';
-import { ImageGalleryDetailComponent } from 'app/components/image-gallery/image-gallery-detail/image-gallery-detail.component';
+import { CarouselComponent } from 'app/components/plebian/carousel/carousel.component';
+import { GalleryCarouselComponent } from 'app/components/plebian/gallery-carousel/gallery-carousel.component';
+import { HeaderComponent } from 'app/components/cosmopolitan/header/header.component';
+import { ImageGalleryComponent } from 'app/components/plebian/image-gallery/image-gallery.component';
+import { ImageGalleryDetailComponent } from 'app/components/plebian/image-gallery/image-gallery-detail/image-gallery-detail.component';
 
 import { RecipesComponent } from 'app/recipes/recipes.component';
 import { RecipeListComponent } from 'app/recipes/recipe-list/recipe-list.component';
@@ -67,14 +68,15 @@ import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
-import { MediaManagerComponent } from './components/media-manager/media-manager.component';
+import { MediaManagerComponent } from 'app/components/admin/media-manager/media-manager.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LearntoplayComponent } from './pages/learntoplay/learntoplay.component';
-import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
-import { UserManagerComponent } from './components/user-manager/user-manager.component';
-import { MessageManagerComponent } from './components/message-manager/message-manager.component';
-import { LivechatManagerComponent } from './components/livechat-manager/livechat-manager.component';
+import { AdminNavComponent } from 'app/components/admin/admin-nav/admin-nav.component';
+import { UserManagerComponent } from 'app/components/admin/user-manager/user-manager.component';
+import { MessageManagerComponent } from 'app/components/admin/message-manager/message-manager.component';
+import { LivechatManagerComponent } from 'app/components/admin/livechat-manager/livechat-manager.component';
 import { ThanksComponent } from './pages/contact/thanks/thanks.component';
+import { SignupManagerComponent } from 'app/components/admin/signup-manager/signup-manager.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -83,6 +85,43 @@ export const firebaseConfig = {
   storageBucket: 'ocmusicschool-11817.appspot.com',
   messagingSenderId: '202663817255'
 };
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'admin', canActivate: [AuthGuard], component: AdministrationComponent, children: [
+    { path: "messages", component: MessageManagerComponent},
+    { path: "chat", component: LivechatManagerComponent},
+    { path: "media", component: MediaManagerComponent},
+    { path: "signups", component: SignupManagerComponent},
+    { path: "users", component: UserManagerComponent},
+  ] },
+  { path: 'about', component: AboutComponent },
+  { path: 'announcements', component: AnnouncementsComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'faq', component: FAQComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'gallery/image/:id', component: ImageGalleryDetailComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
+  { path: 'learntoplay', component: LearntoplayComponent },
+  { path: 'learntoplay/:id', component: LearntoplayComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'resources', component: ResourcesComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'teachers', component: TeachersComponent },
+  { path: 'teachers/:id', component: TeacherDetailComponent,
+    // children: [
+    //   { path: '', redirectTo: 'overview', pathMatch: 'full' },
+      // { path: 'overview', component: Overview },
+      // { path: 'specs', component: Specs }
+    // ]
+  },
+  { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'contact/thanks', component: ThanksComponent },
+  { path: '**', component: PageNotFoundComponent }
+
+];
 
 @NgModule({
   declarations: [
@@ -114,6 +153,7 @@ export const firebaseConfig = {
     ResourceCategoryPipe,
     LoginComponent,
     AlertComponent,
+    AlertMultiComponent,
     ValidateEqualComponent,
     ProfileComponent,
     MediaManagerComponent,
@@ -124,13 +164,13 @@ export const firebaseConfig = {
     MessageManagerComponent,
     LivechatManagerComponent,
     ThanksComponent,
+    SignupManagerComponent
   ],
   imports: [
     AccordionModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     CarouselModule.forRoot(),
@@ -138,12 +178,14 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    RouterModule.forRoot(routes)
     // LightboxModule,
     // Ng2ImageGalleryModule,
   ],
   providers: [
     AF,
     AlertService,
+    AlertMultiService,
     AppCustomPreloader,
     AuthGuard,
     AuthService,

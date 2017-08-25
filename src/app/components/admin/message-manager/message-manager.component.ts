@@ -10,12 +10,14 @@ import { MailMessage } from 'app/models/mailMessage.model';
 })
 export class MessageManagerComponent implements OnInit {
   mailMessages: any;
+  loadedMessages: MailMessage[] = [];
 
   constructor(private af: AF) { 
     this.mailMessages = this.af.mailMessages;
   }
 
   ngOnInit() {
+   
   }
 
   readClicked(event, msg: MailMessage) {

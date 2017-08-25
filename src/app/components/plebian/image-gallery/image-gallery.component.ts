@@ -37,7 +37,6 @@ export class ImageGalleryComponent implements OnChanges, OnInit {
   ngOnInit() {
      this.af.gallery.subscribe(img => {
       this.loadedImages.push(img);
-      console.log(img);
     })
   }
 

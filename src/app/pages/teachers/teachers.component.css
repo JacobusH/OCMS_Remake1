@@ -50,4 +50,8 @@
   height:200px;
 }
 
+.portfolio-cell-thumb img {
+  max-width:254px;
+}
+
 

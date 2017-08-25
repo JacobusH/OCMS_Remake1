@@ -1,4 +1,6 @@
-<div class="message-container IL" *ngFor="let msg of mailMessages | async">
+<div class="message-container IL" 
+*ngFor="let msg of mailMessages | async"
+[style.borderColor]="msg.read ? 'green' : 'red'">
   <div class="contact-info">
     <div class="message-email">
         <span class="message-info">Email</span>: {{ msg.email }}

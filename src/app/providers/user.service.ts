@@ -41,15 +41,15 @@ export class UserService {
       // return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
   }
 
-  createUser(user: User): boolean {
+  createUser(user: User) {
       // return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());
-    if(!this.af.isUserUnique(user)) {
-      this.af.saveUser(user);
-      return true;
-    }
-    else {
-      return false;
-      }
+    // if(!this.af.isUserUnique(user)) {
+    //   this.af.saveUser(user);
+    //   return true;
+    // }
+    // else {
+    //   return false;
+    //   }
   }
 
   update(user: User) {

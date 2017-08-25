@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'app/providers/alert.service'
+import { AlertMultiService } from 'app/providers/alert-multi.service'
 import { AuthenticationService } from 'app/providers/authentication.service';
 import  { AF } from 'app/providers/af.service';
 import { User } from 'app/models/user.model';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
       private router: Router,
       private authenticationService: AuthenticationService,
       private alertService: AlertService,
+      private alertMultiService: AlertMultiService,
       private af: AF) { }
 
   ngOnInit() {
@@ -39,7 +41,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
     })
     .catch(err => {
-      this.alertService.error(err.message);
+      // this.alertService.error(err.message);
+      this.alertMultiService.error(err.message);
     });
   }
 
@@ -51,7 +54,8 @@ export class LoginComponent implements OnInit {
     })
     .catch(error => {
       console.log(error);
-      this.alertService.error(error.message);
+      // this.alertService.error(error.message);
+      this.alertMultiService.error(error.message);
     });
   }
 
@@ -63,7 +67,9 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
     })
     .catch(err => {
-      this.alertService.error(err.message);
+      console.log(err.message);
+      // this.alertService.error(err.message);
+      this.alertMultiService.error(err.message);
     });
   }
 

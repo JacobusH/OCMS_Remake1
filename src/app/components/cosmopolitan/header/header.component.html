@@ -45,7 +45,7 @@
               <li><a routerLink="/faq" (click)="toggleState()">FAQ</a></li>
               <li><a routerLink="/contact" (click)="toggleState()">Contact</a></li>
               <li> <a routerLink="/resources" (click)="toggleState()">Resources</a></li>
-              <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">login</a></li>
+              <li *ngIf="!isLoggedIn; else showProfile_mobile_content"><a routerLink="/login" (click)="toggleState()">login</a></li>
             </ul>
         </div>
   <div class="cleared"></div>
@@ -65,3 +65,9 @@
   </li>
   <!-- <li><a routerLink="/profile">Profile</a></li> -->
 </ng-template>
+
+<ng-template #showProfile_mobile_content>
+    <li class="dropdown"><a routerLink="/profile" (click)="toggleState()">Profile</a></li>
+    <li><a routerLink="/" (click)="logout(); toggleState();">Logout</a></li>
+    <!-- <li><a routerLink="/profile">Profile</a></li> -->
+  </ng-template>

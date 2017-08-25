@@ -5,12 +5,7 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { FAQ } from 'app/models/faq.model';
-import { Resource } from 'app/models/resource.model';
-import { MailMessage } from 'app/models/mailMessage.model';
-import { User } from 'app/models/user.model';
-import { GalleryImage } from 'app/models/galleryImage.model';
-import { LearnToPlay } from 'app/models/learntoplay.model';
+import { FAQ, MailMessage, User, GalleryImage, Signup, Resource} from 'app/models/_index';
 
 
 @Injectable()
@@ -20,11 +15,11 @@ export class AF {
   public email: string;
   public faqs: FirebaseListObservable<any>;
   public gallery: FirebaseListObservable<any>;
-  public learntoplay: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public messages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
   public resourceCategories: FirebaseListObservable<any>;
+  public signups: FirebaseListObservable<any>;
   public testimonials: FirebaseListObservable<any>;
   public testimonialsDesc: FirebaseListObservable<any>;
   public teachers: FirebaseListObservable<any>;
@@ -38,26 +33,36 @@ export class AF {
       this.announcements = this.db.list('announcements');
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
-      this.learntoplay = this.db.list('learntoplay');
-      this.mailMessages = this.db.list('messages');
       this.resources = this.db.list('resources');
       this.testimonials = this.db.list('testimonials');
       this.teachers = this.db.list('teachers');
-      this.testimonialsDesc = this.db.list('testimonials', {
+      this.user = this.afAuth.authState;
+      this.users = this.db.list('users');
+      
+      this.signups = this.db.list('signups', {
         query: {
-        limitToFirst: 4
-      }});
-      this.teachersDesc = this.db.list('teachers', {
+          orderByChild: 'invertedDate'
+        }
+      });
+      this.mailMessages = this.db.list('messages', {
+        query: {
+          orderByChild: 'invertedDate'
+        }
+      });
+      this.testimonialsDesc = this.db.list('testimonials', {
         query: {
           limitToFirst: 4
         }});
-
-      this.user = this.afAuth.authState;
-      this.users = this.db.list('users');
+      this.teachersDesc = this.db.list('teachers', {
+        query: {
+          limitToFirst: 4
+      }});
 
   }
 
-  // LOGIN
+  /******************** 
+   LOGIN
+  ****************** */
   loginWithGoogle() {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
@@ -70,25 +75,29 @@ export class AF {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  // simpleLogin() {
-  //   this.afAuth.auth.signInWithCredential()
-  // }
-
   logout() {
     return this.afAuth.auth.signOut();
   }
 
-  // USER
-  saveUser(user:User) {
-    this.users.push(user);
+  /******************** 
+   SIGNUPS / LEARN TO PLAY
+  ****************** */
+  saveSignup(signup: Signup) {
+    signup.date = this.getCurrentDate();
+    signup.invertedDate = this.getInvertedDate();
+
+    let promise = this.signups.push(signup);
+    this.db.object("signups/" + promise.key).update({key: promise.key});
   }
 
-  // LEARN TO PLAY
-  saveLTP(ltp: LearnToPlay) {
-    this.learntoplay.push(ltp);
+  updateSignup(s: Signup)
+  {
+    this.db.object("signups/" +s.key).update(s)
   }
 
-  // USER
+  /******************** 
+   USERS
+  ****************** */
   checkUserExists(uid: string) {
     let item = this.db.object('/users/' + uid, { preserveSnapshot: true });
     
@@ -124,7 +133,14 @@ export class AF {
         }});
   }
 
-  // GALLERY
+  saveEmailUser(user:User) {
+    let promise = this.users.push(user);
+    this.db.object("users/" + promise.key).update({key: promise.key})
+  }
+
+  /******************** 
+   GALLERY
+  ****************** */
   saveGalleryItem(item: GalleryImage) {
     this.gallery.push(item);
   }
@@ -147,13 +163,9 @@ export class AF {
     });
   }
 
-  // HELPERS
-  getCurrentDate() {
-    const dt = new Date(Date.now());
-    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
-  }
-
-
+  /******************** 
+   MESSAGES
+  ****************** */
   sendMessage(text) {
     const message = {
       message: text,
@@ -164,6 +176,9 @@ export class AF {
     this.messages.push(message);
   }
 
+  /******************** 
+   ANNOUNCEMENT
+  ****************** */
   saveAnnouncement(text) {
     const announcement = {
       announcement: text,
@@ -172,17 +187,25 @@ export class AF {
     this.announcements.push(announcement);
   }
 
+  /******************** 
+   FAQ
+  ****************** */
   saveFaq(faq: FAQ)
   {
       this.faqs.push(faq);
   }
 
+  /******************** 
+   RESOURCE
+  ****************** */
   saveResource(resource: Resource)
   {
       this.resources.push(resource);
   }
 
-  // MAIL
+  /******************** 
+    MAIL MESSAGES
+  ****************** */
   saveMailMessage(m: MailMessage)
   {
       let promise = this.mailMessages.push(m);
@@ -193,6 +216,20 @@ export class AF {
   {
     this.db.object("messages/" + msg.key).update(msg)
   }
+
+
+  /******************** 
+   HELPERS
+  ****************** */
+  getCurrentDate() {
+    const dt = new Date(Date.now());
+    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
+  }
+
+  getInvertedDate() {
+   return 0 - Date.now();
+  }
+
 
   // saveTeacher(text) {
   //   const teacher = {

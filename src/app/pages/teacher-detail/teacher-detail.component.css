@@ -1,4 +1,5 @@
 .photo {
-    text-align: center;
+    float:left;
     margin-bottom: 20px;
+    margin-right:50px;
 }

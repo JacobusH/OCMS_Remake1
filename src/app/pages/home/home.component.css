@@ -7,6 +7,8 @@
     background-color: #3498db;
     position: relative;
     overflow: hidden;
+    width: 70%;
+    margin: 0 auto;
 }
 
 .portfolio-cell-thumb {
@@ -48,6 +50,10 @@
 
 .attachment-thumb-cell-small  {
   height:200px;
+}
+
+.portfolio-cell-thumb img {
+  max-width:254px;
 }
 
 

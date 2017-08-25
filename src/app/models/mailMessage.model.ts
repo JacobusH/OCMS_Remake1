@@ -7,6 +7,7 @@ export class MailMessage {
       public phone: string,
       public message: string,
       public date: string,
+      public invertedDate: number,
       public read: boolean
     ) {}
 }

@@ -24,3 +24,10 @@ h2, p {
   background-image: url('/assets/img/oauth/btn_google_signin_dark_disabled_web.png');
   background-repeat: no-repeat;
 }
+
+
+  .oauth-section img, .oauth-section #googleLoginButton {
+    display: block;
+    margin: 0px auto 25px auto;
+    background-position: center; 
+  }

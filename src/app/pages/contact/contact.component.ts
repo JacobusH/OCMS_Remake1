@@ -9,7 +9,8 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  FormBuilder
+  FormBuilder,
+  NgForm
 } from '@angular/forms';
 
 
@@ -20,24 +21,32 @@ import {
 })
 export class ContactComponent implements OnInit {
   public faqs: FirebaseListObservable<any>;
-  private model = new MailMessage('', '', '', '',  '', '', false);
+  private model = new MailMessage('', '', '', '', '',  '', 0, false);
 
   mailForm: FormGroup;
 
   constructor(private afService: AF, private router: Router, private route:ActivatedRoute) { 
-    this.model = new MailMessage('', '', '', '',  '', '', false);
+    this.model = new MailMessage('', '', '', '', '',  '', 0, false);
   }
 
   ngOnInit() {
   }
 
-  saveMailMessage() {
+  saveMailMessage(form: NgForm) {
     let mm: MailMessage = this.model;
     mm.date = this.afService.getCurrentDate();
+    mm.invertedDate = this.afService.getInvertedDate();
 
     this.afService.saveMailMessage(mm);
-    this.model = new MailMessage('', '', '', '',  '', '', false);
+    this.model = new MailMessage('', '', '', '', '',  '', 0, false);
+
+    form.reset();
     this.router.navigate(['thanks'], {relativeTo: this.route});
+  }
+
+  onAddItem(form: NgForm) {
+    console.log(form.value.amount, form.value.name);
+    form.reset();
   }
 
 

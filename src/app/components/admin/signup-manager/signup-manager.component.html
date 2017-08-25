@@ -1,0 +1,28 @@
+<div class="message-container IL" 
+*ngFor="let msg of signups | async"
+[style.borderColor]="msg.read ? 'green' : 'red'">
+  <div class="contact-info">
+    <div class="message-email">
+        <span class="message-info">Email</span>: {{ msg.email }}
+    </div>
+    <div class="message-phone">
+        <span class="message-info">Instrument</span>: {{ msg.instrument }}
+    </div>
+    <div class="message-date">
+        <span class="message-info">Date</span>: {{ msg.date }}
+    </div>
+  </div>
+  <div class="message-text">
+      {{ msg.about }}
+  </div>
+  <div class="info-bottom">
+      <div class="message-from">
+          <span class="message-info">From</span>: {{ msg.name }}
+      </div>
+      <div class="message-read" (click)="readClicked($event, msg)">
+        <!-- <div class="message-read" (click)="msg.read = !msg.read"> -->
+          <span class="message-info">Read</span>: {{ msg.read == false ? "No" : "Yes" }}
+      </div>
+  </div>
+  
+</div>
