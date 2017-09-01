@@ -34,9 +34,7 @@ export class ContactComponent implements OnInit {
 
   saveMailMessage(form: NgForm) {
     let mm: MailMessage = this.model;
-    mm.date = this.afService.getCurrentDate();
-    mm.invertedDate = this.afService.getInvertedDate();
-
+    
     this.afService.saveMailMessage(mm);
     this.model = new MailMessage('', '', '', '', '',  '', 0, false);
 

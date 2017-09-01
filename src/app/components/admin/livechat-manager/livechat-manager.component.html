@@ -1,3 +1,19 @@
-<p>
-  livechat-manager works!
-</p>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="chat-container">
+      <div class="chat-bubble" *ngFor="let msg of livechat | async">
+          <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
+            {{ msg.dateTime  }}
+          </div>
+          <div [ngClass]="msg.fromAdmin ? 'speech-bubble-right' : 'speech-bubble-left'">
+            {{ msg.message }}
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="pending-container">
+      
+    </div>
+  </div>
+</div>

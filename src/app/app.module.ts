@@ -27,6 +27,8 @@ import { UserService } from 'app/providers/user.service';
 
 // pipes
 import { ImageFilterPipe } from 'app/pipes/filter.pipe';
+import { ReadFilterPipe } from 'app/pipes/read-filter.pipe';
+import { SignupFilterPipe } from 'app/pipes/signup-filter.pipe';
 import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
 
 // directives
@@ -77,6 +79,7 @@ import { MessageManagerComponent } from 'app/components/admin/message-manager/me
 import { LivechatManagerComponent } from 'app/components/admin/livechat-manager/livechat-manager.component';
 import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 import { SignupManagerComponent } from 'app/components/admin/signup-manager/signup-manager.component';
+import { LivechatComponent } from './components/plebian/livechat/livechat.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -150,6 +153,7 @@ const routes: Routes = [
     ImageGalleryComponent,
     ImageGalleryDetailComponent,
     ImageFilterPipe,
+    ReadFilterPipe,
     ResourceCategoryPipe,
     LoginComponent,
     AlertComponent,
@@ -158,13 +162,15 @@ const routes: Routes = [
     ProfileComponent,
     MediaManagerComponent,
     RegisterComponent,
+    SignupFilterPipe,
     LearntoplayComponent,
     AdminNavComponent,
     UserManagerComponent,
     MessageManagerComponent,
     LivechatManagerComponent,
     ThanksComponent,
-    SignupManagerComponent
+    SignupManagerComponent,
+    LivechatComponent
   ],
   imports: [
     AccordionModule,
@@ -192,6 +198,8 @@ const routes: Routes = [
     AuthenticationService,
     ImageService,
     ImageFilterPipe,
+    ReadFilterPipe,
+    SignupFilterPipe,
     UserService
   ],
   bootstrap: [AppComponent]

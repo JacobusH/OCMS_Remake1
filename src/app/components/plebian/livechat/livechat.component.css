@@ -1,3 +1,27 @@
+.livechat-container{
+  width: 300px;
+  min-height: 400px;
+  /* height: 300px;   */
+  position: fixed; 
+  bottom: 0px;
+  right: 20px;
+  z-index: 9999;
+  border:1px solid black;
+  border-bottom: none;
+  border-radius: 5px;
+  background-color:#e5e5e5;
+}
+
+.show-chat {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.info-form {
+  padding:10px;
+}
+
 .chat-messages-container {
   overflow-y: scroll;
   height:290px;

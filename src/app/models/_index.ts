@@ -2,6 +2,8 @@ export * from './alert.model';
 export * from './faq.model';
 export * from './galleryImage.model';
 export * from './ingredient.model';
+export * from './livechat.model';
+export * from './livechatMessage.model';
 export * from './mailMessage.model';
 export * from './recipe.model';
 export * from './resource.model';

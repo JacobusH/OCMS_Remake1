@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AF } from 'app/providers/af.service';
 import { Signup } from 'app/models/_index';
@@ -9,6 +9,8 @@ import { Signup } from 'app/models/_index';
   styleUrls: ['./signup-manager.component.css']
 })
 export class SignupManagerComponent implements OnInit {
+  @Input() filterBy?: string = 'all';
+  @Input() readFilterBy?: string = 'all';
   signups: any;
 
   constructor(private af: AF) { 
@@ -23,6 +25,14 @@ export class SignupManagerComponent implements OnInit {
     msg.read = !msg.read;
     this.af.updateSignup(msg);
   }
+
+  filterClicked(filterApplied: string) {
+    this.filterBy = filterApplied; 
+ }
+
+ readFilterClicked(filterApplied: string) {
+  this.readFilterBy = filterApplied; 
+}
 
 
 }

@@ -1,0 +1,61 @@
+<div class="livechat-container" [@slideUpDownAnimation]='slideState'>
+<div class="show-chat" (click)="toggleAnimationState()">CHAT</div>
+<div class="chat-container">
+  <div class="flip-container" *ngIf="sessionRunning; else showInfo_content">
+    <div class="chat-messages-container">
+      <div class="chat-bubble" *ngFor="let msg of liveChatMessages | async">
+        <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
+          {{ msg.dateTime  }}
+        </div>
+        <div [ngClass]="msg.fromAdmin ? 'speech-bubble-right' : 'speech-bubble-left'">
+          {{ msg.message }}
+        </div>
+      </div>
+    </div>
+    <div class="chat-newMsg-container">
+      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';false"></textarea>
+    </div>
+  </div>
+</div> 
+</div>
+
+<!-- TEMPLATE -->
+<ng-template #showInfo_content>
+  <div class="info-content">
+  <form (ngSubmit)="saveInfo(infoForm)" #infoForm="ngForm" class="info-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required
+          [(ngModel)]="model.name" name="name"
+          #name="ngModel"
+          [ngClass]="{
+            'has-success': name.valid,
+            'has-danger': !name.pristine && !name.valid
+          }">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" required
+          [(ngModel)]="model.email" name="email"
+          #email="ngModel"
+          [ngClass]="{
+            'has-success': email.valid,
+            'has-danger': !email.pristine && !email.valid
+          }">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea rows="3" class="form-control" id="message" required
+          [(ngModel)]="model.message" name="message"
+          #message="ngModel"
+          [ngClass]="{
+            'has-success': message.valid,
+            'has-danger': !message.pristine && !message.valid
+          }">
+        </textarea>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!infoForm.form.valid">Start Chat</button>
+    </form> 
+  </div>
+</ng-template>
+
