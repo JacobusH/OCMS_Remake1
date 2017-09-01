@@ -6,7 +6,7 @@ trigger('slideUpDownAnimation', [
     transform: 'translateY(0)'
   })),
   state('up', style({
-    transform: 'translateY(90%)'
+    transform: 'translateY(91%)'
   })),
   transition('down <=> up', animate(300))
 ]);

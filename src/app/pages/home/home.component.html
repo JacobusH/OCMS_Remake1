@@ -362,14 +362,14 @@
     <div class="quote-block-inside">
       <div class="quote-block-wrap">
       <div class="quote-block-content">
-        <p>‘Wonderful Teachers ”</p>
+        <p>My daughter has been taking lesson since July 2012... I am amazed how much she has learned in just a short amount of time. I am even more surprised how much she looks forward to lessons. Decision to go with OC Music School has been the best. There are professional pianists who can play but there are those who can play AND teach. I believe Stella has the ability to do just that. Her teaching method makes it fun and encourages the students to love playing the piano.</p>
       </div>
       <div class="quote-block-bottom">
         <span class="quote-block-author">
           <span class="quote-block-icon">
             <i class="fa fa-quote-left"></i>
           </span>
-        .																	</span>
+        Ruth T.																	</span>
       </div>
       </div>
     </div>
@@ -377,19 +377,21 @@
 </div>
 
 <div class="row" style="padding: 10px 15px;">
-  <div class="col-lg-6" *ngFor="let test of testimonials | async">
-    <div class="testimonials">
-      <div class="testimonials-content">
-        <span class="testimonials-arrow"></span>
-        <p innerHtml="{{test.text}}"></p>
-      </div>
-      <div class="testimonials-author">
-        <div class="testimonials-image">
-            <img alt="testimonial author" src="../assets/img/5stars.png"> 
+  <div class="col-lg-12">
+    <div class="testimonials" *ngFor="let test of testimonials | async">
+      <div>
+        <div class="testimonials-content">
+          <span class="testimonials-arrow"></span>
+          <p innerHtml="{{test.text}}"></p>
         </div>
-        <div class="testimonials-author-name">{{test.author}}</div>
-        <div class="testimonials-author-info content"></div>
-        <div class="cleared"></div>
+        <div class="testimonials-author">
+          <div class="testimonials-image">
+              <img alt="testimonial author" src="../assets/img/5stars.png"> 
+          </div>
+          <div class="testimonials-author-name">{{test.author}}</div>
+          <div class="testimonials-author-info content"></div>
+          <div class="cleared"></div>
+        </div>
       </div>
     </div>
   </div>

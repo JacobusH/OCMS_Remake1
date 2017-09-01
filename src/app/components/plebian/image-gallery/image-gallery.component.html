@@ -22,7 +22,8 @@
   <div *ngFor="let img of loadedImages">
     <div *ngFor="let img of loadedImages">
       <span *ngFor="let innerImg of img | imageFilter:filterBy">
-        <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]">
+        <!-- <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]"> -->
+          <a [@apparateAnimation]='state'>
           <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
         </a>
       </span>

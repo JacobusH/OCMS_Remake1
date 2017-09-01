@@ -32,7 +32,7 @@ export class LivechatComponent implements OnInit {
   userEmail;
 
   state = 'normal';
-  slideState = 'down';
+  slideState = 'up';
 
   constructor(private af: AF) { 
     this.liveChatMessages = this.af.liveChatMessages;

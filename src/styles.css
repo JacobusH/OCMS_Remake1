@@ -1227,11 +1227,14 @@ h2.button-block-content{
 
 /* testimonials */
 .testimonials{
-	position:relative;
-	margin-bottom:40px;
-    background-color: white;
-    border: 1px solid rgba(0,0,0,0.15);
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.025);
+  /* position:relative; */
+  display: inline-block;
+  margin-bottom:40px;
+  margin-right: 15px;
+  vertical-align: top;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.025);
 }
 
 .testimonials-slider{
@@ -3573,4 +3576,24 @@ margin-bottom:20px;
 
 .caret {
 	float:right;
+}
+
+
+
+@media screen and (min-device-width: 1200px) /* Desktop */ {
+  .testimonials{
+    max-width: 48%;
+  }
+}
+
+@media screen  and (max-device-width: 1199px) /* Tablet */ {
+  .testimonials{
+    max-width: 48%;
+  }
+}
+
+@media screen and (max-device-width: 720px) /* Mobile */ {
+  .testimonials{
+    max-width: inherit;
+  }
 }

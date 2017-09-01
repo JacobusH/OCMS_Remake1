@@ -1,4 +1,3 @@
-
 .portfolio {
   margin: 45px;
 }
@@ -7,7 +6,7 @@
     background-color: #3498db;
     position: relative;
     overflow: hidden;
-    width: 40%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -62,3 +61,24 @@
     border-radius: 5px;
 }
 
+@media only screen and (min-device-width:720px){
+  
+}
+
+@media screen and (min-device-width: 1200px) /* Desktop */ {
+  .portfolio-cell {
+    width: 70%;
+}
+}
+
+@media screen  and (max-device-width: 1199px) /* Tablet */ {
+  .portfolio-cell {
+    width: 40%;
+}
+}
+
+@media screen and (max-device-width: 720px) /* Mobile */ {
+  .portfolio-cell {
+    width: 70%;
+}
+}
