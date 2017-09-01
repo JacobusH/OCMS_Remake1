@@ -7,8 +7,7 @@ export class LiveChat {
         public dateTime: string ='',
         public invertedDate: number = -1,
         public fromAdmin: boolean = false,
-        public read: boolean = false,
-        public messagesByKey: Array<string> = new Array<string>()
+        public read: boolean = false
       ) {}
   }
   

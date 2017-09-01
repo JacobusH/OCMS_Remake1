@@ -23,6 +23,7 @@ export class LivechatManagerComponent implements OnInit {
 
   constructor(private af: AF) { 
     this.currentActiveLiveChats = this.af.liveChats;
+    this.currentLiveChatMessages = this.af.liveChatMessages;
   }
 
   ngOnInit() {
