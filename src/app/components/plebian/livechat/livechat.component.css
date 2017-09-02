@@ -8,14 +8,22 @@
   z-index: 9999;
   border:1px solid black;
   border-bottom: none;
-  border-radius: 5px;
   background-color:#e5e5e5;
+  box-shadow: 0 4px 8px rgba(0,0,0,.25);
+  border: 1px solid #e5e5e5;
+}
+
+.chat-icon {
+    max-height: 25px;
+    margin-left: -85px;
+    margin-right: 45px;
 }
 
 .show-chat {
   padding: 5px;
   text-align: center;
   border-bottom: 1px solid black;
+  cursor: pointer;
 }
 
 .info-form {

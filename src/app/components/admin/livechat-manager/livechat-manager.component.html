@@ -1,19 +1,19 @@
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-12">
     <div class="chat-container">
-      <div class="chat-bubble" *ngFor="let msg of livechat | async">
-          <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
-            {{ msg.dateTime  }}
-          </div>
-          <div [ngClass]="msg.fromAdmin ? 'speech-bubble-right' : 'speech-bubble-left'">
-            {{ msg.message }}
-          </div>
+      <div class="chat-messages-container">
+      <div class="chat-bubble" *ngFor="let msg of currentLiveChatMessages | async">
+        <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
+          {{ msg.dateTime  }}
         </div>
+        <div [ngClass]="msg.fromAdmin ? 'speech-bubble-right' : 'speech-bubble-left'">
+          {{ msg.message }}
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="pending-container">
-      
+    <div class="chat-newMsg-container">
+      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';false"></textarea>
+    </div>
     </div>
   </div>
 </div>

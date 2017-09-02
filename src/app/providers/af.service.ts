@@ -46,7 +46,7 @@ export class AF {
           orderByChild: 'invertedDate'
         }
       });
-      this.liveChatMessages = this.db.list('livechatMessages', {
+      this.liveChatMessages = this.db.list('liveChatMessages', {
         query: {
           orderByChild: 'invertedDate'
         }

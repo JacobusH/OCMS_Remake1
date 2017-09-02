@@ -43,10 +43,14 @@ export class LivechatComponent implements OnInit {
 
   saveInfo(f: NgForm) {
     var test:any = this.model;
-    let messageKey = this.sendMessage(test.message);
     
-    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', -1, false, false, new Array<string>(messageKey));
+    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', -1, false, false);
     this.currentChatKey = this.af.saveLivechat(liveChatToSave);
+    
+    let liveChatMessageToSave = new LiveChatMessage('', this.currentChatKey, test.message, '', -1, false, false);
+    this.af.saveLiveChatMessage(liveChatMessageToSave);
+
+    
 
     this.model = new LiveChat();
     this.sessionRunning = true;

@@ -1,5 +1,5 @@
 <div class="livechat-container" [@slideUpDownAnimation]='slideState'>
-<div class="show-chat" (click)="toggleAnimationState()">CHAT</div>
+<div class="show-chat" (click)="toggleAnimationState()"> <img class="chat-icon" src="assets/img/speech-bubble.png"> CHAT WITH US</div>
 <div class="chat-container">
   <div class="flip-container" *ngIf="sessionRunning; else showInfo_content">
     <div class="chat-messages-container">
