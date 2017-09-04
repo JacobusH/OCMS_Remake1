@@ -2,13 +2,13 @@
 <div class="show-chat" (click)="toggleAnimationState()"> <img class="chat-icon" src="assets/img/speech-bubble.png"> CHAT WITH US</div>
 <div class="chat-container">
   <div class="flip-container" *ngIf="sessionRunning; else showInfo_content">
-    <div class="chat-messages-container">
-      <div class="chat-bubble" *ngFor="let msg of liveChatMessages | async">
+    <div #scrollMe class="chat-messages-container">
+      <div *ngFor="let msg of liveChatMessages | async" [ngClass]="msg.fromAdmin ? 'bubble-right' : 'bubble-left'">
         <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
           {{ msg.dateTime  }}
         </div>
-        <div [ngClass]="msg.fromAdmin ? 'speech-bubble-right' : 'speech-bubble-left'">
-          {{ msg.message }}
+        <div>
+          <p>{{ msg.message }}</p>
         </div>
       </div>
     </div>

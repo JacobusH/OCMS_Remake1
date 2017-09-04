@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MdMenuModule, MdButtonModule, MdIconModule } from '@angular/material';
 // import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
 // import { LightboxModule } from 'angular2-lightbox';
 // import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
@@ -80,6 +81,7 @@ import { LivechatManagerComponent } from 'app/components/admin/livechat-manager/
 import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 import { SignupManagerComponent } from 'app/components/admin/signup-manager/signup-manager.component';
 import { LivechatComponent } from './components/plebian/livechat/livechat.component';
+import { MenuPlusComponent } from './components/cosmopolitan/menu-plus/menu-plus.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -170,7 +172,8 @@ const routes: Routes = [
     LivechatManagerComponent,
     ThanksComponent,
     SignupManagerComponent,
-    LivechatComponent
+    LivechatComponent,
+    MenuPlusComponent
   ],
   imports: [
     AccordionModule,
@@ -184,7 +187,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MdMenuModule, 
+    MdButtonModule,
+    MdIconModule
     // LightboxModule,
     // Ng2ImageGalleryModule,
   ],

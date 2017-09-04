@@ -1,13 +1,11 @@
 export class LiveChatMessage {
   
-      constructor(
-        public key:string,
-        public parentKey: string,
-        public message: string,
-        public dateTime: string,
-        public invertedDate: number,
-        public fromAdmin: boolean,
-        public read: boolean
-      ) {}
-  }
-  
+        constructor(
+          public message: string = '',
+          public dateTime: string ='',
+          public invertedDate: number = -1,
+          public fromAdmin: boolean = false,
+          public read: boolean = false
+        ) {}
+    }
+    

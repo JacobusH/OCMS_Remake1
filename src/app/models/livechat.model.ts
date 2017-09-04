@@ -1,3 +1,5 @@
+import { LiveChatMessage } from 'app/models/liveChatMessage.model';
+
 export class LiveChat {
 
       constructor(
@@ -6,8 +8,8 @@ export class LiveChat {
         public email: string ='',
         public dateTime: string ='',
         public invertedDate: number = -1,
-        public fromAdmin: boolean = false,
-        public read: boolean = false
+        public active: boolean = false,
+        public messages: Array<LiveChatMessage> = []
       ) {}
   }
   

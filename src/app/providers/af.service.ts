@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage} from 'app/models/_index';
+import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage } from 'app/models/_index';
 
 
 @Injectable()
@@ -17,7 +17,6 @@ export class AF {
   public faqs: FirebaseListObservable<any>;
   public gallery: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
-  public liveChatMessages: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public messages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
@@ -41,12 +40,7 @@ export class AF {
       this.user = this.afAuth.authState;
       this.users = this.db.list('users');
       
-      this.liveChats = this.db.list('livechats', {
-        query: {
-          orderByChild: 'invertedDate'
-        }
-      });
-      this.liveChatMessages = this.db.list('liveChatMessages', {
+      this.liveChats = this.db.list('liveChats', {
         query: {
           orderByChild: 'invertedDate'
         }
@@ -241,29 +235,40 @@ export class AF {
     lc.invertedDate = this.getInvertedDate();
 
     let promise = this.liveChats.push(lc);
-    this.db.object("livechats/" + promise.key).update({key: promise.key});
-    console.log(promise.key);
+    this.db.object("liveChats/" + promise.key).update({key: promise.key});
     return promise.key;
   }
 
-  saveLiveChatMessage(message: LiveChatMessage)
-  {
-    message.dateTime = this.getCurrentDateTime();
-    message.invertedDate = this.getInvertedDate();
+  addLiveChatMessage(chatKey: string, msg: string, fromAdmin: boolean) {
+    let chatMsg = new LiveChatMessage(msg, this.getCurrentDateTime(), this.getInvertedDate(), fromAdmin, false);
 
-    let promise = this.liveChatMessages.push(message);
-    this.db.object("liveChatMessages/" + promise.key).update({key: promise.key})
-    console.log(promise.key);
-    return promise.key;
+    let messages = this.db.object("liveChats/" + chatKey + "/messages");
+    let promise = messages.$ref.push(chatMsg);
   }
 
-  getLiveChatMessagesByParentKey(parentKey: string) {
-    return this.db.list('liveChatMessages', {
+  getLiveChatMessagesByParentKey(parentKey: string): FirebaseListObservable<any> {
+    return this.db.list("liveChats/" + parentKey + "/messages");
+  }
+
+  getActiveLiveChats(): FirebaseListObservable<any> {
+    return this.db.list("liveChats/", {
       query: {
-        equalTo: parentKey,
-        orderByChild: 'invertedDate'
+        orderByChild: 'active',
+        equalTo: true
       }
     });
+  } 
+
+  getLiveChatByKey(key: string): FirebaseListObservable<any> {
+    return this.db.list("liveChats/" + key);
+  }
+
+  markLiveChatAsInactive(key: string) {
+    this.db.object("liveChats/" + key).update({active: false});
+  }
+
+  deleteLiveChat(key: string) {
+    this.db.object("liveChats/" + key).remove();
   }
 
   /******************** 
@@ -271,7 +276,7 @@ export class AF {
   ****************** */
   getCurrentDateTime() {
     const dt = new Date(Date.now());
-    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate() + ' ' + dt.getHours() + ' : ' + dt.getMinutes();
+    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes();
   }
 
   getCurrentDate() {

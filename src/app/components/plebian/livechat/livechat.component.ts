@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { LiveChat, LiveChatMessage } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
+import { LiveChat, LiveChatMessage } from 'app/models/_index';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -23,8 +23,9 @@ import {
     highlightAnimation
   ]
 })
-export class LivechatComponent implements OnInit {
-  public liveChatMessages: FirebaseListObservable<any>;
+export class LivechatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  public liveChatMessages: FirebaseListObservable<any>; 
   private model = new LiveChat();
   sessionRunning: boolean = false;
   currentChatKey: string;
@@ -35,22 +36,36 @@ export class LivechatComponent implements OnInit {
   slideState = 'up';
 
   constructor(private af: AF) { 
-    this.liveChatMessages = this.af.liveChatMessages;
+    this.liveChatMessages;
   }
 
   ngOnInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    }
+    catch (err) {}
   }
 
   saveInfo(f: NgForm) {
     var test:any = this.model;
-    
-    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', -1, false, false);
+    this.userEmail = this.model.email;
+    this.userName = this.model.name;
+
+    let chatMsg = new LiveChatMessage(test.message, this.af.getCurrentDateTime(), this.af.getInvertedDate(), false, false);
+    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', -1, true, new Array<LiveChatMessage>(chatMsg));
     this.currentChatKey = this.af.saveLivechat(liveChatToSave);
     
-    let liveChatMessageToSave = new LiveChatMessage('', this.currentChatKey, test.message, '', -1, false, false);
-    this.af.saveLiveChatMessage(liveChatMessageToSave);
+    this.liveChatMessages = this.af.getLiveChatMessagesByParentKey(this.currentChatKey);
+    console.log(this.liveChatMessages);
 
-    
 
     this.model = new LiveChat();
     this.sessionRunning = true;
@@ -58,9 +73,8 @@ export class LivechatComponent implements OnInit {
   }
 
   sendMessage(msg: any) {
-    let messageToSave = new LiveChatMessage('', this.currentChatKey, msg, '', -1, false, false);
-    console.log(messageToSave);
-    return this.af.saveLiveChatMessage(messageToSave);
+    this.af.addLiveChatMessage(this.currentChatKey, msg, false);
+    this.liveChatMessages = this.af.getLiveChatMessagesByParentKey(this.currentChatKey);
   }
 
   toggleAnimationState() {
