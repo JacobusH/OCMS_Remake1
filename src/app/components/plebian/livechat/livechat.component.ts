@@ -60,7 +60,7 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
     this.userName = this.model.name;
 
     let chatMsg = new LiveChatMessage(test.message, this.af.getCurrentDateTime(), this.af.getInvertedDate(), false, false);
-    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', 0, -1, true, new Array<LiveChatMessage>(chatMsg));
+    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', 0, -1, true, true, new Array<LiveChatMessage>(chatMsg));
     this.currentChatKey = this.af.saveLivechat(liveChatToSave);
     
     this.liveChatMessages = this.af.getLiveChatMessagesByParentKey(this.currentChatKey);
@@ -75,6 +75,10 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
   sendMessage(msg: any) {
     this.af.addLiveChatMessage(this.currentChatKey, msg, false);
     this.liveChatMessages = this.af.getLiveChatMessagesByParentKey(this.currentChatKey);
+  }
+
+  markHasNewMessages() {
+    this.af.markLiveChatUnreadMessage(this.currentChatKey, true);
   }
 
   toggleAnimationState() {

@@ -320,6 +320,10 @@ export class AF {
     this.db.object("liveChats/" + key).update({active: false});
   }
 
+  markLiveChatUnreadMessage(key: string, hasNewUnread: boolean) {
+    this.db.object("liveChats/" + key).update({hasUnreadMessage: hasNewUnread});
+  }
+
   deleteLiveChat(key: string) {
     this.db.object("liveChats/" + key).remove();
   }

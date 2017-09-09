@@ -1,3 +1,22 @@
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 15px rgba(47, 204, 44, 0.00);
+      box-shadow: 0 0 0 15px rgba(47, 204, 44, 0.00);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
 .filter-options form, .filter-options #datePicker {
   display: inline-block;
   margin: 5px 20px;
@@ -10,7 +29,7 @@
 
 .chat-messages-container {
   overflow-y: scroll;
-  height:290px;
+  height:490px;
 }
 
 .chat-info-right, .chat-info-left {

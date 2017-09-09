@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="chat-newMsg-container">
-      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';false"></textarea>
+      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';markHasNewMessages();false"></textarea>
     </div>
   </div>
 </div> 

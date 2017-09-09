@@ -10,6 +10,7 @@ export class LiveChat {
         public dateUnix: number = 0,
         public invertedDate: number = -1,
         public active: boolean = false,
+        public hasUnreadMessage: boolean = true,
         public messages: Array<LiveChatMessage> = []
       ) {}
   }

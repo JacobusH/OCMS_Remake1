@@ -42,7 +42,9 @@
           <button md-icon-button [md-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
               <md-icon>add</md-icon>
             </button>
-        <div class="livechat" (click)="setCurrentLiveChat(lc.key)">
+        <div class="livechat" 
+        (click)="setCurrentLiveChat(lc.key); markNoNewMessages();"
+        [ngClass]="lc.hasUnreadMessage ? 'pulse' : 'no-pulse'">
           <span class="livechat-email">{{lc.email}}</span>
           <span class="livechat-time">{{lc.dateTime}}</span>
           <span class="livechat-name">{{lc.name}}</span>

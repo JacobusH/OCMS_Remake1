@@ -24,6 +24,7 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   public menuKey: string;
   private model = new LiveChat();
   public sessionRunning: boolean = false;
+  public hasNewMessages: boolean = false;
   public userName;
   public userEmail;
   public daterange: any = {};
@@ -61,6 +62,9 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   setCurrentLiveChat(key: string) {
     this.currentLiveChatKey = key;
     this.currentLiveChat = this.af.getLiveChatByKey(key);
+    this.currentLiveChat.subscribe(x => {
+      this.hasNewMessages = x[4].$value;
+    })
     this.setCurrentLiveChatMessages(key);
   }
 
@@ -78,6 +82,10 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
 
   markInactive() {
     this.af.markLiveChatAsInactive(this.menuKey);
+  }
+
+  markNoNewMessages() {
+    this.af.markLiveChatUnreadMessage(this.currentLiveChatKey, false);
   }
 
   deleteLivechat() {
