@@ -10,7 +10,7 @@ import { Teacher } from 'app/models/teacher.model';
   styleUrls: ['./teacher-detail.component.css']
 })
 export class TeacherDetailComponent implements OnInit, OnDestroy {
-  id: number;
+  key: number;
   private sub: any;
   private teacherObj: any;
   private teacher: Teacher;
@@ -25,12 +25,13 @@ export class TeacherDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.id = +params['id']; // (+) converts string 'id' to a number
+       this.key = params['id']; // (+) converts string 'id' to a number
     });
 
-    this.teacherObj = this.db.object('/teachers/' + this.id);
+    this.teacherObj = this.db.object('/teachers/' + this.key);
     this.teacherObj.subscribe(x => {
-        this.teacher = new Teacher(this.id, x.imgName, x.instrument, x.name, x.summary);
+        this.teacher = new Teacher('', x.imgName, x.instrument, x.name, x.summary, true);
+        console.log(this.teacher);
     });
   }
 

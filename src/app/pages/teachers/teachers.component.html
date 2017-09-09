@@ -9,17 +9,17 @@
     <div class="portfolio-cell">
       <div class="portfolio-cell-thumb">
         <div class="portfolio-cell-bg"></div>
-        <a class="portfolio-cell-view" routerLink="/teachers/{{i + 1}}">
+        <a class="portfolio-cell-view" routerLink="/teachers/{{teacher.key}}">
           <!-- <i class="fa fa-eye"></i> -->
           &nbsp;
         </a>
-        <a routerLink="/teachers/{{i + 1}}">
+        <a routerLink="/teachers/{{teacher.key}}">
           <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
         </a>
       </div>
       <div class="portfolio-cell-data">
         <div class="portfolio-cell-title">
-          <a routerLink="/teachers/{{i + 1}}">{{teacher.name}}</a>
+          <a routerLink="/teachers/{{teacher.key}}">{{teacher.name}}</a>
         </div>
         <div class="portfolio-cell-categories"><a routerLink="/instrument/{{teacher.instrument}}">{{teacher.instrument}}</a></div>
       </div>

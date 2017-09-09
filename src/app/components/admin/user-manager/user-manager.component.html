@@ -1,3 +1,50 @@
-<p>
-  user-manager works!
-</p>
+<div class="row">
+  <div class="col-lg-6">
+    <!-- SAVE FORM -->
+    <h2 class="AC">Create New Teacher</h2>
+    <form (ngSubmit)="saveTeacher(teacherForm)" #teacherForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required
+          [(ngModel)]="model.name" name="name"
+          #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+              Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="instrument">Instrument</label>
+        <input type="text" class="form-control" id="instrument" required
+          [(ngModel)]="model.instrument" name="instrument"
+          #instrument="ngModel">
+          <div [hidden]="instrument.valid || instrument.pristine"
+              class="alert alert-danger">
+              Instrument is required
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="imgName">Image Name</label>
+          <input type="text" class="form-control" id="imgName" required
+            [(ngModel)]="model.imgName" name="imgName"
+            #imgName="ngModel">
+            <div [hidden]="imgName.valid || imgName.pristine"
+                class="alert alert-danger">
+                Image Name is required
+          </div>
+        </div>
+      <div class="form-group">
+          <label for="summary">Summary</label>
+          <textarea type="text" class="form-control" id="summary" required
+            [(ngModel)]="model.summary" name="summary"
+            #summary="ngModel">
+          </textarea>
+            <div [hidden]="summary.valid || summary.pristine"
+                class="alert alert-danger">
+                Summary is required
+          </div>
+        </div>
+      <button type="submit" class="btn btn-success" [disabled]="!teacherForm.form.valid">Save</button>
+    </form>
+  </div>
+</div>

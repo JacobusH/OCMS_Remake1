@@ -5,7 +5,7 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage } from 'app/models/_index';
+import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage, Teacher } from 'app/models/_index';
 import * as moment from 'moment';
 import 'rxjs/add/operator/take'
 
@@ -317,6 +317,16 @@ export class AF {
   }
 
   /******************** 
+   TEACHERS
+  ****************** */
+  saveTeacher(t: Teacher) {
+    let promise = this.teachers.push(t);
+    this.db.object("teachers/" + promise.key).update({key: promise.key});
+    return promise.key;
+  }
+
+
+  /******************** 
    HELPERS
   ****************** */
   getCurrentDateTime() {
@@ -335,12 +345,6 @@ export class AF {
   }
 
 
-  // saveTeacher(text) {
-  //   const teacher = {
-  //     teacher: text,
-  //     timestamp: this.getCurrentDate()
-  //   };
-  //   this.teachers.push(teacher);
-  // }
+  
 
 }

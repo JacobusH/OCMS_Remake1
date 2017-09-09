@@ -59,7 +59,9 @@
     <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile
     <span class="caret"></span></a>
     <ul class="dropdown-menu">
-      <!-- <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com'"><a routerLink="/admin">admin: {{currentUser.role}}</a></li> -->
+      <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com' || currentUser.email === 'stellakotova@aol.com'">
+        <a routerLink="/admin">Administration</a>
+      </li>
       <li><a routerLink="/profile">View Profile</a></li>
       <li><a routerLink="/" (click)="logout()">Logout</a></li>
     </ul>

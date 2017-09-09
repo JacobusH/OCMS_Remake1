@@ -1,10 +1,13 @@
 export class Teacher {
 
     constructor(
-        public id: number,
-        public imgName: string,
-        public instrument: string,
-        public name: string,
-        public summary: string
-    ) {}
+        public key: string = '',
+        public imgName: string = '',
+        public instrument: string = '',
+        public name: string = '',
+        public summary: string = '',
+        public active: boolean = true
+    ) {} 
 }
+
+
