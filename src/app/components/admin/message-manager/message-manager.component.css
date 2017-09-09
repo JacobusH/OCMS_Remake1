@@ -1,3 +1,13 @@
+.filter-options form, .filter-options #datePicker {
+  display: inline-block;
+  margin: 5px 20px;
+}
+
+#datePicker {
+  width: 320px;
+  vertical-align: bottom;
+}
+
 .message-container {
   box-shadow: 4px 6px 10px #888;
   border: 2px solid black;
@@ -7,6 +17,7 @@
   min-width: 32%;
   vertical-align: top;
   display: inline-block;
+  cursor: pointer;
 }
 
 .message-email {

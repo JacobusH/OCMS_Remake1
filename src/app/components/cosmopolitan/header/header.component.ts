@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   isIn = false;
   state: string = 'in';
   isLoggedIn = false;
+  isAdmin = false;
   currentUser: any;
 
   constructor(private af:AF, private userService: UserService) { }
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
           if(user) {
               this.currentUser = user;
               this.isLoggedIn = true;
+              // this.isAdmin = this.af.getUserRoles(user);
               // console.log("Logged in user is: " + user.email);
               // console.log("User photo: " + user.providerData[0].photoURL);
               // console.log("User name: " + user.providerData[0].displayName);

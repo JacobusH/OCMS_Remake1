@@ -12,7 +12,7 @@ import { AF } from 'app/providers/af.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  private model = new User('', '', '', '', '', '');
+  private model = new User('', '', '', '', '', '', '');
   private isLoggedIn;
   constructor(
       private router: Router,
@@ -68,16 +68,18 @@ export class RegisterComponent implements OnInit {
     // does user already exist?
     // this.af.checkUserExists(authData.user.uid);
     
-    let u = new User(authData.user.uid, authData.user.displayName, authData.user.email, '', 'student', provider);
-    this.af.users.push(u);
+    let u = new User(authData.user.uid, '', authData.user.displayName, authData.user.email, '', 'student', provider);
+    this.af.saveUser(u);
+    // this.af.users.push(u);
   }
 
   saveEmailUser(authData: any, provider: string, emailName: string = null) {
     // does user already exist?
     // this.af.checkUserExists(authData.user.uid);
     
-    let u = new User(authData.uid, emailName, authData.email, '', 'student', provider);
-    this.af.users.push(u);
+    let u = new User(authData.uid, '', emailName, authData.email, '', 'student', provider);
+    this.af.saveUser(u);
+    // this.af.users.push(u);
   }
 
 } 

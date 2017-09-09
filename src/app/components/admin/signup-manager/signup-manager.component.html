@@ -1,25 +1,36 @@
-<div class="filter-buttons">
-  <button class="btn btn-lg btn-info" [class.active]="readFilterBy == all" (click)="readFilterClicked('all')">All Messages</button>
-  <button class="btn btn-lg btn-info" [class.active]="readFilterBy == Unread" (click)="readFilterClicked('Unread')">Unread</button>
-  <button class="btn btn-lg btn-info" [class.active]="readFilterBy == Read" (click)="readFilterClicked('Read')">Read</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterClicked('all')">All Instruments</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Piano" (click)="filterClicked('Piano')">Piano</button>
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Violin" (click)="filterClicked('Violin')">Violin</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Guitar" (click)="filterClicked('Guitar')">Guitar</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Singing" (click)="filterClicked('Singing')">Singing</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Clarinet" (click)="filterClicked('Clarinet')">Clarinet</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Drums" (click)="filterClicked('Drums')">Drums</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Bass" (click)="filterClicked('Bass')">Bass</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Saxophone" (click)="filterClicked('Saxophone')">Saxophone</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Flute" (click)="filterClicked('Flute')">Flute</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Cello" (click)="filterClicked('Cello')">Cello</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Trumpet" (click)="filterClicked('Trumpet')">Trumpet</button> 
-  <button class="btn btn-lg btn-info" [class.active]="filterBy == Ukulele" (click)="filterClicked('Ukulele')">Ukulele</button> 
+<div class="filter-options container AC">
+  <form>
+    <md-select placeholder="Filter Read" [(ngModel)]="readSelectedValue" name="read">
+      <md-option *ngFor="let r of readFilter" [value]="r.value" (click)="readFilterClicked(readSelectedValue)">
+        {{r.viewValue}}
+      </md-option>
+    </md-select>
+  </form>
+  <form>
+    <md-select placeholder="Instruments" [(ngModel)]="instSelectedValue" name="instrument">
+      <md-option *ngFor="let instrument of instruments" [value]="instrument.value" (click)="filterClicked(instSelectedValue)">
+        {{instrument.viewValue}}
+      </md-option>
+    </md-select>
+  </form>
+  <div id="datePicker" class="form-group" *ngFor="let dateInput of dateInputs">
+      <div class="input-group" daterangepicker [options]="{startDate:dateInput.start, endDate:dateInput.end }" (selected)="selectedDate($event, dateInput)" >
+        <span class="form-control uneditable-input"  name="daterange" >
+          {{ dateInput.start | date:'M/dd/y' }} - {{ dateInput.end| date:'M/dd/y' }}
+        </span>
+        <span class="input-group-btn">
+          <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
+        </span>
+      </div>
+    </div>
 </div>
+
+
 
 <div class="message-container IL" 
 *ngFor="let msg of signups | async | signupFilter:filterBy | readFilter:readFilterBy"
-[style.borderColor]="msg.read ? 'green' : 'red'">
+[style.borderColor]="msg.read ? 'green' : 'red'"
+(click)="readClicked($event, msg)">
   <div class="contact-info">
     <div class="message-email">
         <span class="message-info">Email</span>: {{ msg.email }}
@@ -38,7 +49,7 @@
       <div class="message-from">
           <span class="message-info">From</span>: {{ msg.name }}
       </div>
-      <div class="message-read" (click)="readClicked($event, msg)">
+      <div class="message-read">
         <!-- <div class="message-read" (click)="msg.read = !msg.read"> -->
           <span class="message-info">Read</span>: {{ msg.read == false ? "No" : "Yes" }}
       </div>

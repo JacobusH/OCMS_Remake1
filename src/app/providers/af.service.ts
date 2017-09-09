@@ -6,6 +6,8 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage } from 'app/models/_index';
+import * as moment from 'moment';
+import 'rxjs/add/operator/take'
 
 
 @Injectable()
@@ -18,9 +20,9 @@ export class AF {
   public gallery: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
-  public messages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
   public resourceCategories: FirebaseListObservable<any>;
+  public roles: FirebaseListObservable<any>;
   public signups: FirebaseListObservable<any>;
   public testimonials: FirebaseListObservable<any>;
   public testimonialsDesc: FirebaseListObservable<any>;
@@ -35,6 +37,7 @@ export class AF {
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
       this.resources = this.db.list('resources');
+      this.roles = this.db.list('roles');
       this.testimonials = this.db.list('testimonials');
       this.teachers = this.db.list('teachers');
       this.user = this.afAuth.authState;
@@ -101,9 +104,23 @@ export class AF {
     this.db.object("signups/" +s.key).update(s)
   }
 
+  getSignupsByDateRange(rangeStart: any, rangeEnd:any) {
+    return this.db.list('signups', {
+      query: {
+        orderByChild: 'date',
+        startAt: rangeStart._d.toLocaleDateString(),
+        endAt: rangeEnd._d.toLocaleDateString()
+      }
+    })
+  }
+
+  // startAt: "2017/8/22",
+  // endAt: "2017/9/4"
+
   /******************** 
    USERS
   ****************** */
+  
   checkUserExists(uid: string) {
     let item = this.db.object('/users/' + uid, { preserveSnapshot: true });
     
@@ -139,9 +156,30 @@ export class AF {
         }});
   }
 
-  saveEmailUser(user:User) {
+  saveUser(user:User) {
     let promise = this.users.push(user);
     this.db.object("users/" + promise.key).update({key: promise.key})
+  }
+
+  isAdminUser(userID) {
+    var test = this.db.list("users", {
+      query: {
+        orderByChild: 'authID',
+        equalTo: userID
+      }
+    }).take(1).map(x => console.log(x))
+
+    console.log(test)
+
+  }
+
+  getUserRoles(user: User): Observable<User> {
+    return this.db.object('/users/' + user.authID + "/role")
+           .take(1)
+           .map(roles => {
+             user.role = roles;
+             return user;
+            });
   }
 
   /******************** 
@@ -167,19 +205,6 @@ export class AF {
         limitToLast: 1 // returns one result of list ordered by id with highest id first
       }
     });
-  }
-
-  /******************** 
-   MESSAGES
-  ****************** */
-  sendMessage(text) {
-    const message = {
-      message: text,
-      displayName: this.displayName,
-      email: this.email,
-      timestamp: this.getCurrentDate()
-    };
-    this.messages.push(message);
   }
 
   /******************** 
@@ -226,6 +251,16 @@ export class AF {
     this.db.object("messages/" + msg.key).update(msg)
   }
 
+  getMailMessagesByDateRange(rangeStart: any, rangeEnd:any) {
+    return this.db.list('messages', {
+      query: {
+        orderByChild: 'date',
+        startAt: rangeStart._d.toLocaleDateString(),
+        endAt: rangeEnd._d.toLocaleDateString()
+      }
+    })
+  }
+
   /******************** 
     LIVE CHAT
   ****************** */
@@ -259,6 +294,16 @@ export class AF {
     });
   } 
 
+  getLiveChatsByDateRange(rangeStart: any, rangeEnd:any) {
+    return this.db.list('liveChats', {
+      query: {
+        orderByChild: 'dateTime',
+        startAt: rangeStart._d.toLocaleDateString(),
+        endAt: rangeEnd._d.toLocaleDateString()
+      }
+    })
+  }
+
   getLiveChatByKey(key: string): FirebaseListObservable<any> {
     return this.db.list("liveChats/" + key);
   }
@@ -276,12 +321,13 @@ export class AF {
   ****************** */
   getCurrentDateTime() {
     const dt = new Date(Date.now());
-    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes();
+    return (dt.getMonth() + 1)  + '/' + dt.getDate()  + '/' + dt.getFullYear() + ' ' + dt.getHours() + ':' + dt.getMinutes();
   }
 
+  //want it in mm/dd/yyy
   getCurrentDate() {
     const dt = new Date(Date.now());
-    return dt.getFullYear() + '/' + (dt.getMonth() + 1) + '/' + dt.getDate();
+    return (dt.getMonth() + 1)  + '/' + dt.getDate()  + '/' + dt.getFullYear();
   }
 
   getInvertedDate() {

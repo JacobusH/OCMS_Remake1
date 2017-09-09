@@ -1,6 +1,27 @@
+<div class="filter-options container AC">
+  <form>
+    <md-select placeholder="Filter Read" [(ngModel)]="readSelectedValue" name="read">
+      <md-option *ngFor="let r of readFilter" [value]="r.value" (click)="readFilterClicked(readSelectedValue)">
+        {{r.viewValue}}
+      </md-option>
+    </md-select>
+  </form>
+  <div id="datePicker" class="form-group" *ngFor="let dateInput of dateInputs">
+      <div class="input-group" daterangepicker [options]="{startDate:dateInput.start, endDate:dateInput.end }" (selected)="selectedDate($event, dateInput)" >
+        <span class="form-control uneditable-input"  name="daterange" >
+          {{ dateInput.start | date:'M/dd/y' }} - {{ dateInput.end| date:'M/dd/y' }}
+        </span>
+        <span class="input-group-btn">
+          <a type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></a>
+        </span>
+      </div>
+    </div>
+</div>
+
 <div class="message-container IL" 
-*ngFor="let msg of mailMessages | async"
-[style.borderColor]="msg.read ? 'green' : 'red'">
+*ngFor="let msg of mailMessages | async | readFilter:readFilterBy"
+[style.borderColor]="msg.read ? 'green' : 'red'"
+(click)="readClicked($event, msg)">
   <div class="contact-info">
     <div class="message-email">
         <span class="message-info">Email</span>: {{ msg.email }}
@@ -19,7 +40,7 @@
       <div class="message-from">
           <span class="message-info">From</span>: {{ msg.name }}
       </div>
-      <div class="message-read" (click)="readClicked($event, msg)">
+      <div class="message-read">
         <!-- <div class="message-read" (click)="msg.read = !msg.read"> -->
           <span class="message-info">Read</span>: {{ msg.read == false ? "No" : "Yes" }}
       </div>

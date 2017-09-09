@@ -1,10 +1,13 @@
-import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { LiveChat } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
 import {MdMenuModule, MdButtonModule, MdIconModule} from '@angular/material';
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { DaterangepickerConfig } from 'ng2-daterangepicker';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-livechat-manager',
@@ -13,18 +16,28 @@ import {MdMenuModule, MdButtonModule, MdIconModule} from '@angular/material';
 })
 export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @Input() activeFilterBy?: string = 'all';
   public currentLiveChat: FirebaseListObservable<any>;
   public activeLiveChats: FirebaseListObservable<any>;
   public currentLiveChatMessages: FirebaseListObservable<any>;
-  currentLiveChatKey: string;
-  menuKey: string;
+  public currentLiveChatKey: string;
+  public menuKey: string;
   private model = new LiveChat();
-  sessionRunning: boolean = false;
-  userName;
-  userEmail;
-
-  state = 'normal';
-  slideState = 'down';
+  public sessionRunning: boolean = false;
+  public userName;
+  public userEmail;
+  public daterange: any = {};
+  public dateInputs: any = [{start: moment().subtract(6, 'month'),end: moment()}];
+  public mainInput = {start: moment().subtract(12, 'month'),end: moment().subtract(6, 'month')}
+  public options: any = {locale: { format: 'YYYY-MM-DD' },alwaysShowCalendars: false,};
+  public activeFilter = [
+    {value: 'all', viewValue: 'All'},  
+    {value: 'Active', viewValue: 'Active'},  
+    {value: 'Inactive', viewValue: 'Inactive'}
+  ];
+  public activeSelectedValue;
+  public state = 'normal';
+  public slideState = 'down';
 
   constructor(private af: AF) { 
     this.activeLiveChats = this.af.getActiveLiveChats();
@@ -69,6 +82,17 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
 
   deleteLivechat() {
     this.af.deleteLiveChat(this.menuKey);
+  }
+
+  activeFilterClicked(filterApplied: string) {
+    this.activeFilterBy = filterApplied; 
+  }
+
+  private selectedDate(value: any, dateInput: any) {
+    dateInput.start = value.start;
+    dateInput.end = value.end;
+
+    this.activeLiveChats = this.af.getLiveChatsByDateRange(value.start, value.end);
   }
 
   

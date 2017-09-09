@@ -1,3 +1,12 @@
+.filter-options form, .filter-options #datePicker {
+  display: inline-block;
+  margin: 5px 20px;
+}
+
+#datePicker {
+  width: 320px;
+  vertical-align: bottom;
+}
 
 .chat-messages-container {
   overflow-y: scroll;
@@ -36,6 +45,7 @@
 .livechat-container {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .livechat {

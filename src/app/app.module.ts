@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CollapseModule } from 'ngx-bootstrap';
+import { Daterangepicker, DaterangepickerConfig } from 'ng2-daterangepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MdMenuModule, MdButtonModule, MdIconModule } from '@angular/material';
+import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@angular/material';
 // import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
 // import { LightboxModule } from 'angular2-lightbox';
 // import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
@@ -28,6 +29,7 @@ import { UserService } from 'app/providers/user.service';
 
 // pipes
 import { ImageFilterPipe } from 'app/pipes/filter.pipe';
+import { ActiveFilterPipe } from 'app/pipes/active-filter.pipe';
 import { ReadFilterPipe } from 'app/pipes/read-filter.pipe';
 import { SignupFilterPipe } from 'app/pipes/signup-filter.pipe';
 import { ResourceCategoryPipe } from 'app/pipes/resource-category.pipe';
@@ -155,6 +157,7 @@ const routes: Routes = [
     ImageGalleryComponent,
     ImageGalleryDetailComponent,
     ImageFilterPipe,
+    ActiveFilterPipe,
     ReadFilterPipe,
     ResourceCategoryPipe,
     LoginComponent,
@@ -184,26 +187,29 @@ const routes: Routes = [
     BrowserModule,
     CarouselModule.forRoot(),
     CollapseModule,
+    Daterangepicker,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     MdMenuModule, 
     MdButtonModule,
-    MdIconModule
+    MdIconModule,
+    MdSelectModule
     // LightboxModule,
     // Ng2ImageGalleryModule,
   ],
   providers: [
     AF,
     AlertService,
-    AlertMultiService,
+    AlertMultiService,  
     AppCustomPreloader,
     AuthGuard,
     AuthService,
     AuthenticationService,
     ImageService,
     ImageFilterPipe,
+    ActiveFilterPipe,
     ReadFilterPipe,
     SignupFilterPipe,
     UserService
