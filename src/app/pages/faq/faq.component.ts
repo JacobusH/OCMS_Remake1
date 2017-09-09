@@ -3,14 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AF } from 'app/providers/af.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { FAQ } from 'app/models/faq.model';
-import { fadeInAnimation } from 'app/animations/_index';
 
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.css'],
-  host: { '[@fadeInAnimation]': '' }
+  styleUrls: ['./faq.component.css']
 })
 export class FAQComponent implements OnInit {
   public faqs: FirebaseListObservable<any>;

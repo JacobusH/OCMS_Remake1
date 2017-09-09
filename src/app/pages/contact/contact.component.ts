@@ -21,12 +21,12 @@ import {
 })
 export class ContactComponent implements OnInit {
   public faqs: FirebaseListObservable<any>;
-  private model = new MailMessage('', '', '', '', '',  '', 0, false);
+  private model = new MailMessage();
 
   mailForm: FormGroup;
 
   constructor(private afService: AF, private router: Router, private route:ActivatedRoute) { 
-    this.model = new MailMessage('', '', '', '', '',  '', 0, false);
+    this.model = new MailMessage();
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
     let mm: MailMessage = this.model;
     
     this.afService.saveMailMessage(mm);
-    this.model = new MailMessage('', '', '', '', '',  '', 0, false);
+    this.model = new MailMessage();
 
     form.reset();
     this.router.navigate(['thanks'], {relativeTo: this.route});

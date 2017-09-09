@@ -18,6 +18,7 @@ export class AF {
   public announcements: FirebaseListObservable<any>;
   public faqs: FirebaseListObservable<any>;
   public gallery: FirebaseListObservable<any>;
+  public galleryDesc: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
@@ -43,6 +44,10 @@ export class AF {
       this.user = this.afAuth.authState;
       this.users = this.db.list('users');
       
+      this.galleryDesc = this.db.list('gallery', {
+        query: {
+          limitToFirst: 50
+        }});
       this.liveChats = this.db.list('liveChats', {
         query: {
           orderByChild: 'invertedDate'
@@ -93,6 +98,7 @@ export class AF {
   ****************** */
   saveSignup(signup: Signup) {
     signup.date = this.getCurrentDate();
+    signup.dateUnix = this.getCurrentDateUNIX();
     signup.invertedDate = this.getInvertedDate();
 
     let promise = this.signups.push(signup);
@@ -240,6 +246,7 @@ export class AF {
   saveMailMessage(m: MailMessage)
   {
     m.date = this.getCurrentDate();
+    m.dateUnix = this.getCurrentDateUNIX();
     m.invertedDate = this.getInvertedDate();
 
     let promise = this.mailMessages.push(m);
@@ -254,9 +261,9 @@ export class AF {
   getMailMessagesByDateRange(rangeStart: any, rangeEnd:any) {
     return this.db.list('messages', {
       query: {
-        orderByChild: 'date',
-        startAt: rangeStart._d.toLocaleDateString(),
-        endAt: rangeEnd._d.toLocaleDateString()
+        orderByChild: 'dateUnix',
+        startAt: this.getUnixDate(rangeStart._d.toLocaleDateString()),
+        endAt: this.getUnixDate(rangeEnd._d.toLocaleDateString())
       }
     })
   }
@@ -267,6 +274,7 @@ export class AF {
   saveLivechat(lc: LiveChat)
   {
     lc.dateTime = this.getCurrentDateTime();
+    lc.dateUnix = this.getCurrentDateUNIX();
     lc.invertedDate = this.getInvertedDate();
 
     let promise = this.liveChats.push(lc);
@@ -297,9 +305,9 @@ export class AF {
   getLiveChatsByDateRange(rangeStart: any, rangeEnd:any) {
     return this.db.list('liveChats', {
       query: {
-        orderByChild: 'dateTime',
-        startAt: rangeStart._d.toLocaleDateString(),
-        endAt: rangeEnd._d.toLocaleDateString()
+        orderByChild: 'dateUnix',
+        startAt: this.getUnixDate(rangeStart._d.toLocaleDateString()),
+        endAt: this.getUnixDate(rangeEnd._d.toLocaleDateString())
       }
     })
   }
@@ -338,6 +346,14 @@ export class AF {
   getCurrentDate() {
     const dt = new Date(Date.now());
     return (dt.getMonth() + 1)  + '/' + dt.getDate()  + '/' + dt.getFullYear();
+  }
+
+  getCurrentDateUNIX() {
+    return new Date(Date.now()).getTime() / 1000;
+  }
+
+  getUnixDate(date: string): number {
+    return new Date(date).getTime() / 1000;
   }
 
   getInvertedDate() {

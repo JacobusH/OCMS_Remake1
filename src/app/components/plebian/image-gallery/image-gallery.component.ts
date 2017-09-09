@@ -23,19 +23,19 @@ export class ImageGalleryComponent implements OnChanges, OnInit {
   doneLoading: boolean = false;
   loadingPercent: number = 0;
   loadingCount: number = 0;
-  loadingTotal: number = 91; // total imgs stored in 'all'
+  loadingTotal: number = 50; // total imgs stored in 'all'
   isShown: boolean = false;
 
   constructor(private imageService: ImageService, private af: AF, private sanitizer: DomSanitizer) { 
-    this.visibleImages = this.af.gallery;
+    this.visibleImages = this.af.galleryDesc;
   }
 
   ngOnChanges() {
-    this.visibleImages = this.af.gallery;
+    this.visibleImages = this.af.galleryDesc;
   }
 
   ngOnInit() {
-     this.af.gallery.subscribe(img => {
+     this.af.galleryDesc.subscribe(img => {
       this.loadedImages.push(img);
     })
   }

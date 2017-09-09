@@ -18,7 +18,7 @@ import {
   styleUrls: ['./learntoplay.component.css']
 })
 export class LearntoplayComponent implements OnInit, OnDestroy {
-  private model = new Signup('', '' , '', '', '', '', 0, false);
+  private model = new Signup();
   id: string;
   private sub: any;
   ltpForm: FormGroup;
@@ -28,7 +28,7 @@ export class LearntoplayComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.id = params['id'];
-       this.model = new Signup('', '' , '', '', this.id, '', 0, false);
+       this.model = new Signup('', '' , '', '', this.id, '', 0, 0, false);
     });
   }
 

@@ -60,7 +60,7 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
     this.userName = this.model.name;
 
     let chatMsg = new LiveChatMessage(test.message, this.af.getCurrentDateTime(), this.af.getInvertedDate(), false, false);
-    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', -1, true, new Array<LiveChatMessage>(chatMsg));
+    let liveChatToSave = new LiveChat('', this.model.name, this.model.email, '', 0, -1, true, new Array<LiveChatMessage>(chatMsg));
     this.currentChatKey = this.af.saveLivechat(liveChatToSave);
     
     this.liveChatMessages = this.af.getLiveChatMessagesByParentKey(this.currentChatKey);

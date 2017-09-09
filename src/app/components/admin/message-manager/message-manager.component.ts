@@ -45,10 +45,10 @@ export class MessageManagerComponent implements OnInit {
       locale: { format: 'YYYY-MM-DD' },
       alwaysShowCalendars: false,
       ranges: {
-         'Last Month': [moment().subtract(1, 'month'), moment()],
-         'Last 3 Months': [moment().subtract(4, 'month'), moment()],
-         'Last 6 Months': [moment().subtract(6, 'month'), moment()],
-         'Last 12 Months': [moment().subtract(12, 'month'), moment()],
+         'Last Month': [moment().subtract(1, 'month'), moment().add(1, 'day')],
+         'Last 3 Months': [moment().subtract(4, 'month'), moment().add(1, 'day')],
+         'Last 6 Months': [moment().subtract(6, 'month'), moment().add(1, 'day')],
+         'Last 12 Months': [moment().subtract(12, 'month'), moment().add(1, 'day')],
       }
     };
   }
