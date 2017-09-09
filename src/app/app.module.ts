@@ -20,6 +20,7 @@ import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@ang
 // providers
 import { AlertService } from 'app/providers/alert.service';
 import { AlertMultiService } from 'app/providers/alert-multi.service';
+import { LiveChatStatusService } from 'app/providers/liveChatStatus.service';
 import { AF } from 'app/providers/af.service';
 import { AppCustomPreloader } from 'app/helpers/AppCustomPreloader';
 import { AuthenticationService } from 'app/providers/authentication.service';
@@ -203,6 +204,7 @@ const routes: Routes = [
     AF,
     AlertService,
     AlertMultiService,  
+    LiveChatStatusService,
     AppCustomPreloader,
     AuthGuard,
     AuthService,

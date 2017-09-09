@@ -17,6 +17,14 @@
   }
 }
 
+.btn.here {
+  background-color: #1AAC1A;
+}
+
+.btn.away {
+  background-color: #A22123;
+}
+
 .filter-options form, .filter-options #datePicker {
   display: inline-block;
   margin: 5px 20px;

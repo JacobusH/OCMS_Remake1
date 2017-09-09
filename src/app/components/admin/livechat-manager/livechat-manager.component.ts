@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild, Input } fro
 import { DatePipe } from '@angular/common';
 import { LiveChat } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
+import { LiveChatStatusService } from 'app/providers/liveChatStatus.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
 import {MdMenuModule, MdButtonModule, MdIconModule} from '@angular/material';
@@ -22,6 +23,7 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   public currentLiveChatMessages: FirebaseListObservable<any>;
   public currentLiveChatKey: string;
   public menuKey: string;
+  public presence: string = 'away';
   private model = new LiveChat();
   public sessionRunning: boolean = false;
   public hasNewMessages: boolean = false;
@@ -40,7 +42,7 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   public state = 'normal';
   public slideState = 'down';
 
-  constructor(private af: AF) { 
+  constructor(private af: AF, private lcService: LiveChatStatusService) { 
     this.activeLiveChats = this.af.getActiveLiveChats();
   }
 
@@ -94,6 +96,10 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
 
   activeFilterClicked(filterApplied: string) {
     this.activeFilterBy = filterApplied; 
+  }
+
+  togglePresence() {
+    this.presence = this.lcService.liveChatPresence = (this.lcService.liveChatPresence === 'away') ? 'here' : 'away';
   }
 
   private selectedDate(value: any, dateInput: any) {

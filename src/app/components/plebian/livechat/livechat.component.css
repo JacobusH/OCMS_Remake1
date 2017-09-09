@@ -1,3 +1,9 @@
+.not-here {
+  text-align: center;
+  line-height: 3;
+  font-size: 18px;
+}
+
 .livechat-container{
   width: 300px;
   min-height: 400px;

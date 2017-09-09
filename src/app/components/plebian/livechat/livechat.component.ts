@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { AF } from 'app/providers/af.service';
+import { LiveChatStatusService } from 'app/providers/liveChatStatus.service';
 import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
 import { LiveChat, LiveChatMessage } from 'app/models/_index';
@@ -29,13 +30,14 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
   private model = new LiveChat();
   sessionRunning: boolean = false;
   currentChatKey: string;
+  public presence: string;
   userName;
   userEmail;
 
   state = 'normal';
   slideState = 'up';
 
-  constructor(private af: AF) { 
+  constructor(private af: AF, private lcService: LiveChatStatusService) { 
     this.liveChatMessages;
   }
 
