@@ -26,7 +26,8 @@
     <span>Go to our contact page and leave us a message, thanks!</span><br/>
     <button class="btn btn-lg btn-info"><a routerLink="/contact" style="color:white; text-decoration: none;">Contact</a></button>
   </div> -->
-  <div *ngIf="lcService.liveChatPresence === 'here'" class="info-content">
+  <!-- <div *ngIf="lcService.liveChatPresence === 'here'" class="info-content"> -->
+      <div class="info-content">
   <form (ngSubmit)="saveInfo(infoForm)" #infoForm="ngForm" class="info-form">
       <div class="form-group">
         <label for="name">Name</label>

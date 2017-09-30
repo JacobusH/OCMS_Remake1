@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@angular/material';
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 // import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
 // import { LightboxModule } from 'angular2-lightbox';
 // import { Angular2ImageGalleryModule } from 'ngx-bootstrap';
@@ -85,6 +86,8 @@ import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 import { SignupManagerComponent } from 'app/components/admin/signup-manager/signup-manager.component';
 import { LivechatComponent } from './components/plebian/livechat/livechat.component';
 import { MenuPlusComponent } from './components/cosmopolitan/menu-plus/menu-plus.component';
+import { HomeSplashComponent } from './components/plebian/home-splash/home-splash.component';
+import { YoutubeComponent } from './pages/testing/youtube/youtube.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -126,6 +129,7 @@ const routes: Routes = [
     // ]
   },
   { path: 'testimonials', component: TestimonialsComponent },
+  { path: 'testing/youtube', component: YoutubeComponent },
   { path: 'contact/thanks', component: ThanksComponent },
   { path: '**', component: PageNotFoundComponent }
 
@@ -177,7 +181,9 @@ const routes: Routes = [
     ThanksComponent,
     SignupManagerComponent,
     LivechatComponent,
-    MenuPlusComponent
+    MenuPlusComponent,
+    HomeSplashComponent,
+    YoutubeComponent
   ],
   imports: [
     AccordionModule,
@@ -196,7 +202,8 @@ const routes: Routes = [
     MdMenuModule, 
     MdButtonModule,
     MdIconModule,
-    MdSelectModule
+    MdSelectModule,
+    YoutubePlayerModule 
     // LightboxModule,
     // Ng2ImageGalleryModule,
   ],
