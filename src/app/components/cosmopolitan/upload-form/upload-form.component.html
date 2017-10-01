@@ -4,19 +4,53 @@
   </div>
   Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
 </div>
-    <label>
-       <input type="file" (change)="detectFiles($event)">
-    </label>
-    <button
-            [disabled]="!selectedFiles"
-            (click)="uploadSingle()">
-      Upload Single
-    </button>
-    <label>
+<label>
+    <input type="file" (change)="detectFiles($event)">
+</label>
+<!-- <button
+        [disabled]="!selectedFiles"
+        (click)="uploadSingle()">
+  Upload Single
+</button> -->
+
+<!-- Upload form -->
+<form (ngSubmit)="saveGalleryUpload(galleryUploadForm)" #galleryUploadForm="ngForm">
+<div class="form-group">
+  <label for="caption">Caption</label>
+  <input type="text" class="form-control" id="caption" required
+    [(ngModel)]="model.caption" name="caption"
+    #caption="ngModel"
+    [ngClass]="{
+      'has-success': caption.valid,
+      'has-danger': !caption.pristine && !caption.valid
+    }">
+  <div [hidden]="caption.valid || caption.pristine"
+        class="alert alert-danger">
+      Caption is required
+  </div>
+</div>
+<div class="form-group">
+  <label for="categories">Categories</label>
+  <input type="text" class="form-control" id="categories"
+    [(ngModel)]="model.categories" name="categories"
+    #categories="ngModel"
+    [ngClass]="{
+      'has-success': categories.valid,
+      'has-danger': !categories.pristine && !categories.valid
+    }">
+    <div [hidden]="categories.valid || categories.pristine"
+        class="alert alert-danger">
+      Categories are required
+  </div>
+</div>
+<button type="submit" class="btn btn-success" [disabled]="!galleryUploadForm.form.valid && selectedFiles">Upload</button>
+
+    <!-- MULTI FILE UPLOAD -->
+    <!-- <label>
        <input type="file" (change)="detectFiles($event)" multiple>
     </label>
       <button
               [disabled]="!selectedFiles"
               (click)="uploadMulti()">
         Upload Multiple
-      </button>
+      </button> -->

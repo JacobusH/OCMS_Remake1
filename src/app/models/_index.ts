@@ -1,6 +1,7 @@
 export * from './alert.model';
 export * from './faq.model';
 export * from './galleryImage.model';
+export * from './galleryUpload.model';
 export * from './ingredient.model';
 export * from './liveChat.model';
 export * from './liveChatMessage.model';

@@ -5,7 +5,7 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { FAQ, MailMessage, User, GalleryImage, Signup, Resource, LiveChat, LiveChatMessage, Teacher } from 'app/models/_index';
+import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher } from 'app/models/_index';
 import * as moment from 'moment';
 import 'rxjs/add/operator/take'
 
@@ -19,6 +19,7 @@ export class AF {
   public faqs: FirebaseListObservable<any>;
   public gallery: FirebaseListObservable<any>;
   public galleryDesc: FirebaseListObservable<any>;
+  public galleryUploads: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
@@ -37,6 +38,7 @@ export class AF {
       this.announcements = this.db.list('announcements');
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
+      this.galleryUploads = this.db.list('galleryUploads');
       this.resources = this.db.list('resources');
       this.roles = this.db.list('roles');
       this.testimonials = this.db.list('testimonials');
@@ -211,6 +213,11 @@ export class AF {
         limitToLast: 1 // returns one result of list ordered by id with highest id first
       }
     });
+  }
+
+  saveGalleryUpload(item: GalleryUpload) {
+    let promise = this.galleryUploads.push(item);
+    this.db.object("galleryUploads/" + promise.key).update({key: promise.key});
   }
 
   /******************** 
