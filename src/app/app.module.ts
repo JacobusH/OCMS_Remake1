@@ -27,6 +27,7 @@ import { AppCustomPreloader } from 'app/helpers/AppCustomPreloader';
 import { AuthenticationService } from 'app/providers/authentication.service';
 import { fakeBackendProvider } from 'app/helpers/fake-backend/fake-backend.component';
 import { ImageService } from 'app/providers/image.service';
+import { UploadService } from 'app/uploads/shared/upload.service';
 import { UserService } from 'app/providers/user.service';
 
 // pipes
@@ -88,6 +89,8 @@ import { LivechatComponent } from './components/plebian/livechat/livechat.compon
 import { MenuPlusComponent } from './components/cosmopolitan/menu-plus/menu-plus.component';
 import { HomeSplashComponent } from './components/plebian/home-splash/home-splash.component';
 import { YoutubeComponent } from './pages/testing/youtube/youtube.component';
+import { UploadFormComponent } from './components/cosmopolitan/upload-form/upload-form.component';
+import { UploadComponent } from './pages/testing/upload/upload.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -130,6 +133,7 @@ const routes: Routes = [
   },
   { path: 'testimonials', component: TestimonialsComponent },
   { path: 'testing/youtube', component: YoutubeComponent },
+  { path: 'testing/upload', component: UploadComponent },
   { path: 'contact/thanks', component: ThanksComponent },
   { path: '**', component: PageNotFoundComponent }
 
@@ -183,7 +187,9 @@ const routes: Routes = [
     LivechatComponent,
     MenuPlusComponent,
     HomeSplashComponent,
-    YoutubeComponent
+    YoutubeComponent,
+    UploadFormComponent,
+    UploadComponent
   ],
   imports: [
     AccordionModule,
@@ -221,6 +227,7 @@ const routes: Routes = [
     ActiveFilterPipe,
     ReadFilterPipe,
     SignupFilterPipe,
+    UploadService,
     UserService
   ],
   bootstrap: [AppComponent]

@@ -23,6 +23,8 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@types/youtube": "0.0.31",
+    "angular-lodash": "^0.1.1",
     "angular-slick": "0.0.0",
     "angular2-image-gallery": "^1.0.1",
     "angular2-lightbox": "^1.1.5",

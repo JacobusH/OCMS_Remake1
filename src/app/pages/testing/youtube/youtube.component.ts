@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YoutubeComponent implements OnInit {
   player: YT.Player;
-  private id: string = 'qDuKsiwS5xw';
+  // private id: string = 'iXxSeNv44no';
+  private id: string = 's-lEu5-gUxU';
 
 
   constructor() { }
