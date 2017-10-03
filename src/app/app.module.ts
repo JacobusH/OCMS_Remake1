@@ -27,7 +27,7 @@ import { AppCustomPreloader } from 'app/helpers/AppCustomPreloader';
 import { AuthenticationService } from 'app/providers/authentication.service';
 import { fakeBackendProvider } from 'app/helpers/fake-backend/fake-backend.component';
 import { ImageService } from 'app/providers/image.service';
-import { UploadService } from 'app/uploads/shared/upload.service';
+import { UploadService } from 'app/providers/upload.service';
 import { UserService } from 'app/providers/user.service';
 
 // pipes
@@ -91,6 +91,8 @@ import { HomeSplashComponent } from './components/plebian/home-splash/home-splas
 import { YoutubeComponent } from './pages/testing/youtube/youtube.component';
 import { UploadFormComponent } from './components/cosmopolitan/upload-form/upload-form.component';
 import { UploadComponent } from './pages/testing/upload/upload.component';
+import { FormTeacherUploadComponent } from './components/cosmopolitan/form-teacher-upload/form-teacher-upload.component';
+import { FormGalleryItemUploadComponent } from './components/cosmopolitan/form-gallery-item-upload/form-gallery-item-upload.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -189,7 +191,9 @@ const routes: Routes = [
     HomeSplashComponent,
     YoutubeComponent,
     UploadFormComponent,
-    UploadComponent
+    UploadComponent,
+    FormTeacherUploadComponent,
+    FormGalleryItemUploadComponent
   ],
   imports: [
     AccordionModule,

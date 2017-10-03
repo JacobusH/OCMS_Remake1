@@ -5,7 +5,7 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher } from 'app/models/_index';
+import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher, TeacherUpload } from 'app/models/_index';
 import * as moment from 'moment';
 import 'rxjs/add/operator/take'
 
@@ -29,6 +29,7 @@ export class AF {
   public testimonials: FirebaseListObservable<any>;
   public testimonialsDesc: FirebaseListObservable<any>;
   public teachers: FirebaseListObservable<any>;
+  public teacherUploads: FirebaseListObservable<any>;
   public teachersDesc: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public user: Observable<firebase.User>;
@@ -43,6 +44,7 @@ export class AF {
       this.roles = this.db.list('roles');
       this.testimonials = this.db.list('testimonials');
       this.teachers = this.db.list('teachers');
+      this.teacherUploads = this.db.list('teacherUploads');
       this.user = this.afAuth.authState;
       this.users = this.db.list('users');
       
@@ -342,6 +344,11 @@ export class AF {
     let promise = this.teachers.push(t);
     this.db.object("teachers/" + promise.key).update({key: promise.key});
     return promise.key;
+  }
+
+  saveTeacherUpload(item: TeacherUpload) {
+    let promise = this.teacherUploads.push(item);
+    this.db.object("teacherUploads/" + promise.key).update({key: promise.key});
   }
 
 

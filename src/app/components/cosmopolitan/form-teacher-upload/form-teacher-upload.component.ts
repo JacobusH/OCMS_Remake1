@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from 'app/providers/upload.service';
 import { Upload } from 'app/models/_index';
-import { GalleryUpload, TeacherUpload } from 'app/models/_index';
+import { TeacherUpload } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import * as _ from "lodash";
 import {
@@ -15,14 +15,14 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'upload-form',
-  templateUrl: './upload-form.component.html',
-  styleUrls: ['./upload-form.component.css']
+  selector: 'app-form-teacher-upload',
+  templateUrl: './form-teacher-upload.component.html',
+  styleUrls: ['./form-teacher-upload.component.css']
 })
-export class UploadFormComponent {
+export class FormTeacherUploadComponent {
   selectedFiles: FileList;
   currentUpload: Upload;
-  private model = new GalleryUpload();
+  private model = new TeacherUpload();
 
   constructor(private upSvc: UploadService, private af: AF) { }
 
@@ -36,13 +36,6 @@ export class UploadFormComponent {
     this.upSvc.pushUpload(this.currentUpload, 'teacher');
   }
 
-  uploadSingleGalleryItem() {
-    let file = this.selectedFiles.item(0)
-    this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'gallery');
-  }
-
-
   // uploadMulti() {
   //   let files = this.selectedFiles
   //   let filesIndex = _.range(files.length)
@@ -52,32 +45,18 @@ export class UploadFormComponent {
   //   )
   // }
 
-  saveGalleryUpload(form: NgForm) {
-    this.uploadSingleGalleryItem();
-    
+  saveTeacherUpload(form: NgForm) {
+    this.uploadSingleTeacher();
+
     let fileName = this.selectedFiles.item(0).name;
-    let mm: GalleryUpload = this.model;
-    mm.itemUrl = 'gallery/' + fileName;
+    let mm: TeacherUpload = this.model;
+    mm.itemUrl = 'teacher/' + fileName;
     
-    this.af.saveGalleryUpload(mm);
-    this.model = new GalleryUpload();
+    this.af.saveTeacherUpload(mm);
+    this.model = new TeacherUpload();
 
     form.reset();
   }
 
-  saveTeacherUpload(form: NgForm) {
-    // this.uploadSingleTeacher();
-
-    // let fileName = this.selectedFiles.item(0).name;
-    // let mm: TeacherUpload = this.model;
-    // mm.itemUrl = 'teacher/' + fileName;
-    
-    // this.af.saveTeacherUpload(mm);
-    // this.model = new GalleryUpload();
-
-    // form.reset();
-  }
-
-  
 
 }

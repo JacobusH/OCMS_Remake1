@@ -11,5 +11,6 @@ export * from './resource.model';
 export * from './signup.model';
 export * from './simpleUser.model';
 export * from './teacher.model';
+export * from './teacherUpload.model';
 export * from './upload.model';
 export * from './user.model';
