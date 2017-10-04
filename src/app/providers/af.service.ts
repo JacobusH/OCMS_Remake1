@@ -351,6 +351,14 @@ export class AF {
     this.db.object("teacherUploads/" + promise.key).update({key: promise.key});
   }
 
+  editTeacherUpload(item: TeacherUpload) {
+    this.db.object("teacherUploads/" + item.key).update(item);
+  }
+
+  deleteTeacherUpload(item: TeacherUpload) {
+    this.db.object("teacherUploads/" + item.key).remove();
+  }
+
 
   /******************** 
    HELPERS

@@ -4,6 +4,7 @@ export class TeacherUpload {
           public key:string = '',
           public name:string = '',
           public descriptionHTML: string = '',
+          public qualifications: string = '',
           public instrument: string = '',
           public itemUrl: string = ''
         ) {}

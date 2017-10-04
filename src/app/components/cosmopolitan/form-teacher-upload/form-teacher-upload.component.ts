@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UploadService } from 'app/providers/upload.service';
 import { Upload } from 'app/models/_index';
 import { TeacherUpload } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import * as _ from "lodash";
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -20,11 +21,16 @@ import {
   styleUrls: ['./form-teacher-upload.component.css']
 })
 export class FormTeacherUploadComponent {
+  @ViewChild('fileUpload') fileUploadVar: any;
+  selectedTeacher: TeacherUpload;
   selectedFiles: FileList;
   currentUpload: Upload;
   private model = new TeacherUpload();
+  private teachers: FirebaseListObservable<any>;
 
-  constructor(private upSvc: UploadService, private af: AF) { }
+  constructor(private upSvc: UploadService, private af: AF) { 
+    this.teachers = this.af.teacherUploads;
+  }
 
   detectFiles(event) {
       this.selectedFiles = event.target.files;
@@ -46,16 +52,44 @@ export class FormTeacherUploadComponent {
   // }
 
   saveTeacherUpload(form: NgForm) {
-    this.uploadSingleTeacher();
+    // uploading new teacher with picture
+    if(this.selectedFiles != null) {
+      this.uploadSingleTeacher();
 
-    let fileName = this.selectedFiles.item(0).name;
-    let mm: TeacherUpload = this.model;
-    mm.itemUrl = 'teacher/' + fileName;
-    
-    this.af.saveTeacherUpload(mm);
+      let fileName = this.selectedFiles.item(0).name;
+      let mm: TeacherUpload = this.model;
+      mm.itemUrl = 'teacher/' + fileName;
+      
+      this.af.saveTeacherUpload(mm);
+      this.model = new TeacherUpload();
+      
+      this.fileUploadVar.nativeElement.value = "";
+      form.reset();
+    }
+    // editing teacher
+    else if(this.selectedTeacher != null) {
+      this.af.editTeacherUpload(this.model)
+
+      this.fileUploadVar.nativeElement.value = "";
+      form.reset();
+    }
+
+  }
+
+  setNewTeacher() {
+    this.selectedTeacher = null;
     this.model = new TeacherUpload();
+  }
 
+  setSelectedTeacher(teacher: TeacherUpload) {
+    this.selectedTeacher = teacher;
+    this.model = teacher;
+  }
+
+  deleteTeacher(form: NgForm) {
+    this.fileUploadVar.nativeElement.value = "";
     form.reset();
+    this.af.deleteTeacherUpload(this.selectedTeacher);
   }
 
 

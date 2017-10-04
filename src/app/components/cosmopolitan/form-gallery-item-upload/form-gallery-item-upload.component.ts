@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UploadService } from 'app/providers/upload.service';
 import { Upload } from 'app/models/_index';
 import { GalleryUpload } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import * as _ from "lodash";
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {
   ReactiveFormsModule,
   FormsModule,

@@ -1,12 +1,25 @@
+<h1 class="AC">Teacher</h1>
+
+<!-- Select Teacher to Edit -->
+<div class="teachers-select-container">
+  <button class="btn btn-info mB15" (click)="setNewTeacher()">New</button>
+  <div class="teachers-container">
+    <div class="teacher" (click)="setSelectedTeacher(teach)" *ngFor="let teach of teachers | async">
+      {{teach.name}}
+    </div>
+  </div>
+</div>
+
+
 <!-- Teacher Upload File -->
-<div *ngIf="currentUpload">
+<div *ngIf="currentUpload" class="AC">
   <div class="progress">
     <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
   </div>
   Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
 </div>
-<label>
-    <input type="file" (change)="detectFiles($event)">
+<label  class="AC">
+    <input #fileUpload type="file" (change)="detectFiles($event)">
 </label>
 
 <!-- Teacher Upload form -->
@@ -27,7 +40,7 @@
   </div>
   <div class="form-group">
     <label for="descriptionHTML">Description</label>
-    <input type="text" class="form-control" id="descriptionHTML" required
+    <textarea cols="30" rows="3" class="form-control" id="descriptionHTML" required
       [(ngModel)]="model.descriptionHTML" name="descriptionHTML"
       #descriptionHTML="ngModel"
       [ngClass]="{
@@ -38,6 +51,22 @@
           class="alert alert-danger">
         Description are required
     </div>
+    </textarea>
+  </div>
+  <div class="form-group">
+    <label for="qualifications">Qualifications</label>
+    <textarea cols="30" rows="3" class="form-control" id="descriptionHTML" required
+      [(ngModel)]="model.qualifications" name="qualifications"
+      #qualifications="ngModel"
+      [ngClass]="{
+        'has-success': qualifications.valid,
+        'has-danger': !qualifications.pristine && !qualifications.valid
+      }">
+      <div [hidden]="qualifications.valid || qualifications.pristine"
+          class="alert alert-danger">
+        Qualifications are required
+    </div>
+    </textarea>
   </div>
   <div class="form-group">
     <label for="instrument">Instrument</label>
@@ -50,10 +79,12 @@
       }">
       <div [hidden]="instrument.valid || instrument.pristine"
           class="alert alert-danger">
-        Instrument are required
+        Instrument is required
     </div>
   </div>
-  <button type="submit" class="btn btn-success" [disabled]="!teacherUploadForm.form.valid && selectedFiles">Upload</button>
+  <button type="submit" class="btn btn-success" [disabled]="!teacherUploadForm.form.valid">Upload</button>
+  <span *ngIf="selectedTeacher != null" class="btn btn-danger" (click)="deleteTeacher(teacherUploadForm)">Delete</span>
+</form>
 
     <!-- MULTI FILE UPLOAD -->
     <!-- <label>
@@ -63,4 +94,4 @@
             [disabled]="!selectedFiles"
             (click)="uploadMulti()">
       Upload Multiple
-    </button> -->
+    </button> --> 
