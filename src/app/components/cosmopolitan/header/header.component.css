@@ -1,3 +1,15 @@
+li > a {
+  font-family: proxima-nova;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1em;
+  /* color: #fff; */
+}
+
 .navbar-nav {
   position: absolute;
   background: #fafafa;
@@ -15,13 +27,6 @@
   /* border: 1px solid transparent; */
   border-radius: 4px;
 }
-
-/* menu */
-.main-menu{
-	float:left;
-	position:relative;
-}
-
 
 #toggle-menu-button{
 	float:left;
@@ -131,9 +136,18 @@
 	transition:all 200ms ease-out;
 }
 
+.dropdown:hover > .dropdown-menu {
+  display: block !important;
+}
+
+.dropdown-menu {
+  margin: 0px !important;
+}
+
 @media (min-width: 768px) {
   .navbar-toggle {
       display: block;
   }
+  
 }
 
