@@ -1,14 +1,14 @@
+<!-- Full Size Nav -->
 <div id="header-bar">
-  <div class="wrap">
+  <div class="AC">
     <div class="main-menu">
       <div class="menu-main-menu-container">
         <ul id="menu-main-menu" class="menu">
           <li><a routerLink="/home">Home</a></li>
-          <li><a routerLink="/about">About</a></li>
-          <li><a routerLink="/teachers">Teachers</a></li>
           <li><a routerLink="/gallery">Gallery</a></li>
+          <li><a routerLink="/teachers">Teachers</a></li>
           <li><a routerLink="/testimonials">Testimonials</a></li>
-          <!-- <li><a routerLink="/announcements">Announcements</a></li> -->
+          <li><a routerLink="/about">About</a></li>
           <li><a routerLink="/faq">FAQ</a></li>
           <li><a routerLink="/contact">Contact</a></li>
           <li><a routerLink="/resources">Resources</a></li>
@@ -57,7 +57,7 @@
 <ng-template #showProfile_content>
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile
-    <span class="caret"></span></a>
+    <span class="caret-remade"></span></a>
     <ul class="dropdown-menu">
       <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com' || currentUser.email === 'stellakotova@aol.com'">
         <a routerLink="/admin">Administration</a>

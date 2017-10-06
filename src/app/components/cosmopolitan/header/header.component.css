@@ -5,16 +5,131 @@
 }
 
 .navbar-toggle {
-    position: relative;
-    float: right;
-    padding: 9px 10px;
-    margin-top: 8px;
-    margin-right: 15px;
-    margin-bottom: 8px;
-    background-color: transparent;
-    /* border: 1px solid transparent; */
-    border-radius: 4px;
-  }
+  position: relative;
+  float: right;
+  padding: 9px 10px;
+  margin-top: 8px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+  background-color: transparent;
+  /* border: 1px solid transparent; */
+  border-radius: 4px;
+}
+
+/* menu */
+.main-menu{
+	float:left;
+	position:relative;
+}
+
+
+#toggle-menu-button{
+	float:left;
+	cursor:pointer;
+	text-align:center;
+	width:50px;
+	display:none;
+}
+
+#toggle-menu-button i{
+	font-size:18px;
+	line-height:50px;
+}
+
+#main-menu-toggle{
+	padding:10px 0px;
+	position:absolute;
+	display:none;
+	top:50px;
+}
+
+#main-menu-toggle a{
+	padding:15px 20px;
+	display:block;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+.main-menu ul li{
+	display:inline-block;
+	position: relative;
+}
+
+.main-menu ul li a{
+	position: relative;
+	display:inline-block;
+	padding:18px 20px;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+/* sub menu */
+
+.main-menu ul ul {
+	text-align:left;
+	position: absolute;
+	top: 50px;
+	left:0px;
+	padding:0px 0px;
+	width:250px;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+.main-menu ul ul ul{
+	position: absolute;
+	top:0px;
+	left:250px;
+	width:250px;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+.main-menu ul ul {
+	display:none;
+}
+
+.main-menu ul ul ul{
+	display:none;
+}
+
+.main-menu ul li:hover ul {
+	z-index:100;
+	display:block;
+}
+
+.main-menu ul li:hover ul ul{
+	display:none;
+}
+
+.main-menu ul li li:hover ul{
+	display:block;
+}
+
+.main-menu ul li li{
+	padding:0px;
+	float:none;
+	transition: opacity 200ms ease-out; /*safari and chrome */
+	-webkit-transition: opacity 200ms ease-out; /*safari and chrome */
+	width:100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	margin-left:0px;
+}
+
+.main-menu ul li li a, .main-menu ul li.current-menu-item li a, .main-menu ul li.current-menu-ancestor li a{
+	display: block;
+	width:100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	padding:14px 18px 14px 18px;
+	position:relative;
+}
+
+.main-menu ul li li a{
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+	transition:all 200ms ease-out;
+}
 
 @media (min-width: 768px) {
   .navbar-toggle {
