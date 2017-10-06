@@ -4,6 +4,7 @@ import { Upload } from 'app/models/_index';
 import { TeacherUpload } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import * as _ from "lodash";
+import * as firebase from 'firebase/app';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {
   ReactiveFormsModule,
@@ -22,11 +23,17 @@ import {
 })
 export class FormTeacherUploadComponent {
   @ViewChild('fileUpload') fileUploadVar: any;
+  @ViewChild('imgTeacherSelected') imgTeacherSelected: any;
   selectedTeacher: TeacherUpload;
   selectedFiles: FileList;
+  selectedPicture: string;
   currentUpload: Upload;
   private model = new TeacherUpload();
   private teachers: FirebaseListObservable<any>;
+  private firebaseUrl: string = 'gs://ocmusicschool-11817.appspot.com/';
+
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
 
   constructor(private upSvc: UploadService, private af: AF) { 
     this.teachers = this.af.teacherUploads;
@@ -79,11 +86,21 @@ export class FormTeacherUploadComponent {
   setNewTeacher() {
     this.selectedTeacher = null;
     this.model = new TeacherUpload();
+    this.imgTeacherSelected.nativeElement.src = "";
   }
 
   setSelectedTeacher(teacher: TeacherUpload) {
     this.selectedTeacher = teacher;
     this.model = teacher;
+
+    let teacherRef = this.storageRef.child(teacher.itemUrl);
+    teacherRef.getDownloadURL().then((url) => {
+      this.selectedPicture = url;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+   
   }
 
   deleteTeacher(form: NgForm) {

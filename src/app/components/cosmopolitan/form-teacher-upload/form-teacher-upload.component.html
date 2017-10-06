@@ -10,17 +10,22 @@
   </div>
 </div>
 
+<div class="container">
+  <!-- Teacher Picture -->
+  <img #imgTeacherSelected src="{{selectedPicture}}" />
 
-<!-- Teacher Upload File -->
-<div *ngIf="currentUpload" class="AC">
-  <div class="progress">
-    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+  <!-- Teacher Upload File -->
+  <div *ngIf="currentUpload" class="AC">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+    </div>
+    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
   </div>
-  Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  <label  class="AC">
+      <input #fileUpload type="file" (change)="detectFiles($event)">
+  </label>
 </div>
-<label  class="AC">
-    <input #fileUpload type="file" (change)="detectFiles($event)">
-</label>
+
 
 <!-- Teacher Upload form -->
 <form (ngSubmit)="saveTeacherUpload(teacherUploadForm)" #teacherUploadForm="ngForm">
