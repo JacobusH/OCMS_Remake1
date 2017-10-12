@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SkillTree } from 'app/models/_index';
+import { AF } from 'app/providers/af.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private af:AF) { }
 
   ngOnInit() {
   }

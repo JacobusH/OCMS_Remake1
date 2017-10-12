@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@angular/material';
+import { TreeModule} from 'angular-tree-component';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
 // import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
 // import { LightboxModule } from 'angular2-lightbox';
@@ -46,11 +47,11 @@ import { AuthService } from 'app/guards/auth.service';
 import { AuthGuard } from 'app/guards/auth-guard.service';
 
 // components
-import { CarouselComponent } from 'app/components/plebian/carousel/carousel.component';
-import { GalleryCarouselComponent } from 'app/components/plebian/gallery-carousel/gallery-carousel.component';
-import { HeaderComponent } from 'app/components/cosmopolitan/header/header.component';
-import { ImageGalleryComponent } from 'app/components/plebian/image-gallery/image-gallery.component';
-import { ImageGalleryDetailComponent } from 'app/components/plebian/image-gallery/image-gallery-detail/image-gallery-detail.component';
+import { CarouselComponent } from 'app/components/image/carousel/carousel.component';
+import { GalleryCarouselComponent } from 'app/components/image/gallery-carousel/gallery-carousel.component';
+import { HeaderComponent } from 'app/components/shared/header/header.component';
+import { ImageGalleryComponent } from 'app/components/image/image-gallery/image-gallery.component';
+import { ImageGalleryDetailComponent } from 'app/components/image/image-gallery/image-gallery-detail/image-gallery-detail.component';
 
 import { RecipesComponent } from 'app/recipes/recipes.component';
 import { RecipeListComponent } from 'app/recipes/recipe-list/recipe-list.component';
@@ -76,23 +77,25 @@ import { TeachersComponent } from 'app/pages/teachers/teachers.component';
 import { TeacherDetailComponent } from 'app/pages//teacher-detail/teacher-detail.component';
 import { TestimonialsComponent } from 'app/pages/testimonials/testimonials.component';
 import { ValidateEqualComponent } from './directives/validate-equal/validate-equal.component';
-import { MediaManagerComponent } from 'app/components/admin/media-manager/media-manager.component';
+import { MediaManagerComponent } from 'app/components/managers/media-manager/media-manager.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LearntoplayComponent } from './pages/learntoplay/learntoplay.component';
-import { AdminNavComponent } from 'app/components/admin/admin-nav/admin-nav.component';
-import { UserManagerComponent } from 'app/components/admin/user-manager/user-manager.component';
-import { MessageManagerComponent } from 'app/components/admin/message-manager/message-manager.component';
-import { LivechatManagerComponent } from 'app/components/admin/livechat-manager/livechat-manager.component';
+import { AdminNavComponent } from 'app/components/navigation/admin-nav/admin-nav.component';
+import { UserManagerComponent } from 'app/components/managers/user-manager/user-manager.component';
+import { MessageManagerComponent } from 'app/components/managers/message-manager/message-manager.component';
+import { LivechatManagerComponent } from 'app/components/managers/livechat-manager/livechat-manager.component';
 import { ThanksComponent } from './pages/contact/thanks/thanks.component';
-import { SignupManagerComponent } from 'app/components/admin/signup-manager/signup-manager.component';
-import { LivechatComponent } from './components/plebian/livechat/livechat.component';
-import { MenuPlusComponent } from './components/cosmopolitan/menu-plus/menu-plus.component';
-import { HomeSplashComponent } from './components/plebian/home-splash/home-splash.component';
+import { SignupManagerComponent } from 'app/components/managers/signup-manager/signup-manager.component';
+import { LivechatComponent } from './components/livechat/livechat.component';
+import { MenuPlusComponent } from './components/navigation/menu-plus/menu-plus.component';
+import { HomeSplashComponent } from './components/home-splash/home-splash.component';
 import { YoutubeComponent } from './pages/testing/youtube/youtube.component';
-import { UploadFormComponent } from './components/cosmopolitan/upload-form/upload-form.component';
+import { UploadFormComponent } from './components/uploads/upload-form/upload-form.component';
 import { UploadComponent } from './pages/testing/upload/upload.component';
-import { FormTeacherUploadComponent } from './components/cosmopolitan/form-teacher-upload/form-teacher-upload.component';
-import { FormGalleryItemUploadComponent } from './components/cosmopolitan/form-gallery-item-upload/form-gallery-item-upload.component';
+import { FormTeacherUploadComponent } from './components/uploads/form-teacher-upload/form-teacher-upload.component';
+import { FormGalleryItemUploadComponent } from './components/uploads/form-gallery-item-upload/form-gallery-item-upload.component';
+import { TreeComponent } from './pages/testing/tree/tree.component';
+import { SkillTreeComponent } from './components/skill-tree/skill-tree.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -136,6 +139,7 @@ const routes: Routes = [
   { path: 'testimonials', component: TestimonialsComponent },
   { path: 'testing/youtube', component: YoutubeComponent },
   { path: 'testing/upload', component: UploadComponent },
+  { path: 'testing/tree', component: TreeComponent },
   { path: 'contact/thanks', component: ThanksComponent },
   { path: '**', component: PageNotFoundComponent }
 
@@ -193,7 +197,9 @@ const routes: Routes = [
     UploadFormComponent,
     UploadComponent,
     FormTeacherUploadComponent,
-    FormGalleryItemUploadComponent
+    FormGalleryItemUploadComponent,
+    TreeComponent,
+    SkillTreeComponent
   ],
   imports: [
     AccordionModule,
@@ -213,6 +219,7 @@ const routes: Routes = [
     MdButtonModule,
     MdIconModule,
     MdSelectModule,
+    TreeModule,
     YoutubePlayerModule 
     // LightboxModule,
     // Ng2ImageGalleryModule,

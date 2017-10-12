@@ -5,6 +5,7 @@ import { AlertMultiService } from 'app/providers/alert-multi.service'
 import { AuthenticationService } from 'app/providers/authentication.service';
 import  { AF } from 'app/providers/af.service';
 import { User } from 'app/models/user.model';
+import { UserService } from 'app/providers/user.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
       private authenticationService: AuthenticationService,
       private alertService: AlertService,
       private alertMultiService: AlertMultiService,
-      private af: AF) { }
+      private af: AF,
+      private userService: UserService) { }
 
   ngOnInit() {
       // reset login status

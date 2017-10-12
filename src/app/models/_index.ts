@@ -9,6 +9,8 @@ export * from './mailMessage.model';
 export * from './recipe.model';
 export * from './resource.model';
 export * from './signup.model';
+export * from './skillTree.model';
+export * from './skillTreeNode.model';
 export * from './simpleUser.model';
 export * from './teacher.model';
 export * from './teacherUpload.model';

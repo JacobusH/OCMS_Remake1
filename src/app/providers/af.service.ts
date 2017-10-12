@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
+import { UUID } from 'angular2-uuid';
 // import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable} from 'angularfire2';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher, TeacherUpload } from 'app/models/_index';
+import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher, TeacherUpload, SkillTree, SkillTreeNode } from 'app/models/_index';
 import * as firebase from 'firebase/app';
 import * as moment from 'moment';
 import 'rxjs/add/operator/take'
@@ -25,6 +26,7 @@ export class AF {
   public resources: FirebaseListObservable<any>;
   public resourceCategories: FirebaseListObservable<any>;
   public roles: FirebaseListObservable<any>;
+  public skillTrees: FirebaseListObservable<any>;
   public signups: FirebaseListObservable<any>;
   public testimonials: FirebaseListObservable<any>;
   public testimonialsDesc: FirebaseListObservable<any>;
@@ -42,6 +44,7 @@ export class AF {
       this.galleryUploads = this.db.list('galleryUploads');
       this.resources = this.db.list('resources');
       this.roles = this.db.list('roles');
+      this.skillTrees = this.db.list('skillTrees');
       this.testimonials = this.db.list('testimonials');
       this.teachers = this.db.list('teachers');
       this.teacherUploads = this.db.list('teacherUploads');
@@ -95,6 +98,24 @@ export class AF {
 
   logout() {
     return this.afAuth.auth.signOut();
+  }
+
+  /******************** 
+   SKILLTREE
+  ****************** */
+  addSkillTreeNode(skillTreeKey: string, parentNodeKey: string) {
+    this.db.object('skilltree/' + skillTreeKey);
+  }
+
+  createSkillTree() {
+    let tree = new SkillTree();
+    tree.nodes = new Array<SkillTreeNode>(new SkillTreeNode()); 
+    let promise = this.skillTrees.push(tree);
+    this.db.object("skillTrees/" + promise.key).update({key: promise.key});
+  }
+  
+  getSkillTreeByUserType(skillTreeKey) : FirebaseListObservable<any> {
+    return this.db.list('skilltree/' + skillTreeKey);
   }
 
   /******************** 

@@ -1,3 +1,5 @@
+import { SkillTree } from 'app/models/_index';
+
 export class User {
 
     constructor(
@@ -7,6 +9,7 @@ export class User {
       public email: string,
       public password: string,
       public role: string,
-      public authMethod: string
+      public authMethod: string,
+      public skillTrees: Array<SkillTree> = []
     ) {}
 }

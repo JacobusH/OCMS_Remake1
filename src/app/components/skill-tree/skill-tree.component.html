@@ -1,0 +1,27 @@
+<div class="container">
+  <tree-root #tree [nodes]="nodes" [options]="options">
+      <ng-template #treeNodeTemplate let-node let-index="index">
+        <span>{{ node.data.name }}</span>
+        <button md-icon-button [md-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
+            <md-icon>add</md-icon>
+          </button>
+      </ng-template>
+    </tree-root>
+  <button (click)="tree.treeModel.focusNextNode()">next node</button>
+  <button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
+  <button (click)="tree.treeModel.focusDrillDown()">drill down</button>
+  <button (click)="tree.treeModel.focusDrillUp()">drill up</button>
+  <button (click)="addNode()">add node</button>
+</div>
+
+<!-- MENU -->
+<md-menu #menu="mdMenu">
+    <button md-menu-item (click)="addChildNode($event)">
+      <md-icon>add</md-icon>
+      <span>Add Child</span>
+    </button>
+    <button md-menu-item (click)="markComplete($event)">
+      <md-icon>check</md-icon>
+      <span>Complete</span>
+    </button>
+  </md-menu>

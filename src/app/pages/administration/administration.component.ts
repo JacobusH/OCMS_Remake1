@@ -22,11 +22,7 @@ export class AdministrationComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.delete(id).subscribe(
-      () => {
-        this.loadAllUsers();
-      }
-    );
+    
   }
 
   loadAllUsers() {
