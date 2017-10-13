@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ITreeOptions, TreeComponent, IActionHandler, TreeModel, TreeNode, ITreeState, IActionMapping, TREE_ACTIONS } from 'angular-tree-component';
 
 @Component({
@@ -9,20 +9,21 @@ import { ITreeOptions, TreeComponent, IActionHandler, TreeModel, TreeNode, ITree
 export class SkillTreeComponent implements OnInit {
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
+  @Input('nodes') nodesInput;
 
   nodes = [
     {
-      id: 1,
+      key: 1,
       name: 'root1'
     },
     {
-      id: 2,
+      key: 2,
       name: 'root2',
       children: [
-        { id: 3, name: 'child1'},
-        { id: 4, name: 'child2', children: [
-          { id: 4, name: 'grandchild1'},
-          { id: 5, name: 'grandchild2'}
+        { key: 3, name: 'child1'},
+        { key: 4, name: 'child2', children: [
+          { key: 4, name: 'grandchild1'},
+          { key: 5, name: 'grandchild2'}
         ] }
       ]
     }
@@ -60,7 +61,7 @@ export class SkillTreeComponent implements OnInit {
 
   addNode() {
     this.nodes.push({
-      id: 100,
+      key: 100,
       name: 'root1'
     });
     this.tree.treeModel.update();

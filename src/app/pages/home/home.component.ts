@@ -13,8 +13,6 @@ import { fadeInAnimation } from 'app/animations/fade-in.animation';
 })
 export class HomeComponent implements OnInit {
   @HostBinding('@fadeInAnimation') routeAnimation = true;
-  public teachers: FirebaseListObservable<any>;
-  public testimonials: FirebaseListObservable<any>;
   myImages: ImageInterface[] = [
     { "thumbnail": "assets/img/HomeSlider_Piano.jpg", "image": "assets/img/HomeSlider_Piano.jpg", "title": "Private Music Lessons" },
     { "thumbnail": "assets/img/HomeSlider_Guitar.jpg", "image": "assets/img/HomeSlider_Guitar.jpg", "title": "Professional and Fun Environment" },
@@ -27,8 +25,6 @@ export class HomeComponent implements OnInit {
   constructor(public afService: AF, public db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.teachers = this.afService.teachersDesc;
-    this.testimonials = this.afService.testimonialsDesc;
   }
 
 }

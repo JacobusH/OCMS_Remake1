@@ -2,6 +2,10 @@
 @import '~angular-tree-component/dist/angular-tree-component.css';
 
 /*HELPERS*/
+.btn.btn-lg.btn-info {
+  background: #3498db;
+}
+
 .AC {
     text-align: center;
 }

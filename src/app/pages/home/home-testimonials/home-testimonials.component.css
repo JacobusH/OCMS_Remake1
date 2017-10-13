@@ -1,0 +1,237 @@
+/* testimonials */
+.testimonials{
+  /* position:relative; */
+  display: inline-block;
+  margin-bottom:40px;
+  margin-right: 15px;
+  vertical-align: top;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.025);
+}
+
+.testimonials-slider{
+	position:relative;
+
+}
+
+.testimonials-content{
+    font-family: 'PT Serif',Arial !important;
+    font-size: 18px;
+    line-height: 28px;
+    font-style: italic;
+	padding:32px 25px 35px 25px;
+	position:relative;
+    color: #999999;
+}
+
+.testimonials-arrow{
+    border-top: 30px solid white;
+	position:absolute;
+	right:25px;
+	bottom:-30px;
+	width: 0;
+	height: 0;
+	border-left: 0px solid transparent;
+	border-right: 30px solid transparent;
+	content:'';
+}
+
+.testimonials-content p:last-child{
+	padding-bottom:0px;
+}
+
+.testimonials-author{
+	padding:12px 20px 14px 20px;
+    background-color: #fafafa;
+}
+
+.testimonials-image{
+	float:left;
+	padding-top:3px;
+}
+
+.testimonials-image i{
+	width:42px;
+	height:42px;
+	text-align:center;
+	border-radius:50%;
+	font-size:18px;
+	line-height:42px;
+
+}
+
+.testimonials-author-name{
+	font-family: 'Lato',Arial !important;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.testimonials-author-info{
+	margin-left:62px;
+	text-align:left;
+	margin-top:-3px;
+    font-family: 'Open Sans',Arial !important;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.testimonials-author-info p:last-child{
+	padding-bottom:0px;
+}
+
+.testimonials-buttons{
+	position:absolute;
+	z-index:2;
+	bottom:14px;
+	right:10px;
+}
+
+.testimonials-button-next{
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;
+	margin-right:5px;
+	width:36px;
+	height:24px;
+
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+.testimonials-button-next i , .testimonials-button-prev i{
+	font-size:12px;
+	line-height:14px;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+}
+
+.testimonials-button-prev{
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;
+	width:36px;
+	height:24px;
+	transition: all 200ms ease-out; /*safari and chrome */
+	-webkit-transition: all 200ms ease-out; /*safari and chrome */
+
+}
+
+.testimonials-each{
+	display:none;
+}
+
+.testimonials-current{
+	display:block;
+}
+
+.testimonials-id, .testimonials-current-id, .testimonials-total{
+	display:none;
+}
+
+/* quote block */
+.quote-block{
+	text-align:center;
+}
+
+.quote-block-inside{
+	padding:40px 50px 40px 50px;
+}
+
+.quote-block-inside{
+	padding:0px 0px 0px 0px;
+}
+
+.quote-block.bg-color  .quote-block-inside{
+	padding:100px 0px 100px 0px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.025);
+}
+
+.quote-block-icon{
+	display:inline-block;
+	text-align:center;
+	margin-right:10px;
+	border-radius:50%;
+	font-size:0px;
+	line-height:0px;
+}
+
+.quote-block-icon i{
+	font-size:14px;
+	line-height:28px;
+	border-radius:50%;
+	width:28px;
+	height:28px;
+}
+
+.quote-block-content {
+    color:white;
+    font-family: 'Lato',Arial !important;
+    font-size: 30px;
+    line-height: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quote-block-author{
+    color: rgba(255,255,255,0.8);
+	padding-top:10px;
+	display:inline-block;
+    font-family: 'PT Serif',Arial !important;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.quote-block.bg-color {
+    background-color: #3498db;
+}
+
+
+@media screen and (min-device-width: 1200px) /* Desktop */ {
+  .testimonials{
+    max-width: 48%;
+  }
+}
+
+@media screen  and (max-device-width: 1199px) /* Tablet */ {
+  .testimonials{
+    max-width: 48%;
+  }
+}
+
+@media screen and (max-device-width: 720px) /* Mobile */ {
+  .testimonials{
+    max-width: inherit;
+  }
+}
+
+@media only screen and (min-device-width:720px){
+  
+}
+
+@media screen and (min-device-width: 1200px) /* Desktop */ {
+  .portfolio-cell {
+    width: 70%;
+}
+}
+
+@media screen  and (max-device-width: 1199px) /* Tablet */ {
+  .portfolio-cell {
+    width: 40%;
+}
+}
+
+@media screen and (max-device-width: 720px) /* Mobile */ {
+  .portfolio-cell {
+    width: 70%;
+}
+}
+
+

@@ -1,0 +1,54 @@
+<div class="content-section-heading">
+    <h2 class="content-section-subtitle">
+      <span class="title-point"></span>
+      Testimonials										
+    </h2>
+    <h1 class="content-section-title">
+      <span>Hear What They're Saying</span>
+    </h1>
+    <div class="content-section-line">
+      <span>
+        
+      </span>
+    </div>
+  </div>
+  <!-- TESTIMONIALS -->
+  <div class="quote-block bg-color">
+    <div class="container no-wrap">
+      <div class="quote-block-inside">
+        <div class="quote-block-wrap">
+        <div class="quote-block-content">
+          <p>My husband Marion and I enjoyed hearing your students entertain during the event for Mayor Steven Choi at the Momentous Sports Center on November 1. Both of my granddaughters have studied piano, so I have an appreciation for the effort that is required to learn to play well.</p>
+        </div>
+        <div class="quote-block-bottom">
+          <span class="quote-block-author">
+            <span class="quote-block-icon">
+              <i class="fa fa-quote-left"></i>
+            </span>
+            SHERRI (MILLER) BUTTERFIELD																	</span>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" style="padding: 10px 15px;">
+    <div class="col-lg-12">
+      <div class="testimonials" *ngFor="let test of testimonials | async">
+        <div>
+          <div class="testimonials-content">
+            <span class="testimonials-arrow"></span>
+            <p innerHtml="{{test.text}}"></p>
+          </div>
+          <div class="testimonials-author">
+            <div class="testimonials-image">
+                <img alt="testimonial author" src="../assets/img/5stars.png"> 
+            </div>
+            <div class="testimonials-author-name">{{test.author}}</div>
+            <div class="testimonials-author-info content"></div>
+            <div class="cleared"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

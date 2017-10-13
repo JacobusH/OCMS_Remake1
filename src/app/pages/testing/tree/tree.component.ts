@@ -9,8 +9,12 @@ import { AF } from 'app/providers/af.service';
   styleUrls: ['./tree.component.css']
 })
 export class TreeComponent implements OnInit {
+  skillTrees: any;
 
-  constructor(private af:AF) { }
+
+  constructor(private af:AF) { 
+    this.skillTrees = this.af.skillTrees;
+  }
 
   ngOnInit() {
   }

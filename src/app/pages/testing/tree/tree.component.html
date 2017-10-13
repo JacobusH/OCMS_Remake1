@@ -1,4 +1,5 @@
 <button (click)="createSkillTree()">Create Skill Tree</button>
 
-
-<app-skill-tree></app-skill-tree>
+<div class="bleh" *ngFor="let tree of trees">
+    <app-skill-tree [nodes]="tree.nodes"></app-skill-tree>
+</div>

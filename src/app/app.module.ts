@@ -88,7 +88,7 @@ import { ThanksComponent } from './pages/contact/thanks/thanks.component';
 import { SignupManagerComponent } from 'app/components/managers/signup-manager/signup-manager.component';
 import { LivechatComponent } from './components/livechat/livechat.component';
 import { MenuPlusComponent } from './components/navigation/menu-plus/menu-plus.component';
-import { HomeSplashComponent } from './components/home-splash/home-splash.component';
+import { HomeSplashComponent } from './pages/home/home-splash/home-splash.component';
 import { YoutubeComponent } from './pages/testing/youtube/youtube.component';
 import { UploadFormComponent } from './components/uploads/upload-form/upload-form.component';
 import { UploadComponent } from './pages/testing/upload/upload.component';
@@ -96,6 +96,10 @@ import { FormTeacherUploadComponent } from './components/uploads/form-teacher-up
 import { FormGalleryItemUploadComponent } from './components/uploads/form-gallery-item-upload/form-gallery-item-upload.component';
 import { TreeComponent } from './pages/testing/tree/tree.component';
 import { SkillTreeComponent } from './components/skill-tree/skill-tree.component';
+import { HomeTilesComponent } from './pages/home/home-tiles/home-tiles.component';
+import { HomeLearntoplayComponent } from './pages/home/home-learntoplay/home-learntoplay.component';
+import { HomeTestimonialsComponent } from './pages/home/home-testimonials/home-testimonials.component';
+import { HomeTeachersComponent } from './pages/home/home-teachers/home-teachers.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -199,7 +203,11 @@ const routes: Routes = [
     FormTeacherUploadComponent,
     FormGalleryItemUploadComponent,
     TreeComponent,
-    SkillTreeComponent
+    SkillTreeComponent,
+    HomeTilesComponent,
+    HomeLearntoplayComponent,
+    HomeTestimonialsComponent,
+    HomeTeachersComponent
   ],
   imports: [
     AccordionModule,

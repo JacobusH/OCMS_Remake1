@@ -1,0 +1,40 @@
+<div class="content-section-heading">
+    <h2 class="content-section-subtitle">
+      <span class="title-point"></span>
+      <!-- Our Team										 -->
+    </h2>
+    <h1 class="content-section-title">
+      <span>Our Team	</span>
+    </h1>
+    <div class="content-section-line">
+      <span>
+        
+      </span>
+    </div>
+  </div>
+  <!-- TEACHERS -->
+  <div class="row">
+    <div class="col-lg-3" *ngFor="let teacher of teachers | async">
+      <div class="portfolio-cell ">
+        <div class="portfolio-cell-thumb">
+          <div class="portfolio-cell-bg"></div>
+          <a class="portfolio-cell-view" routerLink="/teachers/{{teacher.id}}">
+            <i class="fa fa-eye"></i>
+          </a>
+          <a routerLink="/teachers/{{teacher.id}}">
+            <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
+          </a>
+        </div>
+        <div class="portfolio-cell-data">
+          <div class="portfolio-cell-title">
+            <a routerLink="/teachers/{{teacher.id}}">{{teacher.name}}</a>
+          </div>
+          <div class="portfolio-cell-categories"><a routerLink="/instrument/{{teacher.instrument}}">{{teacher.instrument}}</a></div>
+        </div>
+      </div>		
+    </div>
+  </div>
+  
+  <div class="container" style="text-align:center; margin-top:15px;">
+    <a class="button big-button 1bbc9b-button" routerLink="/teachers"><i class="fa fa fa-ok"></i>See More Teachers</a>
+  </div>
