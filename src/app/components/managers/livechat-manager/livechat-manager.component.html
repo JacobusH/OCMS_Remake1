@@ -1,25 +1,8 @@
 <div class="row">
   <div class="col-lg-6">
-    <div class="chat-container">
-      <div #scrollMe class="chat-messages-container">
-      <div *ngFor="let msg of currentLiveChatMessages | async" [ngClass]="msg.fromAdmin ? 'bubble-right' : 'bubble-left'">
-        <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
-          {{ msg.dateTime  }}
-        </div>
-        <div>
-          <p>{{ msg.message }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="chat-newMsg-container">
-      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';false"></textarea>
-    </div>
-    </div>
-  </div>
-  <div class="col-lg-6">
       <button class="btn btn-lg btn-info" 
       (click)="togglePresence()"
-      [ngClass]="presence">{{presence}}</button>
+      [ngClass]="switch ? 'here' : 'away'">{{switch === true ? 'here' : 'away'}}</button>
     <div class="active-livechats">
       <div class="livechat-container" *ngFor="let lc of activeLiveChats | async | activeFilter:activeFilterBy">
           <button md-icon-button [md-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
@@ -34,6 +17,23 @@
           <div class="livehchat-first-message">{{lc.messages[0].message}}</div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="chat-container">
+      <div #scrollMe class="chat-messages-container">
+      <div *ngFor="let msg of currentLiveChatMessages | async" [ngClass]="msg.fromAdmin ? 'bubble-right' : 'bubble-left'">
+        <div [ngClass]="msg.fromAdmin ? 'chat-info-right' : 'chat-info-left'">
+          {{ msg.dateTime  }}
+        </div>
+        <div>
+          <p>{{ msg.message }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-newMsg-container">
+      <textarea name="newMsg" #newMsg cols="5" rows="3" (keydown.enter)="sendMessage(newMsg.value);newMsg.value = '';false"></textarea>
+    </div>
     </div>
   </div>
 </div>

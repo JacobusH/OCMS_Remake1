@@ -22,6 +22,7 @@ export class AF {
   public galleryDesc: FirebaseListObservable<any>;
   public galleryUploads: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
+  public liveChatSwitch: FirebaseObjectObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
   public resourceCategories: FirebaseListObservable<any>;
@@ -42,6 +43,7 @@ export class AF {
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
       this.galleryUploads = this.db.list('galleryUploads');
+      this.liveChatSwitch = this.db.object('galleryUploads');
       this.resources = this.db.list('resources');
       this.roles = this.db.list('roles');
       this.skillTrees = this.db.list('skillTrees');
@@ -357,6 +359,17 @@ export class AF {
   deleteLiveChat(key: string) {
     this.db.object("liveChats/" + key).remove();
   }
+
+  toggleLiveChatSwitch() {
+    this.db.object("liveChatSwitch").subscribe(x => {
+      if(x.active) {
+        this.db.object("liveChatSwitch").update({active: false});
+      } else {
+        this.db.object("liveChatSwitch").update({active: true});
+      }
+    })
+  }
+
 
   /******************** 
    TEACHERS

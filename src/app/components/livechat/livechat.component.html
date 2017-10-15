@@ -21,13 +21,12 @@
 
 <!-- TEMPLATE -->
 <ng-template #showInfo_content>
-  <!-- <div *ngIf="lcService.liveChatPresence === 'away'" class="not-here">
+  <div *ngIf="!switch" class="not-here">
     <h3>Sorry, we're not here right now</h3>
     <span>Go to our contact page and leave us a message, thanks!</span><br/>
     <button class="btn btn-lg btn-info"><a routerLink="/contact" style="color:white; text-decoration: none;">Contact</a></button>
-  </div> -->
-  <!-- <div *ngIf="lcService.liveChatPresence === 'here'" class="info-content"> -->
-      <div class="info-content">
+  </div>
+  <div *ngIf="switch" class="info-content">
   <form (ngSubmit)="saveInfo(infoForm)" #infoForm="ngForm" class="info-form">
       <div class="form-group">
         <label for="name">Name</label>

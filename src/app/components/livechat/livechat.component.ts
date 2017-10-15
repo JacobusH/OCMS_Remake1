@@ -34,6 +34,7 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
   userName;
   userEmail;
 
+  switch: boolean;
   state = 'normal';
   slideState = 'up';
 
@@ -43,6 +44,9 @@ export class LivechatComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.scrollToBottom();
+    this.af.db.object("liveChatSwitch").subscribe(x => {
+      this.switch = x.active;
+    });
   }
 
   ngAfterViewChecked() {
