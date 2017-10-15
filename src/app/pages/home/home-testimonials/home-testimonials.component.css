@@ -20,8 +20,8 @@
     font-size: 18px;
     line-height: 28px;
     font-style: italic;
-	padding:32px 25px 35px 25px;
-	position:relative;
+    padding:32px 25px 35px 25px;
+    position:relative;
     color: #999999;
 }
 
@@ -171,8 +171,8 @@
 .quote-block-content {
     color:white;
     font-family: 'Lato',Arial !important;
-    font-size: 30px;
-    line-height: 42px;
+    font-size: 25px;
+    line-height: 30px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
