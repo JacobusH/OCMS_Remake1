@@ -37,6 +37,8 @@
       <a routerLink="/teachers">Teachers</a>
       <a routerLink="/testimonials">Testimonials</a>
       <a routerLink="/contact">Contact</a>
+      <a *ngIf="!isLoggedIn;" routerLink="/login">Admin Login</a>
+      <a *ngIf="isLoggedIn;" routerLink="/admin">Administration</a>
     </div>
     <div class="cleared"></div>
   </div>
@@ -46,3 +48,20 @@
       <img class="home-footer-img" src="../assets/img/lessons.png"/>
   </div>
 </div>
+
+<!-- TEMPLATES -->
+<ng-template #showProfile_content>
+  <ul>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile
+    <span class="caret-remade"></span></a>
+    <ul class="dropdown-menu">
+      <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com' || currentUser.email === 'stellakotova@aol.com'">
+        <a routerLink="/admin">Administration</a>
+      </li>
+      <li><a routerLink="/profile">View Profile</a></li>
+      <li><a routerLink="/" (click)="logout()">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+</ng-template>

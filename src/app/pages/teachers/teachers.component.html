@@ -5,7 +5,7 @@
 	</div>
 
 <div class="portfolio-container AC"> 
-  <div class="IL portfolio" *ngFor="let teacher of teachers | async; let i = index">
+  <div class="IL portfolio" *ngFor="let teacher of teachers">
     <div class="portfolio-cell">
       <div class="portfolio-cell-thumb">
         <div class="portfolio-cell-bg"></div>
@@ -14,7 +14,7 @@
           &nbsp;
         </a>
         <a routerLink="/teachers/{{teacher.key}}">
-          <img src="{{teacher.itemUrl}}" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
+          <img [src]="bleh" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								
         </a>
       </div>
       <div class="portfolio-cell-data">

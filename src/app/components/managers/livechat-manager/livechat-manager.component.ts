@@ -71,6 +71,8 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
       this.hasNewMessages = x[4].$value;
     })
     this.setCurrentLiveChatMessages(key);
+
+
   }
 
   setCurrentLiveChatMessages(parentKey: string) {

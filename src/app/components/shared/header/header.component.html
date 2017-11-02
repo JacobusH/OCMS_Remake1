@@ -7,7 +7,8 @@
         <li><a routerLink="/gallery">Gallery</a></li>
         <li><a routerLink="/teachers">Teachers</a></li>
         <li *ngIf="false; else showExplore_content"><a routerLink="/about">Explore</a></li>
-        <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/admin" (click)="toggleState()">Administration</a></li> 
+        <!-- <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">Login</a></li> -->
       </ul>
     </div>				
     <div class="cleared"></div>
@@ -25,7 +26,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" routerLink="/home">OCMS</a>
+    <a class="navbar-brand" routerLink="/home" (click)="toggleState()">OCMS</a>
   </div>
   <div class="collapse navbar-collapse" [ngClass]="{ 'in': isIn }" [@apparateAnimation]='state'>
     <ul class="nav navbar-nav" [@apparateAnimation]='state' *ngIf="isIn">
@@ -33,7 +34,8 @@
       <li><a routerLink="/gallery" (click)="toggleState()">Gallery</a></li>
       <li><a routerLink="/teachers" (click)="toggleState()">Teachers</a></li>
       <li *ngIf="false; else showExplore_content"><a routerLink="/about">Explore</a></li>
-      <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">Login</a></li>
+      <li *ngIf="isLoggedIn"><a routerLink="/admin" (click)="toggleState()">Administration</a></li>
+      <!-- <li *ngIf="!isLoggedIn; else showProfile_content"><a routerLink="/login">Login</a></li> -->
     </ul>
   </div>
   <div class="cleared"></div>
@@ -49,8 +51,8 @@
       <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com' || currentUser.email === 'stellakotova@aol.com'">
         <a routerLink="/admin">Administration</a>
       </li>
-      <li><a routerLink="/profile">View Profile</a></li>
-      <li><a routerLink="/" (click)="logout()">Logout</a></li>
+      <li><a routerLink="/profile" (click)="toggleState()">View Profile</a></li>
+      <li><a routerLink="/" (click)="logout(); toggleState()" >Logout</a></li>
     </ul>
   </li>
 </ng-template>
@@ -66,11 +68,12 @@
       Explore<span class="caret-remade"></span>
     </a>
     <ul class="dropdown-menu">
-      <li><a routerLink="/about">About</a></li>
-      <li><a routerLink="/testimonials">Testimonials</a></li>
-      <li><a routerLink="/faq">FAQ</a></li>
-      <li><a routerLink="/contact">Contact</a></li>
-      <li><a routerLink="/resources">Resources</a></li>
+      <li><a routerLink="/about" (click)="toggleState()">About</a></li>
+      <li><a routerLink="/learntoplay" (click)="toggleState()">Lessons</a></li>
+      <li><a routerLink="/testimonials" (click)="toggleState()">Testimonials</a></li>
+      <li><a routerLink="/faq" (click)="toggleState()">FAQ</a></li>
+      <li><a routerLink="/contact" (click)="toggleState()">Contact</a></li>
+      <li><a routerLink="/resources" (click)="toggleState()">Resources</a></li>
     </ul>
   </li>
 </ng-template>

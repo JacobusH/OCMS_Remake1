@@ -140,9 +140,9 @@ export class AF {
   getSignupsByDateRange(rangeStart: any, rangeEnd:any) {
     return this.db.list('signups', {
       query: {
-        orderByChild: 'date',
-        startAt: rangeStart._d.toLocaleDateString(),
-        endAt: rangeEnd._d.toLocaleDateString()
+        orderByChild: 'dateUnix',
+        startAt: this.getUnixDate(rangeStart._d.toLocaleDateString()),
+        endAt: this.getUnixDate(rangeEnd._d.toLocaleDateString())
       }
     })
   }

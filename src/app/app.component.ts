@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Location, PopStateEvent } from "@angular/common";
+import { UserService } from 'app/providers/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,11 @@ import { Location, PopStateEvent } from "@angular/common";
 })
 export class AppComponent implements OnInit {
   title = 'app';
+  isLoggedIn: boolean = false;
 
   private lastPoppedUrl: string;
   
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location, private userService: UserService) { }
 
   ngOnInit() {
     this.location.subscribe((ev:PopStateEvent) => {
@@ -26,5 +28,9 @@ export class AppComponent implements OnInit {
           window.scrollTo(0, 0);
       }
     });
+
+    this.userService.getIsLoggedIn();
+    this.isLoggedIn = this.userService.isLoggedIn;
   }
+
 }
