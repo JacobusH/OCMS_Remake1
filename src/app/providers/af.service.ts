@@ -8,7 +8,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable,
 import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher, TeacherUpload, SkillTree, SkillTreeNode } from 'app/models/_index';
 import * as firebase from 'firebase/app';
 import * as moment from 'moment';
-import 'rxjs/add/operator/take'
+import 'rxjs/add/operator/take';
+import "firebase/storage";
 
 
 @Injectable()
@@ -36,6 +37,8 @@ export class AF {
   public teachersDesc: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public user: Observable<firebase.User>;
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
 
 
   constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {
@@ -380,9 +383,22 @@ export class AF {
     return promise.key;
   }
 
+  updateTeacherURL(item: TeacherUpload, url: string) {
+    this.db.object("teacherUploads/" + item.key).update({itemUrl: url});
+  }
+
   saveTeacherUpload(item: TeacherUpload) {
     let promise = this.teacherUploads.push(item);
     this.db.object("teacherUploads/" + promise.key).update({key: promise.key});
+    
+    let teacherRef = this.storageRef.child(item.itemUrl);
+    teacherRef.getDownloadURL().then((url) => {
+      // this.selectedPicture = url;
+      this.db.object("teacherUploads/" + promise.key).update({itemUrl: url});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   editTeacherUpload(item: TeacherUpload) {

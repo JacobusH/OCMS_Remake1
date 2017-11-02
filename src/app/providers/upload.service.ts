@@ -4,7 +4,7 @@ import "firebase/storage";
 import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { Upload } from 'app/models/upload.model';
+import { Upload, TeacherUpload } from 'app/models/_index';
 
 @Injectable()
 export class UploadService {
@@ -16,17 +16,20 @@ export class UploadService {
   pushUpload(upload: Upload, location: string) {
     let storageRef = firebase.storage().ref();
     let uploadTask = storageRef.child(`${location}/${upload.file.name}`).put(upload.file);
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, {next :function (snapshot) {
+    
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, {
+      next : (snapshot) => {
       // upload in progress
       upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    }, error: function (error) {
+    }, error: (error) => {
       // upload failed
       console.log(error)
-    }, complete: function () {
+    }, complete: () => {
       // upload success
       upload.url = uploadTask.snapshot.downloadURL;
       upload.name = upload.file.name;
       this.saveFileData(upload);
+
     }});
   }
 
@@ -39,19 +42,20 @@ export class UploadService {
   }
 
   // Deletes the file details from the realtime db
-  private deleteFileData(key: string) {
+  deleteFileData(key: string) {
     return this.db.list(`${this.basePathGallery}/`).remove(key);
   }
 
   // Firebase files must have unique names in their respective storage dir
   // So the name serves as a unique key
-  private deleteFileStorage(name:string) {
+  deleteFileStorage(name:string) {
     let storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePathGallery}/${name}`).delete()
   }
 
   // Writes the file details to the realtime db
-  private saveFileData(upload: Upload) {
+  saveFileData(upload: Upload) {
     this.db.list(`${this.basePathGallery}/`).push(upload);
   }
+
 }
