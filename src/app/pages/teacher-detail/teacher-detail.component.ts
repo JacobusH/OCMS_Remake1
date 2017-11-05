@@ -28,9 +28,9 @@ export class TeacherDetailComponent implements OnInit, OnDestroy {
        this.key = params['id']; // (+) converts string 'id' to a number
     });
 
-    this.teacherObj = this.db.object('/teachers/' + this.key);
+    this.teacherObj = this.db.object('/teacherUploads/' + this.key);
     this.teacherObj.subscribe(x => {
-        this.teacher = new Teacher('', x.imgName, x.instrument, x.name, x.summary, true);
+        this.teacher = new Teacher('', x.itemUrl, x.instrument, x.name, x.descriptionHTML, true);
         console.log(this.teacher);
     });
   }

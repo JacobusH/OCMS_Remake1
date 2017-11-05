@@ -50,7 +50,7 @@ export class FormTeacherUploadComponent {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
 
-    this.upSvc.pushUpload(this.currentUpload, 'teacher');
+    this.upSvc.pushUpload(this.currentUpload, 'teacher', this.model);
   }
 
   // uploadMulti() {
@@ -67,11 +67,11 @@ export class FormTeacherUploadComponent {
     if(this.selectedFiles != null) {
       this.uploadSingleTeacher();
 
-      let fileName = this.selectedFiles.item(0).name;
-      let mm: TeacherUpload = this.model;
-      mm.itemUrl = 'teacher/' + fileName;
+      // let fileName = this.selectedFiles.item(0).name;
+      // let mm: TeacherUpload = this.model;
+      // mm.itemUrl = 'teacher/' + fileName;
       
-      this.af.saveTeacherUpload(mm);
+      // this.af.saveTeacherUpload(mm);
 
       this.model = new TeacherUpload();
       

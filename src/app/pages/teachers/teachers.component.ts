@@ -10,16 +10,16 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./teachers.component.css']
 })
 export class TeachersComponent implements OnInit {
-  teachers: any;
+  teachers: FirebaseListObservable<any>;
   teachersStatic: Array<any> = [];
   result;
 
   constructor(private af: AF) {
-    // this.teachers = this.af.teacherUploads;
-    this.teachers = this.af.teacherUploads.map(x => {
-      'pink' + x.itemUrl;
-      x.json();
-    }).subscribe(x => this.result = x);
+    this.teachers = this.af.teacherUploads;
+    // this.teachers = this.af.teacherUploads.map(x => {
+    //   'pink' + x.itemUrl;
+    //   x.json();
+    // }).subscribe(x => this.result = x);
 
     // http.get('friends.json')
     // .map(response => response.json())
@@ -30,6 +30,7 @@ export class TeachersComponent implements OnInit {
   ngOnInit() {
     // this.storageRef = firebase.storage().ref().child('images/image.png');
     // this.storageRef.getDownloadURL().then(url => console.log(url) );
+    
     this.af.db.list('/teacherUploads', { preserveSnapshot: true})
     .subscribe(snapshots=>{
         snapshots.forEach(snapshot => {

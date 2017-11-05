@@ -5,15 +5,17 @@ import {AngularFireModule} from 'angularfire2';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Upload, TeacherUpload } from 'app/models/_index';
+import { AF } from 'app/providers/af.service';
 
 @Injectable()
 export class UploadService {
-  constructor(private db: AngularFireDatabase) { }
   private basePathGallery:string = '/gallery';
   private basePathTeachers:string = '/teachers';
   uploads: FirebaseListObservable<Upload[]>;
   
-  pushUpload(upload: Upload, location: string) {
+  constructor(private db: AngularFireDatabase, private af: AF) { }
+  
+  pushUpload(upload: Upload, location: string, model: any) {
     let storageRef = firebase.storage().ref();
     let uploadTask = storageRef.child(`${location}/${upload.file.name}`).put(upload.file);
     
@@ -30,6 +32,10 @@ export class UploadService {
       upload.name = upload.file.name;
       this.saveFileData(upload);
 
+      let fileName = upload.name;
+      model.itemUrl = 'teacher/' + fileName;
+      
+      this.af.saveTeacherUpload(model);
     }});
   }
 

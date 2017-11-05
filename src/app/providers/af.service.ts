@@ -246,6 +246,16 @@ export class AF {
   saveGalleryUpload(item: GalleryUpload) {
     let promise = this.galleryUploads.push(item);
     this.db.object("galleryUploads/" + promise.key).update({key: promise.key});
+    
+    let galleryRef = this.storageRef.child(item.itemUrl);
+    galleryRef.getDownloadURL().then((url) => {
+      // this.selectedPicture = url;
+      this.db.object("galleryUploads/" + promise.key).update({itemUrl: url});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
   }
 
   /******************** 

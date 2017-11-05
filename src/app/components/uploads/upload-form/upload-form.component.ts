@@ -33,13 +33,13 @@ export class UploadFormComponent {
   uploadSingleTeacher() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'teacher');
+    this.upSvc.pushUpload(this.currentUpload, 'teacher', new TeacherUpload());
   }
 
   uploadSingleGalleryItem() {
     let file = this.selectedFiles.item(0)
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'gallery');
+    this.upSvc.pushUpload(this.currentUpload, 'gallery', new GalleryUpload());
   }
 
 
