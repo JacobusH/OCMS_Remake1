@@ -23,21 +23,30 @@ export class ImageGalleryComponent implements OnChanges, OnInit {
   doneLoading: boolean = false;
   loadingPercent: number = 0;
   loadingCount: number = 0;
-  loadingTotal: number = 50; // total imgs stored in 'all'
+  loadingTotal: number = 30; // total imgs stored in 'all'
   isShown: boolean = false;
+  filterOptions: Array<string>;
 
   constructor(private imageService: ImageService, private af: AF, private sanitizer: DomSanitizer) { 
-    this.visibleImages = this.af.galleryDesc;
+    // this.visibleImages = this.af.galleryDesc;
+    this.visibleImages = this.af.galleryUploadsDesc;
   }
 
   ngOnChanges() {
-    this.visibleImages = this.af.galleryDesc;
+    // this.visibleImages = this.af.galleryDesc;
+    this.visibleImages = this.af.galleryUploadsDesc;
   }
 
   ngOnInit() {
-     this.af.galleryDesc.subscribe(img => {
+    //  this.af.galleryDesc.subscribe(img => {
+    //   this.loadedImages.push(img);
+    // })
+    this.af.galleryUploadsDesc.subscribe(img => {
       this.loadedImages.push(img);
-    })
+    });
+
+    let cats = this.af.getGalleryUploadCategories();
+    let test = 'test;'
   }
 
   filterClicked(filterApplied: string) {

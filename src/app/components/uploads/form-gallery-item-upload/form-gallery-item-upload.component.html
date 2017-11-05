@@ -15,7 +15,7 @@
 <form (ngSubmit)="saveGalleryUpload(galleryUploadForm)" #galleryUploadForm="ngForm">
   <div class="form-group">
     <label for="caption">Caption</label>
-    <input type="text" class="form-control" id="caption" required
+    <input type="text" class="form-control" id="caption"
       [(ngModel)]="model.caption" name="caption"
       #caption="ngModel"
       [ngClass]="{

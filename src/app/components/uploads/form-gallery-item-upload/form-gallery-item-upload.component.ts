@@ -36,7 +36,7 @@ export class FormGalleryItemUploadComponent {
   uploadSingleGalleryItem() {
     let file = this.selectedFiles.item(0)
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'gallery', this.model);
+    this.upSvc.pushGalleryUpload(this.currentUpload, 'gallery', this.model);
   }
 
   // uploadMulti() {
@@ -53,9 +53,10 @@ export class FormGalleryItemUploadComponent {
     
     let fileName = this.selectedFiles.item(0).name;
     let mm: GalleryUpload = this.model;
+    mm.categories = mm.categories.toUpperCase();
     mm.itemUrl = 'gallery/' + fileName;
     
-    this.af.saveGalleryUpload(mm);
+    // this.af.saveGalleryUpload(mm);
     this.model = new GalleryUpload();
 
     form.reset();

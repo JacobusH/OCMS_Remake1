@@ -17,10 +17,17 @@ export class ImageFilterPipe implements PipeTransform {
     //     x.category === criteria
     //   ));
 
-    // use this for using filter with static lists
+    // use this for using filter with old static lists
+      // return items.filter(item => {
+      //   return item.category === criteria;
+      // });  
+
+      // use this for using filter with old static lists
       return items.filter(item => {
-        return item.category === criteria;
+        return item.categories.includes(criteria.toUpperCase());
       });  
+
+
     }
   }
 

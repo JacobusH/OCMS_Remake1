@@ -15,7 +15,7 @@ export class UploadService {
   
   constructor(private db: AngularFireDatabase, private af: AF) { }
   
-  pushUpload(upload: Upload, location: string, model: any) {
+  pushTeacherUpload(upload: Upload, location: string, model: any) {
     let storageRef = firebase.storage().ref();
     let uploadTask = storageRef.child(`${location}/${upload.file.name}`).put(upload.file);
     
@@ -30,12 +30,36 @@ export class UploadService {
       // upload success
       upload.url = uploadTask.snapshot.downloadURL;
       upload.name = upload.file.name;
-      this.saveFileData(upload);
+      this.saveTeacherFileData(upload);
 
       let fileName = upload.name;
       model.itemUrl = 'teacher/' + fileName;
       
       this.af.saveTeacherUpload(model);
+    }});
+  }
+
+  pushGalleryUpload(upload: Upload, location: string, model: any) {
+    let storageRef = firebase.storage().ref();
+    let uploadTask = storageRef.child(`${location}/${upload.file.name}`).put(upload.file);
+    
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, {
+      next : (snapshot) => {
+      // upload in progress
+      upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    }, error: (error) => {
+      // upload failed
+      console.log(error)
+    }, complete: () => {
+      // upload success
+      upload.url = uploadTask.snapshot.downloadURL;
+      upload.name = upload.file.name;
+      this.saveGalleryFileData(upload);
+
+      let fileName = upload.name;
+      model.itemUrl = 'gallery/' + fileName;
+      
+      this.af.saveGalleryUpload(model);
     }});
   }
 
@@ -60,8 +84,13 @@ export class UploadService {
   }
 
   // Writes the file details to the realtime db
-  saveFileData(upload: Upload) {
+  saveGalleryFileData(upload: Upload) {
     this.db.list(`${this.basePathGallery}/`).push(upload);
+  }
+
+  // Writes the file details to the realtime db
+  saveTeacherFileData(upload: Upload) {
+    this.db.list(`${this.basePathTeachers}/`).push(upload);
   }
 
 }

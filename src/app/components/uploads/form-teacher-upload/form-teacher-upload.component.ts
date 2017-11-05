@@ -50,7 +50,7 @@ export class FormTeacherUploadComponent {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
 
-    this.upSvc.pushUpload(this.currentUpload, 'teacher', this.model);
+    this.upSvc.pushTeacherUpload(this.currentUpload, 'teacher', this.model);
   }
 
   // uploadMulti() {

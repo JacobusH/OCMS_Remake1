@@ -22,6 +22,7 @@ export class AF {
   public gallery: FirebaseListObservable<any>;
   public galleryDesc: FirebaseListObservable<any>;
   public galleryUploads: FirebaseListObservable<any>;
+  public galleryUploadsDesc: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
   public liveChatSwitch: FirebaseObjectObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
@@ -60,6 +61,10 @@ export class AF {
         query: {
           limitToFirst: 50
         }});
+      this.galleryUploadsDesc = this.db.list('galleryUploads', {
+          query: {
+            limitToFirst: 30
+          }});
       this.liveChats = this.db.list('liveChats', {
         query: {
           orderByChild: 'invertedDate'
@@ -256,6 +261,29 @@ export class AF {
       console.log(err);
     });
 
+  }
+
+  getGalleryUploadCategories():Promise<Array<string>> {
+    let cats: Array<string>;
+    return null;
+    // getExerciseOptions(): Promise<Array<Exercise>> {
+    //   return this.exerciseDbRef2
+    //     .once("value")
+    //     .then(snapshot => {
+    //       const exercises: Exercise[] = [];
+    //       snapshot.forEach(snap => {
+    //           exercises.push({
+    //               id: snap.key,
+    //               description: snap.val().description
+    //           });
+    //           return false;
+    //       });
+    //       return exercises;
+    //   });
+
+
+  // getExerciseOptions().then(exercises => console.log(exercises));
+  
   }
 
   /******************** 
