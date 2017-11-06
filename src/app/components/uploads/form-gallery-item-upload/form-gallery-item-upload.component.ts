@@ -56,6 +56,7 @@ export class FormGalleryItemUploadComponent {
     mm.categories = mm.categories.toUpperCase();
     mm.itemUrl = 'gallery/' + fileName;
     
+    this.af.addToGalleryCount();
     // this.af.saveGalleryUpload(mm);
     this.model = new GalleryUpload();
 

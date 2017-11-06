@@ -263,27 +263,14 @@ export class AF {
 
   }
 
-  getGalleryUploadCategories():Promise<Array<string>> {
-    let cats: Array<string>;
-    return null;
-    // getExerciseOptions(): Promise<Array<Exercise>> {
-    //   return this.exerciseDbRef2
-    //     .once("value")
-    //     .then(snapshot => {
-    //       const exercises: Exercise[] = [];
-    //       snapshot.forEach(snap => {
-    //           exercises.push({
-    //               id: snap.key,
-    //               description: snap.val().description
-    //           });
-    //           return false;
-    //       });
-    //       return exercises;
-    //   });
+  addToGalleryCount() {
+    var cnt = this.db.object('/galleryUploadCount/' , { preserveSnapshot: true }).take(1);
+    cnt.subscribe(x => {
+      let cnt = +x.val().count + 1;
+      this.db.object("/galleryUploadCount/").update({count: cnt});
+    });
+    
 
-
-  // getExerciseOptions().then(exercises => console.log(exercises));
-  
   }
 
   /******************** 
