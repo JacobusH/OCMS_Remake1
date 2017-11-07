@@ -5,7 +5,7 @@ import { AF } from 'app/providers/af.service';
 import { LiveChatStatusService } from 'app/providers/liveChatStatus.service';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
-import {MdMenuModule, MdButtonModule, MdIconModule} from '@angular/material';
+import {MatMenuModule, MatButtonModule, MatIconModule} from '@angular/material';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { DaterangepickerConfig } from 'ng2-daterangepicker';
 import * as moment from 'moment';

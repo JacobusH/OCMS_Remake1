@@ -1,16 +1,16 @@
 <div class="filter-options container AC">
   <form>
     <md-select placeholder="Filter Read" [(ngModel)]="readSelectedValue" name="read">
-      <md-option *ngFor="let r of readFilter" [value]="r.value" (click)="readFilterClicked(readSelectedValue)">
+      <mat-option *ngFor="let r of readFilter" [value]="r.value" (click)="readFilterClicked(readSelectedValue)">
         {{r.viewValue}}
-      </md-option>
+      </mat-option>
     </md-select>
   </form>
   <form>
     <md-select placeholder="Instruments" [(ngModel)]="instSelectedValue" name="instrument">
-      <md-option *ngFor="let instrument of instruments" [value]="instrument.value" (click)="filterClicked(instSelectedValue)">
+      <mat-option *ngFor="let instrument of instruments" [value]="instrument.value" (click)="filterClicked(instSelectedValue)">
         {{instrument.viewValue}}
-      </md-option>
+      </mat-option>
     </md-select>
   </form>
   <div id="datePicker" class="form-group" *ngFor="let dateInput of dateInputs">

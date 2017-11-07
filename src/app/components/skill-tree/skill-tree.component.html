@@ -2,7 +2,7 @@
   <tree-root #tree [nodes]="nodes" [options]="options">
       <ng-template #treeNodeTemplate let-node let-index="index">
         <span>{{ node.data.name }}</span>
-        <button md-icon-button [md-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
+        <button md-icon-button [mat-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
             <md-icon>add</md-icon>
           </button>
       </ng-template>
@@ -15,13 +15,13 @@
 </div>
 
 <!-- MENU -->
-<md-menu #menu="mdMenu">
-    <button md-menu-item (click)="addChildNode($event)">
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="addChildNode($event)">
       <md-icon>add</md-icon>
       <span>Add Child</span>
     </button>
-    <button md-menu-item (click)="markComplete($event)">
+    <button mat-menu-item (click)="markComplete($event)">
       <md-icon>check</md-icon>
       <span>Complete</span>
     </button>
-  </md-menu>
+  </mat-menu>

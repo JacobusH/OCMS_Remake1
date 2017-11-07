@@ -22,7 +22,7 @@
       [ngClass]="presence">{{presence}}</button>
     <div class="active-livechats">
       <div class="livechat-container" *ngFor="let lc of activeLiveChats | async | activeFilter:activeFilterBy">
-          <button md-icon-button [md-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
+          <button md-icon-button [mat-menu-trigger-for]="menu" (onMenuOpen)="setMenuLivechatKey(lc.key)" class="livechat-menu">
               <md-icon>add</md-icon>
             </button>
         <div class="livechat" 
@@ -39,13 +39,13 @@
 </div>
 
 <!-- MENU -->
-<md-menu #menu="mdMenu">
-    <button md-menu-item (click)="markInactive()">
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="markInactive()">
       <md-icon>check</md-icon>
       <span>Finished</span>
     </button>
-    <button md-menu-item (click)="deleteLivechat()">
+    <button mat-menu-item (click)="deleteLivechat()">
       <md-icon>delete_forever</md-icon>
       <span>Delete</span>
     </button>
-  </md-menu>
+  </mat-menu>
