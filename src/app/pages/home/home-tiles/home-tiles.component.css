@@ -8,3 +8,7 @@
   padding: 7px;
   margin-bottom: 15px;
 } */
+
+img.icon-box-image, img.icon-box-image-hover  {
+  width:25px;
+}

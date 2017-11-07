@@ -2,6 +2,11 @@
 @import '~angular-tree-component/dist/angular-tree-component.css';
 
 /*HELPERS*/
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
+
 .btn.btn-lg.btn-info {
   background: #3498db;
 }

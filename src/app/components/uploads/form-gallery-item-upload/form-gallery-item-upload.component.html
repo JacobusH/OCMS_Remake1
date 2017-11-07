@@ -41,6 +41,19 @@
         Categories are required
     </div>
   </div>
+  <div class="form-group">
+      <label for="isActive">Active</label>
+      <input [checked]="model.isActive" 
+      type="checkbox" 
+      name="isActive" 
+      id="isActive" 
+      #isActive
+      required>      
+        <!-- <div [hidden]="isActive.valid || isActive.pristine"
+            class="alert alert-danger">
+            isActive is required
+      </div> -->
+    </div>
   <button type="submit" class="btn btn-success" [disabled]="!galleryUploadForm.form.valid && selectedFiles">Upload</button>
 
     <!-- MULTI FILE UPLOAD -->
