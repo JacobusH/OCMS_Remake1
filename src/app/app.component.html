@@ -21,7 +21,7 @@
   <router-outlet>
     <app-livechat></app-livechat>
   </router-outlet>
-  <div id="back_top" style="display: block;"><i class="fa fa-angle-up"></i></div>
+  <!-- <div id="back_top" style="display: block;"><i class="fa fa-angle-up"></i></div> -->
 </div>
 
 <div id="footer"></div>
@@ -29,7 +29,7 @@
   <div class="wrap">
     <div id="footer-copyright">
       <p style="text-align: left;">
-        <a routerLink="/home">OCMS</a> ©&nbsp;2017 | All Rights Reserved • (555) 111-2222
+        <a routerLink="/home">OCMS</a> ©&nbsp;2017 | All Rights Reserved • (714) 573-1449
       </p>			
     </div>
     <div id="footer-right">
@@ -37,6 +37,8 @@
       <a routerLink="/teachers">Teachers</a>
       <a routerLink="/testimonials">Testimonials</a>
       <a routerLink="/contact">Contact</a>
+      <a *ngIf="!isLoggedIn;" routerLink="/login">Admin Login</a>
+      <a *ngIf="isLoggedIn;" routerLink="/admin">Administration</a>
     </div>
     <div class="cleared"></div>
   </div>
@@ -46,3 +48,20 @@
       <img class="home-footer-img" src="../assets/img/lessons.png"/>
   </div>
 </div>
+
+<!-- TEMPLATES -->
+<ng-template #showProfile_content>
+  <ul>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" routerLink="/profile">Profile
+    <span class="caret-remade"></span></a>
+    <ul class="dropdown-menu">
+      <li *ngIf="currentUser.email === 'jacobus.anthony.harding@gmail.com' || currentUser.email === 'stellakotova@aol.com'">
+        <a routerLink="/admin">Administration</a>
+      </li>
+      <li><a routerLink="/profile">View Profile</a></li>
+      <li><a routerLink="/" (click)="logout()">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+</ng-template>

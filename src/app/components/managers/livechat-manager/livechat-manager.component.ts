@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { LiveChat } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import { LiveChatStatusService } from 'app/providers/liveChatStatus.service';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import { slideUpDownAnimation, highlightAnimation } from 'app/animations/_index';
 import {MatMenuModule, MatButtonModule, MatIconModule} from '@angular/material';
 import { Daterangepicker } from 'ng2-daterangepicker';
@@ -23,7 +23,7 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   public currentLiveChatMessages: FirebaseListObservable<any>;
   public currentLiveChatKey: string;
   public menuKey: string;
-  public presence: string = 'away';
+  public switch: boolean;
   private model = new LiveChat();
   public sessionRunning: boolean = false;
   public hasNewMessages: boolean = false;
@@ -48,6 +48,9 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.scrollToBottom();
+    this.af.db.object("liveChatSwitch").subscribe(x => {
+      this.switch = x.active;
+    });
   }
 
   ngAfterViewChecked() {
@@ -68,6 +71,8 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
       this.hasNewMessages = x[4].$value;
     })
     this.setCurrentLiveChatMessages(key);
+
+
   }
 
   setCurrentLiveChatMessages(parentKey: string) {
@@ -99,7 +104,16 @@ export class LivechatManagerComponent implements OnInit, AfterViewChecked {
   }
 
   togglePresence() {
-    this.presence = this.lcService.liveChatPresence = (this.lcService.liveChatPresence === 'away') ? 'here' : 'away';
+    ///// using a service doesn't work across devices
+    // this.presence = this.lcService.liveChatPresence = (this.lcService.liveChatPresence === 'away') ? 'here' : 'away';
+   
+    //// using our db
+    if(this.switch) {
+      this.af.db.object("liveChatSwitch").update({active: false});
+    } else {
+      this.af.db.object("liveChatSwitch").update({active: true});
+    }
+
   }
 
   private selectedDate(value: any, dateInput: any) {

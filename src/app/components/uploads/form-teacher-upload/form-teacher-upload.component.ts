@@ -5,6 +5,7 @@ import { TeacherUpload } from 'app/models/_index';
 import { AF } from 'app/providers/af.service';
 import * as _ from "lodash";
 import * as firebase from 'firebase/app';
+import "firebase/storage";
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {
   ReactiveFormsModule,
@@ -31,6 +32,8 @@ export class FormTeacherUploadComponent {
   private model = new TeacherUpload();
   private teachers: FirebaseListObservable<any>;
   private firebaseUrl: string = 'gs://ocmusicschool-11817.appspot.com/';
+  private basePathGallery:string = '/gallery';
+  private basePathTeachers:string = '/teachers';
 
   storage = firebase.storage();
   storageRef = this.storage.ref();
@@ -46,7 +49,8 @@ export class FormTeacherUploadComponent {
   uploadSingleTeacher() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'teacher');
+
+    this.upSvc.pushTeacherUpload(this.currentUpload, 'teacher', this.model);
   }
 
   // uploadMulti() {
@@ -63,11 +67,12 @@ export class FormTeacherUploadComponent {
     if(this.selectedFiles != null) {
       this.uploadSingleTeacher();
 
-      let fileName = this.selectedFiles.item(0).name;
-      let mm: TeacherUpload = this.model;
-      mm.itemUrl = 'teacher/' + fileName;
+      // let fileName = this.selectedFiles.item(0).name;
+      // let mm: TeacherUpload = this.model;
+      // mm.itemUrl = 'teacher/' + fileName;
       
-      this.af.saveTeacherUpload(mm);
+      // this.af.saveTeacherUpload(mm);
+
       this.model = new TeacherUpload();
       
       this.fileUploadVar.nativeElement.value = "";

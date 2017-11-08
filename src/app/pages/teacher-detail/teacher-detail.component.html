@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="photo"  *ngIf="teacher != null">
-    <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">
+    <img src="{{teacher.imgName}}" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">
   </div>
   <div class="info"  *ngIf="teacher != null">
       <div innerHtml="{{teacher.summary}}"></div>

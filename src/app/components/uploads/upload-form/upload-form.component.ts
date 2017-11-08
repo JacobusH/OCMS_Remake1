@@ -31,15 +31,15 @@ export class UploadFormComponent {
   }
 
   uploadSingleTeacher() {
-    let file = this.selectedFiles.item(0);
-    this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'teacher');
+    // let file = this.selectedFiles.item(0);
+    // this.currentUpload = new Upload(file);
+    // this.upSvc.pushTeacherUpload(this.currentUpload, 'teacher', new TeacherUpload());
   }
 
   uploadSingleGalleryItem() {
-    let file = this.selectedFiles.item(0)
-    this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, 'gallery');
+    // let file = this.selectedFiles.item(0)
+    // this.currentUpload = new Upload(file);
+    // this.upSvc.pushGalleryUpload(this.currentUpload, 'gallery', new GalleryUpload());
   }
 
 

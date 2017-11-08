@@ -10,20 +10,46 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class UserService {
-  public currentUser: User;
+  public currentUser: any;
+  public isLoggedIn: boolean;
 
 
-  constructor() {
-    this.currentUser = null;
+  constructor(private af: AF) {
+       // get user logged in state
+       this.af.afAuth.authState.subscribe(user => {
+        if(user) {
+            this.currentUser = user;
+            this.isLoggedIn = true;
+            // this.isAdmin = this.af.getUserRoles(user);
+            // console.log("Logged in user is: " + user.email);
+            // console.log("User photo: " + user.providerData[0].photoURL);
+            // console.log("User name: " + user.providerData[0].displayName);
+            // console.log(user);
+        }
+        else {
+          this.currentUser = {};
+          this.isLoggedIn = false;
+        }
+    });
   }
 
-  setHere(user: User) {
-    this.currentUser = user;
+  getIsLoggedIn() {
+    // get user logged in state
+    this.af.afAuth.authState.subscribe(user => {
+      if(user) {
+          this.currentUser = user;
+          this.isLoggedIn = true;
+          // this.isAdmin = this.af.getUserRoles(user);
+          // console.log("Logged in user is: " + user.email);
+          // console.log("User photo: " + user.providerData[0].photoURL);
+          // console.log("User name: " + user.providerData[0].displayName);
+          // console.log(user);
+      }
+      else {
+        this.currentUser = {};
+        this.isLoggedIn = false;
+      }
+  });
   }
-
-  setAway() {
-    this.currentUser = null;
-  }
-
 
 }

@@ -5,6 +5,8 @@ import { GalleryImage } from 'app/models/galleryImage.model';
 import { ImageService } from 'app/providers/image.service';
 import { AF } from 'app/providers/af.service';
 import { apparateTrigger } from 'app/animations/apparate.animation';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+
 
 @Component({
   selector: 'app-image-gallery',
@@ -23,21 +25,41 @@ export class ImageGalleryComponent implements OnChanges, OnInit {
   doneLoading: boolean = false;
   loadingPercent: number = 0;
   loadingCount: number = 0;
-  loadingTotal: number = 50; // total imgs stored in 'all'
+  loadingTotal: number = 30; // total imgs stored in 'all'
   isShown: boolean = false;
+  filterOptions: Array<string> = [];
 
-  constructor(private imageService: ImageService, private af: AF, private sanitizer: DomSanitizer) { 
-    this.visibleImages = this.af.galleryDesc;
+  constructor(private imageService: ImageService, private af: AF, private sanitizer: DomSanitizer, public db: AngularFireDatabase) { 
+    // this.visibleImages = this.af.galleryDesc;
+    this.visibleImages = this.af.galleryUploadsDesc;
   }
 
   ngOnChanges() {
-    this.visibleImages = this.af.galleryDesc;
+    // this.visibleImages = this.af.galleryDesc;
+    this.visibleImages = this.af.galleryUploadsDesc;
   }
 
   ngOnInit() {
-     this.af.galleryDesc.subscribe(img => {
+    var cnt = this.db.object('/galleryUploadCount/' , { preserveSnapshot: true }).take(1);
+    cnt.subscribe(x => {
+      this.loadingTotal = x.val().count;
+    });
+
+    this.af.galleryUploadsDesc.subscribe(img => {
       this.loadedImages.push(img);
-    })
+      
+      for(var i = 0; i < img.length; i++) {
+        let splits = img[i].categories.split(',');
+        for(var j = 0; j < splits.length; j++) {
+          var element = splits[j].replace(/\s/g, '');
+          if(this.filterOptions.indexOf(element) === -1) {
+            this.filterOptions.push(element);
+          }
+        }
+      }
+
+    });
+
   }
 
   filterClicked(filterApplied: string) {

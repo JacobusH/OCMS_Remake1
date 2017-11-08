@@ -101,6 +101,7 @@ import { HomeTilesComponent } from './pages/home/home-tiles/home-tiles.component
 import { HomeLearntoplayComponent } from './pages/home/home-learntoplay/home-learntoplay.component';
 import { HomeTestimonialsComponent } from './pages/home/home-testimonials/home-testimonials.component';
 import { HomeTeachersComponent } from './pages/home/home-teachers/home-teachers.component';
+import { HomepageManagerComponent } from './components/managers/homepage-manager/homepage-manager.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCFToauOWTjn55Oc2e6L1YkCt5ZGzbMXV8',
@@ -208,7 +209,8 @@ const routes: Routes = [
     HomeTilesComponent,
     HomeLearntoplayComponent,
     HomeTestimonialsComponent,
-    HomeTeachersComponent
+    HomeTeachersComponent,
+    HomepageManagerComponent
   ],
   imports: [
     AccordionModule,

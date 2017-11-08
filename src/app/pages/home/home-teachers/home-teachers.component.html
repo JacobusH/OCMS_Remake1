@@ -14,12 +14,12 @@
   </div>
   <!-- TEACHERS -->
   <div class="row">
-    <div class="col-lg-3" *ngFor="let teacher of teachers | async">
+    <div class="col-lg-3 col-md-6" *ngFor="let teacher of teachers | async">
       <div class="portfolio-cell ">
         <div class="portfolio-cell-thumb">
           <div class="portfolio-cell-bg"></div>
           <a class="portfolio-cell-view" routerLink="/teachers/{{teacher.id}}">
-            <i class="fa fa-eye"></i>
+            <!-- <i class="fa fa-eye"></i> -->
           </a>
           <a routerLink="/teachers/{{teacher.id}}">
             <img src="../assets/img/teachers/{{teacher.imgName}}.jpg" class="attachment-thumb-cell-small size-thumb-cell-small wp-post-image" alt="">																								

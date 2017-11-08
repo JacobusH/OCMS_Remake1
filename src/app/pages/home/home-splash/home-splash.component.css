@@ -63,4 +63,13 @@
   .desc-wrapper .bottom {
     font-size:12px;
   }
+  .bottom-buttons {
+    margin-top:0px;
+  }
+  .btn-group-lg>.btn, .btn-lg {
+    padding: 3px 7px;
+    font-size: 14px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+  }
 }

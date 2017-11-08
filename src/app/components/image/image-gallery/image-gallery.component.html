@@ -10,8 +10,28 @@
   </div>
 </div>
 
-<!-- Staic approach, maintains imgs in memory for beter experience -->
+<!-- NEW Static approach, maintains imgs in memory for beter experience -->
 <div class="gallery-container AC" [style.visibility]="(doneLoading == false) ? 'hidden' : 'visible' ">
+  <div class="filter-buttons" >
+    <button 
+    *ngFor="let fil of filterOptions" 
+    class="btn btn-lg btn-info" 
+    [class.active]="filterBy == fil" 
+    style="margin-right:15px;"
+    (click)="filterClicked(fil)" >{{fil}}</button>
+  </div>
+  <div *ngFor="let img of loadedImages">
+    <span *ngFor="let innerImg of img | imageFilter:filterBy">
+      <!-- <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]"> -->
+        <a [@apparateAnimation]='state'>
+        <img  src="{{ innerImg.itemUrl }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
+      </a>
+    </span>
+  </div>   
+</div>
+
+<!-- Static approach, maintains imgs in memory for beter experience -->
+<!-- <div class="gallery-container AC" [style.visibility]="(doneLoading == false) ? 'hidden' : 'visible' ">
   <div class="filter-buttons">
     <button class="btn btn-lg btn-info" [class.active]="filterBy == all" (click)="filterClicked('all')">All</button>
     <button class="btn btn-lg btn-info" [class.active]="filterBy == piano" (click)="filterClicked('piano')">Piano</button>
@@ -22,14 +42,13 @@
   <div *ngFor="let img of loadedImages">
     <div *ngFor="let img of loadedImages">
       <span *ngFor="let innerImg of img | imageFilter:filterBy">
-        <!-- <a [@apparateAnimation]='state' [routerLink]="['image', innerImg.id]"> -->
           <a [@apparateAnimation]='state'>
-          <img  src="{{ innerImg.url }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
+          <img  src="{{ innerImg.itemUrl }}" class="tn" (load)="isLoaded($event)" width="200" height="165" /> 
         </a>
       </span>
     </div>
   </div>   
-</div>
+</div> -->
 
 
 

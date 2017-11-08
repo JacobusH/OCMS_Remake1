@@ -4,7 +4,7 @@
 }
 
 .teachers-container {
-  border: 1px dashed grey;
+  border: 1px dashed #1b6d85;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 3px 2px #888888;
@@ -13,9 +13,12 @@
 }
 
 .teacher {
-  border: 1px solid #46b8da;
+  border: 2px solid #FF4500;
   border-radius: 5px;
-  display:inline;
-  padding:5px;
-  cursor:pointer;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
 }
+

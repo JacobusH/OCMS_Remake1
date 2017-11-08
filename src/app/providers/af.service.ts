@@ -8,7 +8,8 @@ import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable,
 import { FAQ, MailMessage, User, GalleryImage, GalleryUpload, Signup, Resource, LiveChat, LiveChatMessage, Teacher, TeacherUpload, SkillTree, SkillTreeNode } from 'app/models/_index';
 import * as firebase from 'firebase/app';
 import * as moment from 'moment';
-import 'rxjs/add/operator/take'
+import 'rxjs/add/operator/take';
+import "firebase/storage";
 
 
 @Injectable()
@@ -21,7 +22,9 @@ export class AF {
   public gallery: FirebaseListObservable<any>;
   public galleryDesc: FirebaseListObservable<any>;
   public galleryUploads: FirebaseListObservable<any>;
+  public galleryUploadsDesc: FirebaseListObservable<any>;
   public liveChats: FirebaseListObservable<any>;
+  public liveChatSwitch: FirebaseObjectObservable<any>;
   public mailMessages: FirebaseListObservable<any>;
   public resources: FirebaseListObservable<any>;
   public resourceCategories: FirebaseListObservable<any>;
@@ -35,6 +38,8 @@ export class AF {
   public teachersDesc: FirebaseListObservable<any>;
   public users: FirebaseListObservable<any>;
   public user: Observable<firebase.User>;
+  storage = firebase.storage();
+  storageRef = this.storage.ref();
 
 
   constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth) {
@@ -42,6 +47,7 @@ export class AF {
       this.faqs = this.db.list('faqs');
       this.gallery = this.db.list('gallery');
       this.galleryUploads = this.db.list('galleryUploads');
+      this.liveChatSwitch = this.db.object('galleryUploads');
       this.resources = this.db.list('resources');
       this.roles = this.db.list('roles');
       this.skillTrees = this.db.list('skillTrees');
@@ -55,6 +61,10 @@ export class AF {
         query: {
           limitToFirst: 50
         }});
+      this.galleryUploadsDesc = this.db.list('galleryUploads', {
+          query: {
+            limitToFirst: 30
+          }});
       this.liveChats = this.db.list('liveChats', {
         query: {
           orderByChild: 'invertedDate'
@@ -138,9 +148,9 @@ export class AF {
   getSignupsByDateRange(rangeStart: any, rangeEnd:any) {
     return this.db.list('signups', {
       query: {
-        orderByChild: 'date',
-        startAt: rangeStart._d.toLocaleDateString(),
-        endAt: rangeEnd._d.toLocaleDateString()
+        orderByChild: 'dateUnix',
+        startAt: this.getUnixDate(rangeStart._d.toLocaleDateString()),
+        endAt: this.getUnixDate(rangeEnd._d.toLocaleDateString())
       }
     })
   }
@@ -241,6 +251,26 @@ export class AF {
   saveGalleryUpload(item: GalleryUpload) {
     let promise = this.galleryUploads.push(item);
     this.db.object("galleryUploads/" + promise.key).update({key: promise.key});
+    
+    let galleryRef = this.storageRef.child(item.itemUrl);
+    galleryRef.getDownloadURL().then((url) => {
+      // this.selectedPicture = url;
+      this.db.object("galleryUploads/" + promise.key).update({itemUrl: url});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
+  addToGalleryCount() {
+    var cnt = this.db.object('/galleryUploadCount/' , { preserveSnapshot: true }).take(1);
+    cnt.subscribe(x => {
+      let cnt = +x.val().count + 1;
+      this.db.object("/galleryUploadCount/").update({count: cnt});
+    });
+    
+
   }
 
   /******************** 
@@ -358,6 +388,17 @@ export class AF {
     this.db.object("liveChats/" + key).remove();
   }
 
+  toggleLiveChatSwitch() {
+    this.db.object("liveChatSwitch").subscribe(x => {
+      if(x.active) {
+        this.db.object("liveChatSwitch").update({active: false});
+      } else {
+        this.db.object("liveChatSwitch").update({active: true});
+      }
+    })
+  }
+
+
   /******************** 
    TEACHERS
   ****************** */
@@ -367,9 +408,22 @@ export class AF {
     return promise.key;
   }
 
+  updateTeacherURL(item: TeacherUpload, url: string) {
+    this.db.object("teacherUploads/" + item.key).update({itemUrl: url});
+  }
+
   saveTeacherUpload(item: TeacherUpload) {
     let promise = this.teacherUploads.push(item);
     this.db.object("teacherUploads/" + promise.key).update({key: promise.key});
+    
+    let teacherRef = this.storageRef.child(item.itemUrl);
+    teacherRef.getDownloadURL().then((url) => {
+      // this.selectedPicture = url;
+      this.db.object("teacherUploads/" + promise.key).update({itemUrl: url});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   editTeacherUpload(item: TeacherUpload) {

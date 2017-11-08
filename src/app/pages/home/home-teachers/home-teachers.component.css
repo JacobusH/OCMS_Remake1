@@ -8,8 +8,9 @@
     overflow: hidden;
     width: 70%;
     margin: 0 auto;
+    margin-top:15px;
 }
-
+ 
 .portfolio-cell-thumb {
   
 }
@@ -59,4 +60,13 @@
 .icon-box-link {
     padding: 7px;   
     border-radius: 5px;
+}
+
+@media screen and (min-device-width: 1200px) /* Desktop */ {
+}
+
+@media screen  and (max-device-width: 1199px) /* Tablet */ {
+}
+
+@media screen and (max-device-width: 720px) /* Mobile */ {
 }
