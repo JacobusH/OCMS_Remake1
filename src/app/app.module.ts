@@ -13,7 +13,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@angular/material';
-import { MatMenuModule, MatButtonModule, MatIconModule, MatSelectModule } from '@angular/material';
+import { MdMenuModule, MdButtonModule, MdIconModule, MdSelectModule } from '@angular/material';
 import { TreeModule} from 'angular-tree-component';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
 // import { Ng2ImageGalleryModule } from 'ng2-image-gallery';
@@ -226,10 +226,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    MatMenuModule, 
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
+    MdMenuModule, 
+    MdButtonModule,
+    MdIconModule,
+    MdSelectModule,
     TreeModule,
     YoutubePlayerModule 
     // LightboxModule,
